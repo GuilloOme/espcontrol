@@ -180,6 +180,25 @@ export const CARD_CONTRACT_MIGRATION_ACTIONS: Readonly<Record<string, MigrationA
 export const CARD_CONTRACT_RETIRED_SUBPAGE_TYPE_CODES = [] as const;
 export const CARD_CONFIG_FIELDS = ["entity", "label", "icon", "icon_on", "sensor", "unit", "type", "precision", "options"] as const satisfies readonly SavedConfigField[];
 export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
+  "timer": {
+    "label": "Timer",
+    "allowInSubpage": true,
+    "domains": [
+      "timer"
+    ],
+    "options": [],
+    "default": {
+      "entity": "",
+      "label": "",
+      "icon": "Auto",
+      "icon_on": "Auto",
+      "sensor": "",
+      "unit": "3",
+      "type": "timer",
+      "precision": "",
+      "options": ""
+    }
+  },
   "": {
     "label": "Switch",
     "allowInSubpage": true,
@@ -564,6 +583,7 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
         "values": [
           "status",
           "start_stop",
+          "start_dock",
           "dock",
           "pause_resume",
           "clean_spot",
@@ -596,6 +616,7 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
           "values": [
             "status",
             "start_stop",
+            "start_dock",
             "dock",
             "pause_resume",
             "clean_spot",
@@ -1061,6 +1082,12 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
         "label": "Large Clock",
         "kind": "flag",
         "omitDefault": true
+      },
+      {
+        "name": "center_clock",
+        "label": "Center Clock",
+        "kind": "flag",
+        "omitDefault": true
       }
     ],
     "normalization": {
@@ -1099,7 +1126,8 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
       },
       "unknownOptions": "drop",
       "canonicalOptionOrder": [
-        "large_numbers"
+        "large_numbers",
+        "center_clock"
       ],
       "optionHook": "normalize_date_time_options"
     },
@@ -1291,7 +1319,7 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
         "name": "climate_tabs",
         "label": "Visible Tabs",
         "kind": "text",
-        "defaultValue": "temperature|mode|preset|fan|swing",
+        "defaultValue": "temperature|mode|preset|fan|swing|horizontal_swing",
         "omitDefault": true
       }
     ],
@@ -3720,6 +3748,36 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
         ],
         "defaultValue": "fill",
         "omitDefault": true
+      },
+      {
+        "name": "image_modal_refresh_mode",
+        "label": "Camera refresh",
+        "kind": "choice",
+        "values": [
+          "off",
+          "periodic",
+          "activity"
+        ],
+        "defaultValue": "off",
+        "omitDefault": true
+      },
+      {
+        "name": "image_modal_refresh_interval",
+        "label": "Refresh interval",
+        "kind": "choice",
+        "values": [
+          "5",
+          "10",
+          "30"
+        ],
+        "defaultValue": "10",
+        "omitDefault": true
+      },
+      {
+        "name": "image_modal_refresh_trigger",
+        "label": "Trigger entity",
+        "kind": "text",
+        "omitDefault": true
       }
     ],
     "normalization": {
@@ -3761,7 +3819,10 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
       "canonicalOptionOrder": [
         "image_label",
         "image_icon",
-        "image_modal_mode"
+        "image_modal_mode",
+        "image_modal_refresh_mode",
+        "image_modal_refresh_interval",
+        "image_modal_refresh_trigger"
       ],
       "optionHook": "normalize_image_options"
     },
@@ -3780,7 +3841,9 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
   "wifi_qr": {
     "label": "Wifi Sharing",
     "allowInSubpage": true,
-    "domains": [],
+    "domains": [
+      "switch"
+    ],
     "options": [
       {
         "name": "ssid64",
@@ -3817,7 +3880,8 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
         "kind": "text",
         "values": [
           "qr",
-          "credentials"
+          "credentials",
+          "guest"
         ],
         "defaultValue": "qr|credentials",
         "omitDefault": true
@@ -3826,7 +3890,7 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
     "normalization": {
       "fields": {
         "entity": {
-          "policy": "clear"
+          "policy": "keep"
         },
         "label": {
           "policy": "default_if_empty",
@@ -3882,7 +3946,9 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
     "label": "QR Card",
     "allowInSubpage": true,
     "pickerKey": "wifi_qr",
-    "domains": [],
+    "domains": [
+      "switch"
+    ],
     "options": [
       {
         "name": "ssid64",
@@ -3919,7 +3985,8 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
         "kind": "text",
         "values": [
           "qr",
-          "credentials"
+          "credentials",
+          "guest"
         ],
         "defaultValue": "qr|credentials",
         "omitDefault": true
@@ -3928,7 +3995,7 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
     "normalization": {
       "fields": {
         "entity": {
-          "policy": "clear"
+          "policy": "keep"
         },
         "label": {
           "policy": "clear"
@@ -4000,6 +4067,18 @@ export const CARD_CONTRACT_CARDS: Readonly<Record<string, CardTypeSpec>> = {
   }
 };
 export const CARD_RUNTIME_SPECS: Readonly<Record<string, CardRuntimeSpec>> = {
+  "timer": {
+    "driver": "timer",
+    "capabilities": {
+      "informationOnly": false,
+      "subscriptions": true,
+      "actions": true,
+      "numericControl": false,
+      "modal": false,
+      "runtimeAllocation": true,
+      "subpage": true
+    }
+  },
   "": {
     "driver": "toggle",
     "capabilities": {
@@ -4498,7 +4577,7 @@ export const CARD_RUNTIME_SPECS: Readonly<Record<string, CardRuntimeSpec>> = {
     "driver": "wifi_qr",
     "capabilities": {
       "informationOnly": false,
-      "subscriptions": false,
+      "subscriptions": true,
       "actions": true,
       "numericControl": false,
       "modal": true,
@@ -4510,7 +4589,7 @@ export const CARD_RUNTIME_SPECS: Readonly<Record<string, CardRuntimeSpec>> = {
     "driver": "wifi_qr",
     "capabilities": {
       "informationOnly": false,
-      "subscriptions": false,
+      "subscriptions": true,
       "actions": true,
       "numericControl": false,
       "modal": true,
@@ -4564,6 +4643,7 @@ export const CARD_CONTRACT_FAN_DEFAULT_ICON_ON: Readonly<Record<string, string>>
 export const CARD_CONTRACT_OPTION_SELECT_ACTION = "input_select.select_option";
 export const CARD_CONTRACT_OPTION_SELECT_ACTIONS = ["input_select.select_option", "select.select_option"] as const;
 export const CARD_CONTRACT_SUBPAGE_TYPE_CODES: Readonly<Record<string, string>> = {
+  "timer": "TM",
   "action": "A",
   "calendar": "D",
   "clock": "CK",
@@ -4604,6 +4684,7 @@ export const CARD_CONTRACT_SUBPAGE_TYPE_CODES: Readonly<Record<string, string>> 
   "subpage": "G"
 };
 export const CARD_CONTRACT_SUBPAGE_TYPES_BY_CODE: Readonly<Record<string, string>> = {
+  "TM": "timer",
   "A": "action",
   "D": "calendar",
   "CK": "clock",
@@ -4670,6 +4751,7 @@ export const CARD_CONTRACT_OPTION_NAMES: Readonly<Record<string, string>> = {
   "actions": "actions",
   "active_color": "active_color",
   "alarm_card_type": "alarm_card_type",
+  "center_clock": "center_clock",
   "climate_tabs": "climate_tabs",
   "confirm_message": "confirm_message",
   "confirm_no": "confirm_no",
@@ -4693,6 +4775,9 @@ export const CARD_CONTRACT_OPTION_NAMES: Readonly<Record<string, string>> = {
   "image_icon": "image_icon",
   "image_label": "image_label",
   "image_modal_mode": "image_modal_mode",
+  "image_modal_refresh_interval": "image_modal_refresh_interval",
+  "image_modal_refresh_mode": "image_modal_refresh_mode",
+  "image_modal_refresh_trigger": "image_modal_refresh_trigger",
   "internal_mode": "internal_mode",
   "label_display": "label_display",
   "large_numbers": "large_numbers",

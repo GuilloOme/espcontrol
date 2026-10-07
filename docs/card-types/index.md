@@ -1,5 +1,5 @@
 ---
-title: Card Types
+title: "Home Assistant Card Types"
 description:
   Quick reference for choosing the right EspControl card type for Home Assistant controls, sensors, local panel actions, and subpages.
 ---
@@ -32,6 +32,7 @@ Use this page when you know what you want the panel to do but are not sure which
 | Open, close, or stop a gate | [Gate](/card-types/gates) | `cover` |
 | Lock or unlock a door lock | [Lock](/card-types/locks) | `lock` |
 | Arm, disarm, or show an alarm panel | [Alarm](/card-types/alarms) | `alarm_control_panel` |
+| Start, cancel, or resume a countdown | [Timer](/card-types/timers) | `timer` |
 | Show local date, time, or date and time | [Date & Time](/card-types/calendar) | No entity required for clock modes |
 | Show another city or timezone | [World Clock](/card-types/timezones) | No entity required |
 | Show current weather or daily high/low temperatures | [Weather](/card-types/weather) | `weather` |
@@ -84,4 +85,4 @@ Read-only display cards such as Sensor, Presence, Date & Time, and current Weath
 
 ## Current Capability Reference
 
-For a generated table of card type names, saved type values, supported entity domains, subpage support, picker grouping, options, and visibility status, see the [Card Capability Reference](/generated/cards/capabilities).
+For a generated table of card type names, saved type values, supported entity domains, subpage support, picker grouping, options, and visibility status, see the [Card Capability Reference](/reference/card-capabilities).

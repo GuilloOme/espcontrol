@@ -209,7 +209,7 @@ export function createPreviewClipboardFeature(
             layoutSlots.unshift(-2);
             requestedSizes[-2] = 1;
         }
-        if (orderedSlots.length > dependencies.layout.numSlots) {
+        if (orderedSlots.length > dependencies.layout.previewSlots) {
             throw cardTransferError("A copied subpage has more cards than this controller can display.");
         }
         var targetSizes: any = {};
@@ -220,8 +220,8 @@ export function createPreviewClipboardFeature(
                 : {};
             targetSizes[requestedSlot] = normalizeCardSizeForConfig(requestedButton, requestedSizes[requestedSlot]);
         }
-        var placementOrder: any = layoutSlots.length <= dependencies.layout.numSlots ? layoutSlots : orderedSlots;
-        var targetGrid: any = placeOrderedGridEntries(placementOrder, targetSizes, dependencies.layout.numSlots);
+        var placementOrder: any = layoutSlots.length <= dependencies.layout.previewSlots ? layoutSlots : orderedSlots;
+        var targetGrid: any = placeOrderedGridEntries(placementOrder, targetSizes, dependencies.layout.previewSlots);
         var placed: any = {};
         targetGrid.forEach(function (slot: any) {
             if (slot > 0 || slot === -2)
@@ -359,12 +359,12 @@ export function createPreviewClipboardFeature(
         var slots: any = [];
         var resized: any = 0;
         for (var i: any = 0; i < entries.length; i++) {
-            var newSlot: any = firstUnusedClipboardSlot(nextGrid, dependencies.layout.numSlots);
+            var newSlot: any = firstUnusedClipboardSlot(nextGrid, dependencies.layout.previewSlots);
             if (newSlot < 0)
                 return { error: "There is not enough room to paste every card." };
             var entry: any = entries[i];
             var requestedSize: any = entry.size || 1;
-            var placement: any = findDuplicatePlacement(nextGrid, pos, requestedSize, dependencies.layout.numSlots);
+            var placement: any = findDuplicatePlacement(nextGrid, pos, requestedSize, dependencies.layout.previewSlots);
             if (placement.pos < 0)
                 return { error: "There is not enough room to paste every card." };
             if (placement.size !== requestedSize)
@@ -428,11 +428,11 @@ export function createPreviewClipboardFeature(
                 return { error: "The " + cardTransferTypeLabel(entry.type || "") +
                         " card type cannot be placed inside a subpage." };
             }
-            var newSlot: any = firstUnusedClipboardSlot(subpage.grid, dependencies.layout.numSlots);
+            var newSlot: any = firstUnusedClipboardSlot(subpage.grid, dependencies.layout.previewSlots);
             if (newSlot < 0)
                 return { error: "There is not enough room to paste every card." };
             var requestedSize: any = entry.size || 1;
-            var placement: any = findDuplicatePlacement(subpage.grid, pos, requestedSize, dependencies.layout.numSlots);
+            var placement: any = findDuplicatePlacement(subpage.grid, pos, requestedSize, dependencies.layout.previewSlots);
             if (placement.pos < 0)
                 return { error: "There is not enough room to paste every card." };
             if (placement.size !== requestedSize)
@@ -585,10 +585,67 @@ export function createPreviewClipboardFeature(
         textarea.value = code;
         textarea.setAttribute("aria-label", "Card transfer code");
         dialog.appendChild(textarea);
-        var privacy: any = document.createElement("p");
-        privacy.className = "sp-transfer-note";
-        privacy.textContent = "Keep this code private. It can include webhook URLs, headers, or other sensitive configuration.";
-        dialog.appendChild(privacy);
+        var status = document.createElement("p");
+        status.className = "sp-transfer-note";
+        status.setAttribute("role", "status");
+        dialog.appendChild(status);
+        var actions = document.createElement("div");
+        actions.className = "sp-transfer-actions sp-btn-row";
+        var copy = createActionButton("sp-action-btn sp-transfer-copy-btn", "", "content-copy");
+        var copyLabel: any = document.createTextNode("Copy");
+        copy.appendChild(copyLabel);
+        var copyIcon: any = copy.querySelector(".mdi");
+        var copyResetTimer: any;
+        function setCopyButtonState(copied: any) {
+            copy.classList.toggle("sp-copied", copied);
+            copyIcon.className = copied ? "mdi mdi-check" : "mdi mdi-content-copy";
+            copyLabel.textContent = copied ? "Copied" : "Copy";
+        }
+        copy.addEventListener("click", async function () {
+            if (copyResetTimer) {
+                clearTimeout(copyResetTimer);
+                copyResetTimer = null;
+            }
+            copy.disabled = true;
+            setCopyButtonState(false);
+            status.textContent = "";
+            var copied = false;
+            try {
+                var clipboard = document.defaultView?.navigator.clipboard;
+                if (clipboard) {
+                    await clipboard.writeText(code);
+                    copied = true;
+                }
+            }
+            catch (_) {
+                // Local HTTP pages and browser permissions may require selection-based copying.
+            }
+            if (!copied && dialog.isConnected) {
+                textarea.focus();
+                textarea.select();
+                try {
+                    copied = document.execCommand("copy");
+                }
+                catch (_) {
+                    // Leave the code selected for manual copying.
+                }
+            }
+            status.textContent = copied
+                ? ""
+                : "Could not copy automatically. Copy the selected code manually.";
+            copy.disabled = false;
+            if (copied && dialog.isConnected) {
+                setCopyButtonState(true);
+                copyResetTimer = setTimeout(function () {
+                    copyResetTimer = null;
+                    if (dialog.isConnected)
+                        setCopyButtonState(false);
+                }, 2000);
+                copy.focus();
+            }
+        });
+        actions.appendChild(copy);
+        dialog.appendChild(actions);
         textarea.focus();
         textarea.select();
     }

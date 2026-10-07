@@ -1,10 +1,10 @@
 ---
-title: EspControl Screen Setup
+title: "Configure Your Home Assistant Touchscreen"
 description:
   How to use the built-in web page to configure cards, icons, display settings, screensaver, and brightness on your EspControl panel.
 ---
 
-# Setting Up Your Device's Screen
+# Configure Your Home Assistant Touchscreen
 
 Your EspControl panel has a built-in web page where you can set everything up. Open it by typing the panel's address into any browser on your phone or computer.
 
@@ -18,7 +18,7 @@ The address is shown on the display screen when no cards are configured yet. You
 
 ### Adding a Card
 
-Tap any empty space in the grid (shown as a dashed outline with a **+** icon). A settings panel appears below the preview where you configure the card:
+Tap any empty space in the grid (shown as a dashed outline with a **+** icon), then choose a card type. Its configuration opens with the card name as the heading and the same settings layout used when editing a saved card. To choose a different card type, close the panel and start again from the empty space.
 
 ![Card settings panel](/images/button-settings.png)
 
@@ -48,6 +48,7 @@ The setup page uses these card names and grouped modes on the device. For a quic
 | **[Garage Door](/card-types/garage-doors)** | Controls a garage door cover entity with an open/close tap action. | Yes |
 | **[Lock](/card-types/locks)** | Locks, unlocks, or toggles a Home Assistant lock entity. | Yes |
 | **[Alarm](/card-types/alarms)** | Arms, disarms, or shows a Home Assistant alarm control panel. | Yes, as an alarm control panel entity |
+| **[Timer](/card-types/timers)** | Starts, cancels, or resumes a Home Assistant timer and shows its countdown. | Yes, as a timer entity |
 | **[Date & Time](/card-types/calendar)** | Shows the local clock, date, date and time, or a world clock. | No |
 | **[Weather](/card-types/weather)** | Shows the current condition or today's/tomorrow's forecast from a weather entity. | Yes, as **Weather Entity** |
 | **[Media](/card-types/media)** | Controls playback, volume, track position, or now-playing details for a media player. | Yes, as a media player entity |
@@ -60,7 +61,7 @@ For cards that use Home Assistant, enter the entity name from Home Assistant in 
 
 Some card names group several related controls together. **Lights** contains All Controls, Switch, Brightness, and Colour Temperature options. **Fans** contains All Controls, Switch, Speed, Oscillation, Direction, and Preset options. **Action** contains scene, script, helper, Option Select, and Local Action modes. **Sensor** contains Home Assistant and Local Sensor sources. **Vacuum** contains Status, Start / Stop, Dock, Pause / Resume, Spot Clean, Locate, and Clean Area options. **Lawn Mower** contains Status, Start Mowing, Dock, and Pause / Resume options. **Cover** contains All Controls, Position, Tilt, Toggle, Open, Close, Stop, and Set Position options. **Alarm** contains All Controls, Arm Away, Arm Home, Arm Night, Arm Vacation, and Disarm options. **Date & Time** contains Clock, Date, Time & Date, and World Clock options.
 
-For the generated list of current card domains, subpage support, grouping, and options, see the [Card Capability Reference](/generated/cards/capabilities).
+For the generated list of current card domains, subpage support, grouping, and options, see the [Card Capability Reference](/reference/card-capabilities).
 
 Most cards also let you choose an icon and set a label. If the label is left blank, the panel uses the friendly name from Home Assistant when it can.
 
@@ -102,13 +103,28 @@ If a card already occupies the space needed for a larger size, the setup page tr
 
 ## Device Settings
 
-The **Settings** tab also includes display, brightness, screensaver, backup, and firmware update controls.
+The **Settings** tab groups the current controls as follows. Open a card to see its options; some options appear only when their feature is enabled.
 
-![Settings tab showing appearance, backlight, schedule, clock, and firmware controls](/images/settings-tab-display.png)
+| Section | Settings |
+|---|---|
+| **Display** | [Appearance](/features/appearance), [Backlight](/features/backlight), [Idle](/features/idle), [Clock Bar](/features/clock-bar), [Rotation](/features/rotation) |
+| **Sleep & Schedule** | [Cover Art Screen Saver](/features/media-cover-art), [Screensaver](/features/screensaver), [Night Schedule](/features/screen-schedule) |
+| **Preferences** | [Language](/features/language), [Time](/features/clock), [Temperature](/features/temperature) |
+| **System** | [Device Name](#naming-your-panel), [Backup](/features/backup), [Firmware](/features/firmware-updates), [Home Assistant Settings](#home-assistant-settings), [Battery](/features/battery), [Factory Reset](/features/backup#reset-the-display) |
 
-Open **Settings > System > Home Assistant Settings** to manage the address used for camera/image cards and media artwork downloads. **Automatic** connection mode discovers the HTTP endpoint advertised by the connected Home Assistant instance, including port `80` used by new Home Assistant OS installations and port `8123` commonly used by existing installations and Home Assistant Container.
+Device-specific settings, including Rotation and Battery, appear only on supported panels. Device Name and Factory Reset also require firmware that supports them.
 
-If automatic discovery is unavailable because multicast traffic is blocked between network segments, select **Manual** and enter the protocol and port shown under **Home Assistant > Settings > System > Network**. Automatic mode keeps these values as its fallback. EspControl never rewrites complete artwork URLs supplied by media services or external CDNs.
+### Home Assistant Settings
+
+Open **Settings > System > Home Assistant Settings** to manage camera/image and media artwork connections. **Automatic** can use the local URL advertised by the connected Home Assistant instance when the URL uses the same IP address as the native ESPHome connection; it keeps the advertised protocol and port together. Home Assistant's separate Internet URL is not used.
+
+The panel checks candidates in the background. If the advertised local URL cannot be reached, it checks the connected server's advertised HTTP port with the configured protocol, then the other protocol for a local/private address. Its final fallback uses the configured protocol and port with the connected server's IP. If multicast discovery is blocked or ambiguous, only that configured fallback is used; EspControl does not scan ports or guess hostnames.
+
+The settings show the endpoint, its source (**Automatic**, **Fallback**, or **Manual**) and connection health. **Connection checked** means the public Home Assistant manifest responded; **Images received** means an image download succeeded. Access errors, camera errors and invalid images do not cause EspControl to switch servers. Repeated connection failures trigger a background recheck. Complete artwork URLs supplied by media services or external CDNs are preserved.
+
+Choose **Manual** to set **Home Assistant Host** (optional), **Home Assistant Protocol** (`http` or `https`), and **Home Assistant Port** (1–65535). Leave Host blank to use the address of the connected Home Assistant API client. A hostname lets HTTPS use a certificate issued to that DNS name; the panel still verifies certificates, so a self-signed certificate must be trusted separately. Automatic discovery only accepts an advertised URL whose host is the same IP address as the connected Home Assistant API client. Use Manual for a hostname-based proxy or a proxy on a different host.
+
+The native ESPHome connection and image downloads are separate connections. If controls work but images fail, compare the displayed endpoint with **Home Assistant > Settings > System > Network > Home Assistant URL > Local network**. **Access denied** can indicate an authentication or IP-ban policy; changing HTTP/HTTPS will not repair that policy. A restricted manifest endpoint may show **Connection failed** until a real image download succeeds.
 
 ## Apply Configuration
 
@@ -140,3 +156,23 @@ actions:
 ```
 
 The web setup page's **Apply Configuration** button remains separate: use it after saving web settings, and use the Home Assistant **Restart** entity when you only need to restart the display.
+
+## Naming Your Panel
+
+On firmware that supports panel naming, open **Settings > System > Device Name**.
+Enter a name such as **Kitchen**, check the address preview, then choose
+**Save & Restart**. The name appears in the web interface, browser tab, the
+panel's network information and Home Assistant. The address becomes something
+like `kitchen-b2c3.local`; the four-character suffix comes from the panel's MAC address.
+
+The page shows the new address and current IP before restarting. Reopen the panel
+using either link. Router-managed DNS entries may need updating separately.
+Clearing the name restores the firmware's original name and address. Normal OTA
+updates retain your custom name; older firmware without naming support uses its
+compiled defaults.
+
+Home Assistant should update the existing device after reconnecting. A name you
+assigned manually in Home Assistant takes precedence. Existing entity IDs remain
+unchanged, but custom ESPHome action names include the hostname: update automations
+using actions such as `esphome.<old_name>_navigate`. Reload the ESPHome integration
+if its action list still shows the previous names.

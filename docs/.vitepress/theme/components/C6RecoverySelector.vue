@@ -62,21 +62,29 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
+import { loadUsbInstaller } from '../usb-installer'
 
 const devices = [
+  {
+    slug: 'guition-esp32-p4-jc8012p4a1-v3',
+    name: 'JC8012P4A1 V3 production-silicon panel',
+    size: '10.1 in',
+    detail: 'ESP32-P4 v3.x silicon; confirm with chip information first',
+    warning: 'Use this only when chip information confirms ESP32-P4 v3.x production silicon, regardless of case date.',
+  },
   {
     slug: 'guition-esp32-p4-jc8012p4a1',
     name: 'JC8012P4A1 original panel',
     size: '10.1 in',
-    detail: 'Rear case 2622 or lower',
-    warning: 'Use this only for rear case number 2622 or lower.',
+    detail: 'Rear case 2627 or lower, when V3 is not confirmed',
+    warning: 'Use this only for rear case number 2627 or lower when chip information does not confirm V3 silicon.',
   },
   {
     slug: 'guition-esp32-p4-jc8012p4a1-v2',
     name: 'JC8012P4A1 new panel',
     size: '10.1 in',
-    detail: 'Rear case 2624 or higher',
-    warning: 'Use this only for rear case number 2624 or higher.',
+    detail: 'Rear case 2628 or higher, when V3 is not confirmed',
+    warning: 'Use this only for rear case number 2628 or higher when chip information does not confirm V3 silicon.',
   },
   {
     slug: 'guition-esp32-p4-jc1060p470',
@@ -97,7 +105,14 @@ const devices = [
     name: 'JC4880P443',
     size: '4.3 in',
     detail: '480 × 800 portrait',
-    warning: 'Confirm the back label says JC4880P443.',
+    warning: 'Only for the original JC4880P443 with ESP32-P4 silicon below v3.0. For SKU V3 / v3.x chips, select the separate JC4880P443 V3 recovery image.',
+  },
+  {
+    slug: 'guition-esp32-p4-jc4880p443-v3',
+    name: 'JC4880P443 V3',
+    size: '4.3 in',
+    detail: 'SKU 10150002-V3; ESP32-P4 v3.x',
+    warning: 'Only for the JC4880P443 V3 with ESP32-P4 v3.x production silicon. Use the original profile for chips below v3.0.',
   },
   {
     slug: 'esp32-p4-86',
@@ -154,7 +169,7 @@ onMounted(async () => {
   if (!supported.value) return
 
   try {
-    await import('https://unpkg.com/esp-web-tools@10/dist/web/install-button.js')
+    await loadUsbInstaller()
     await checkManifest()
   } catch (error) {
     loadError.value = `Failed to load the USB installer. ${error?.message || ''}`.trim()

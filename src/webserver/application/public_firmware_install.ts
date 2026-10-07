@@ -38,6 +38,7 @@ export function createPublicFirmwareInstallFeature(
         clearWebOtaFallback: clearFirmwareWebOtaFallback,
         renderStatus: renderFirmwareUpdateStatus,
         startInstallRefresh: startFirmwareInstallRefresh,
+        pauseInstallRefresh: pauseFirmwareInstallRefresh,
         stopInstallRefresh: stopFirmwareInstallRefresh,
     } = firmwareUpdate;
     // ── Public Firmware Web OTA ────────────────────────────────────────────
@@ -50,13 +51,13 @@ export function createPublicFirmwareInstallFeature(
             return Promise.resolve(state.firmwareOtaUrl);
         return requestApi.getJsonQuietly(publicFirmwareVersionsUrl(), function (this: any, d?: any) {
             setPublicFirmwareVersions(firmwareInfosFromPublicVersions(d));
-        }).then(function (this: any) {
+        }, { credentials: "omit" }).then(function (this: any) {
             info = firmwareInfoForVersion(requestedVersion);
             if (info && info.ota_url)
                 return info.ota_url;
             return requestApi.getJsonQuietly(publicFirmwareManifestUrl(), function (this: any, d?: any) {
                 setPublicFirmwareInfo(firmwareInfoFromPublicManifest(d));
-            }).then(function (this: any) {
+            }, { credentials: "omit" }).then(function (this: any) {
                 info = firmwareInfoForVersion(requestedVersion);
                 return info && info.ota_url ? info.ota_url : "";
             });
@@ -68,12 +69,13 @@ export function createPublicFirmwareInstallFeature(
     }
     function installPublicFirmwareViaWebOta(this: any, info?: any) {
         info = info || selectedFirmwareInfo();
+        pauseFirmwareInstallRefresh();
         var installingLatest: any = !info ||
             firmwareVersionsSame(info.latest_version, state.firmwareLatestVersion);
         return requestApi.getJsonQuietly(publicFirmwareManifestUrl(), function (this: any, d?: any) {
             if (installingLatest)
                 setPublicFirmwareInfo(firmwareInfoFromPublicManifest(d));
-        }).then(function (this: any) {
+        }, { credentials: "omit" }).then(function (this: any) {
             info = info || selectedFirmwareInfo();
             var targetVersion: any = info && info.latest_version ? info.latest_version : state.firmwareLatestVersion;
             if (isSpecificFirmwareVersion(targetVersion)) {
@@ -89,13 +91,12 @@ export function createPublicFirmwareInstallFeature(
                 "Uploading firmware " + state.firmwareInstallTargetVersion + "\u2026" :
                 "Uploading firmware update\u2026";
             renderFirmwareUpdateStatus();
-            startFirmwareInstallRefresh();
             var uploadStarted: any = false;
             var uploadResponseReceived: any = false;
             return ensurePublicFirmwareOtaUrl(info).then(function (this: any, otaUrl?: any) {
                 if (!otaUrl)
                     throw new Error("Firmware file is not available yet.");
-                return deviceApi.request(otaUrl, { cache: "no-store" });
+                return deviceApi.request(otaUrl, { cache: "no-store", credentials: "omit" });
             }).then(function (this: any, result?: any) {
                 if (result.kind === "network-error")
                     throw result.error;
@@ -123,13 +124,21 @@ export function createPublicFirmwareInstallFeature(
                     if (/update failed/i.test(text)) {
                         throw new Error("Device reported that the firmware upload failed.");
                     }
+                    // The confirmation deadline starts after the transfer completes.
+                    state.firmwareWebOtaDownloadPending = false;
+                    startFirmwareInstallRefresh(true);
                     waitForFirmwareRestart();
                     return true;
                 });
             }).catch(function (this: any, err?: any) {
                 if (uploadStarted && !uploadResponseReceived) {
-                    waitForFirmwareRestart();
-                    return true;
+                    // The connection may close during reboot, but that is not proof
+                    // of success. Keep checking the version and expose the uncertainty.
+                    startFirmwareInstallRefresh(true);
+                    state.firmwareInstallStatus = "Upload connection lost. Checking whether the display installed the firmware…";
+                    renderFirmwareUpdateStatus();
+                    setTimeout(appEvents.connect, 5000);
+                    return false;
                 }
                 failPublicFirmwareUpload(err && err.message);
                 return false;

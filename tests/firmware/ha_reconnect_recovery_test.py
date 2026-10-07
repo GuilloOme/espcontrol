@@ -17,6 +17,34 @@ class ReconnectRecoveryTest(unittest.TestCase):
         self.core = (ROOT / "common/device/core_infra.yaml").read_text()
         self.image = (ROOT / "components/espcontrol/button_grid_image.h").read_text()
 
+    def test_discovery_boot_callback_survives_device_package_merging(self):
+        # A mapping-form on_boot is replaced by later list-form device hooks.
+        # Inspect ESPHome's actual merged entry points, not the shared source:
+        # without this callback, discovery succeeds but image cards see no URL.
+        from esphome.components.packages import resolve_packages
+        from esphome.core import CORE
+        from esphome.yaml_util import load_yaml
+
+        configurations = sorted((ROOT / "builds").glob("*.factory.yaml"))
+        self.assertTrue(configurations)
+        for path in configurations:
+            with self.subTest(device=path.name):
+                CORE.reset()
+                CORE.config_path = str(path)
+                try:
+                    config = resolve_packages(load_yaml(path))
+                    hooks = config["esphome"]["on_boot"]
+                    self.assertIsInstance(hooks, list)
+                    callbacks = [hook for hook in hooks if "set_change_callback" in str(hook)]
+                    self.assertEqual(len(callbacks), 1, "Artwork discovery boot callback was lost")
+                    hook = callbacks[0]
+                    self.assertEqual(hook["priority"], 250)
+                    self.assertIn("cover_art_resolve_home_assistant_base_url", str(hook))
+                    self.assertIn("home_assistant_artwork_endpoint_mode_migrated", str(hook))
+                    self.assertIn({"script.execute": "cover_art_resubscribe"}, hook["then"])
+                finally:
+                    CORE.reset()
+
     def test_recovery_has_one_restartable_owner_and_yields_first(self):
         script = self.core.split("  - id: ha_refresh_after_connect\n", 1)[1]
         self.assertIn("    mode: restart\n", script)
@@ -26,7 +54,7 @@ class ReconnectRecoveryTest(unittest.TestCase):
 
     def test_only_ha_clients_start_recovery(self):
         connect = self.core.split("  on_client_connected:\n", 1)[1].split("  on_client_disconnected:", 1)[0]
-        self.assertRegex(connect, r'(?s)if \(client_info.find\("Home Assistant"\).*?\{\s*id\(ha_refresh_after_connect\).execute')
+        self.assertRegex(connect, r'(?s)if \(client_info.find\("Home Assistant"\).*?\{\s*id\(espcontrol_app\).home_assistant_endpoint\(\).invalidate_connection\(\);\s*id\(ha_refresh_after_connect\).execute')
         self.assertNotIn("delay:", connect)  # no detached old-connection timers
 
     def test_disconnect_preserves_replacement_recovery(self):
@@ -56,6 +84,11 @@ namespace esphome::api { Server *global_api_server = &server; }
 bool ha_api_available() { return esphome::api::global_api_server != nullptr; }
 bool state_connected = false;
 bool ha_api_state_connected() { return state_connected; }
+std::string cover_art_home_assistant_client_address;
+bool endpoint_resolve_called = false;
+struct EndpointResolver {
+  void execute() { endpoint_resolve_called = true; }
+} cover_art_resolve_home_assistant_base_url;
 struct Recovery {
   bool running = true;
   void stop() { running = false; }
@@ -70,16 +103,22 @@ void disconnect(const std::string &client_info) {
 void reset(std::vector<Client *> clients) {
   server.clients = clients;
   state_connected = false;
+  cover_art_home_assistant_client_address = "192.168.1.31";
+  endpoint_resolve_called = false;
   ha_refresh_after_connect.running = true;
   retained = forecast_pending = cover_pending = true;
 }
 void expect_preserved() {
   assert(ha_refresh_after_connect.running);
   assert(retained && forecast_pending && cover_pending);
+  assert(cover_art_home_assistant_client_address == "192.168.1.31");
+  assert(!endpoint_resolve_called);
 }
 void expect_cancelled() {
   assert(!ha_refresh_after_connect.running);
   assert(!retained && !forecast_pending && !cover_pending);
+  assert(cover_art_home_assistant_client_address.empty());
+  assert(endpoint_resolve_called);
 }
 int main() {
   Client replacement{"Home Assistant 2026.8"};
@@ -189,6 +228,25 @@ class ArtworkRecoveryTest(unittest.TestCase):
 
     def test_reconnect_recovers_after_retry_exhaustion(self):
         subprocess.run([self.executable, "exhausted_reconnect"], check=True)
+
+
+class DisplaySensorRebindTest(unittest.TestCase):
+    def test_rebind_discards_old_sensor_values(self):
+        source = (ROOT / "components/espcontrol/button_grid_grid.h").read_text()
+        match = re.search(r"^inline void grid_phase3\([^;{]*\) \{\n.*?^\}",
+                          source, re.MULTILINE | re.DOTALL)
+        self.assertIsNotNone(match)
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            (directory / "display_sensor_binding.h").write_text(match.group())
+            executable = str(directory / "display_sensor_rebind_test")
+            subprocess.run(
+                shlex.split(os.environ.get("CXX", "c++"))
+                + ["-std=c++17", "-Wall", "-Wextra", "-Werror", "-I", str(directory),
+                   str(ROOT / "tests/firmware/display_sensor_rebind_test.cpp"), "-o", executable],
+                check=True,
+            )
+            subprocess.run([executable], check=True)
 
 
 if __name__ == "__main__":

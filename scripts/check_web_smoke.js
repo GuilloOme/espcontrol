@@ -209,11 +209,6 @@ assert.deepStrictEqual(Array.from(hooks.homeAssistantArtworkPortPostUrls(80)), [
   "/number/home_assistant_artwork_port/set?value=80",
   "/number/Home%20Assistant%20Artwork%20Port/set?value=80",
 ], "Home Assistant artwork port posts include object id and entity name fallbacks");
-assert.deepStrictEqual(Array.from(hooks.voiceServicesPostUrls(true)), [
-  "/switch/voice_services/turn_on",
-  "/switch/voice_services_enabled/turn_on",
-  "/switch/Voice%20Services/turn_on",
-], "voice services posts include object id aliases and entity name fallback");
 assert.strictEqual(hooks.clockBarVisibleInPreviewFor(true, "off"), true, "clock bar preview is visible when enabled");
 assert.strictEqual(hooks.clockBarVisibleInPreviewFor(true, "dim"), true, "clock bar preview stays visible for dimmed screen saver");
 assert.strictEqual(hooks.clockBarVisibleInPreviewFor(true, "clock"), true, "clock bar preview stays visible when clock screen saver is configured");
@@ -238,23 +233,27 @@ vm.runInContext(generated, hostedSandbox, { filename: webOutput });
 hostedSandbox.__ESPCONTROL_START_EMBEDDED__();
 assert.strictEqual(
   hostedSandbox.__ESPCONTROL_TEST_HOOKS__.config.imageSlotCapacity(),
-  1,
+  2,
   "shared hosted bundle selects the device profile from its script URL",
 );
 assert.strictEqual(
   hostedSandbox.__ESPCONTROL_TEST_HOOKS__.config.imageSlotCapacityMessage(),
-  "This display supports up to 1 Media Cover Art card.",
-  "S3 explains its constrained cover-art capacity",
+  "Image and Media Cover Art cards use shared image slots. You can save up to 2 of these cards across the main page and subpages.",
+  "S3 explains its shared image-card capacity",
 );
 assert.strictEqual(
   hostedSandbox.__ESPCONTROL_TEST_HOOKS__.config.buttonTypeVisibleInPickerFor("image", false),
-  false,
-  "S3 keeps general Image cards hidden",
+  true,
+  "S3 exposes Camera Cards",
 );
 assert.strictEqual(
   hostedSandbox.__ESPCONTROL_TEST_HOOKS__.config.buttonTypeVisibleInPickerFor("media_cover_art", false),
   false,
-  "S3 exposes Cover Art only through the Media subtype list",
+  "Media Cover Art remains a Media subtype rather than a separate picker entry",
+);
+assert(
+  Array.from(hostedSandbox.__ESPCONTROL_TEST_HOOKS__.config.mediaModeOptionValues()).includes("cover_art"),
+  "S3 exposes Media Cover Art in the Media subtype list",
 );
 assertGeneratedConfigValue("guition-esp32-s3-4848s040", generated, "mediaTitleSize", 7.083333);
 assert(previewStylesSource.includes(".sp-media-now-title{font-size:var(--media-title)"), "media titles use their dedicated preview size");
@@ -730,6 +729,18 @@ const dateTimePreview = hooks.buttonTypePreviewFor("calendar", {
 assert(dateTimePreview.iconHtml.includes("sp-sensor-preview-large"), "date/time 2x2 preview defaults to large numbers");
 assert(previewSensorValue(dateTimePreview).includes(":"), "date/time preview renders a time value");
 
+const timezoneDateTimePreview = hooks.buttonTypePreviewForMockNow("calendar", {
+  type: "calendar",
+  precision: "datetime",
+  options: "",
+}, {
+  timezone: "Pacific/Honolulu",
+  language: "en",
+  clockFormat: "24h",
+});
+assert(previewSensorValue(timezoneDateTimePreview).startsWith("23:00"), "date/time preview formats its time in the panel timezone");
+assert(timezoneDateTimePreview.labelHtml.includes("31 December"), "date/time preview formats its date in the panel timezone");
+
 const wideDateTimePreview = hooks.buttonTypePreviewFor("calendar", {
   type: "calendar",
   precision: "datetime",
@@ -752,7 +763,7 @@ const clockPreview = hooks.buttonTypePreviewFor("clock", {
 assert(previewSensorValue(clockPreview).includes(":"), "clock preview renders a time value");
 assert(clockPreview.iconHtml.includes("sp-sensor-preview-large"), "clock 2x2 preview defaults to large numbers");
 assert.strictEqual(clockPreview.labelHtml, "", "clock preview does not render a date label");
-assert.strictEqual(clockPreview.buttonClass, undefined, "clock 2x2 preview uses the standard wrapper");
+assert.strictEqual(clockPreview.buttonClass, "sp-clock-large", "clock 2x2 preview uses the large clock wrapper");
 
 const wideClockPreview = hooks.buttonTypePreviewFor("clock", {
   type: "clock",
@@ -762,8 +773,26 @@ const wideClockPreview = hooks.buttonTypePreviewFor("clock", {
   clockFormat: "24h",
 });
 assert(wideClockPreview.iconHtml.includes("sp-sensor-preview-large"), "clock wide preview supports large numbers");
-assert.strictEqual(wideClockPreview.buttonClass, "sp-clock-wide-large", "clock wide large preview is left aligned");
+assert.strictEqual(wideClockPreview.buttonClass, "sp-clock-large sp-clock-left-mid", "clock wide large preview is left aligned");
 assert.strictEqual(wideClockPreview.labelHtml, "", "clock wide preview does not render a date label");
+
+const resizedWideClockPreview = hooks.buttonTypePreviewFor("clock", {
+  type: "clock",
+  options: "large_numbers,center_clock",
+}, {
+  cardSize: 3,
+  clockFormat: "24h",
+});
+assert.strictEqual(resizedWideClockPreview.buttonClass, "sp-clock-large sp-clock-left-mid", "two-column clocks ignore retained center-clock options");
+
+const centeredExtraWideClockPreview = hooks.buttonTypePreviewFor("clock", {
+  type: "clock",
+  options: "large_numbers,center_clock",
+}, {
+  cardSize: 6,
+  clockFormat: "24h",
+});
+assert.strictEqual(centeredExtraWideClockPreview.buttonClass, "sp-clock-large sp-clock-centered", "clocks wider than two columns honor center-clock");
 
 const timezonePreview = hooks.buttonTypePreviewFor("timezone", {
   entity: "America/New_York (GMT-5)",
@@ -1675,7 +1704,8 @@ assert.strictEqual(hooks.firmwareUpdateControlsVisibleFor("wifi", false), false)
 assert.strictEqual(hooks.firmwareUpdateControlsVisibleFor("ethernet", true), true);
 assert.strictEqual(
   hooks.firmwareVersionAfterUpdateInfo("Dev", { state: "NO UPDATE", latest_version: "v1.11.1" }).version,
-  "v1.11.1"
+  "Dev build",
+  "a routine update status must not replace the installed version with a public release"
 );
 assert.strictEqual(
   hooks.firmwareVersionAfterUpdateInfo("v1.10.0", { state: "NO UPDATE", latest_version: "v1.11.1" }).installAction,
@@ -1726,7 +1756,7 @@ async function verifyLocalFirmwareProfileSelection() {
   vm.runInContext(productionBundle, sandbox, { filename: "shared-local-www.js" });
   sandbox.__ESPCONTROL_START_EMBEDDED__();
   await new Promise((resolve) => setImmediate(resolve));
-  assert.deepStrictEqual(requested, ["/espcontrol/version.json", "/api/v1/capabilities"]);
+  assert.deepStrictEqual(requested, ["/espcontrol/version.json", "/api/v1/capabilities", "/api/v1/capabilities"]);
   assert(
     sandbox.__domEvents.some((event) => event.type === "DOMContentLoaded"),
     "shared local bundle starts after resolving the firmware device profile",

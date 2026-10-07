@@ -56,6 +56,7 @@ inline const char *espcontrol_i18n_cs(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Směr";
   if (std::strcmp(text, "Disarm") == 0) return "Odzajistit";
   if (std::strcmp(text, "Disarmed") == 0) return "Odzajištěno";
+  if (std::strcmp(text, "Disconnected") == 0) return "Odpojeno";
   if (std::strcmp(text, "Door") == 0) return "Dveře";
   if (std::strcmp(text, "Door Open") == 0) return "Dveře otevřeny";
   if (std::strcmp(text, "Dock") == 0) return "Dokovat";
@@ -96,6 +97,7 @@ inline const char *espcontrol_i18n_cs(const char *text) {
   if (std::strcmp(text, "Low target") == 0) return "Nízký cíl";
   if (std::strcmp(text, "Media") == 0) return "Média";
   if (std::strcmp(text, "Media Control") == 0) return "Ovládání médií";
+  if (std::strcmp(text, "Cover Art") == 0) return "Obal alba";
   if (std::strcmp(text, "Mode") == 0) return "Režim";
   if (std::strcmp(text, "Group") == 0) return "Skupina";
   if (std::strcmp(text, "Monthly") == 0) return "Měsíčně";
@@ -169,6 +171,7 @@ inline const char *espcontrol_i18n_cs(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Západ slunce dolů";
   if (std::strcmp(text, "Sunset Up") == 0) return "Západ slunce nahoru";
   if (std::strcmp(text, "Swing") == 0) return "Kývání";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Horizontální kývání";
   if (std::strcmp(text, "Target") == 0) return "Cíl";
   if (std::strcmp(text, "Today") == 0) return "Dnes";
   if (std::strcmp(text, "Too many") == 0) return "Příliš mnoho";
@@ -242,6 +245,14 @@ inline const char *espcontrol_i18n_cs(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Seskupení se nezdařilo";
   if (std::strcmp(text, "Speakers updated") == 0) return "Reproduktory aktualizovány";
   if (std::strcmp(text, "Updating speakers") == 0) return "Aktualizace reproduktorů";
+  if (std::strcmp(text, "Settings") == 0) return "Nastavení";
+  if (std::strcmp(text, "Brightness") == 0) return "Jas";
+  if (std::strcmp(text, "Daytime") == 0) return "Den";
+  if (std::strcmp(text, "Nighttime") == 0) return "Noc";
+  if (std::strcmp(text, "Timer") == 0) return "Časovač";
+  if (std::strcmp(text, "Confirm") == 0) return "Potvrdit";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi pro hosty";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Stav Wi-Fi se nezměnil";
   return text;
 }
 
@@ -286,6 +297,7 @@ inline const char *espcontrol_i18n_da(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Retning";
   if (std::strcmp(text, "Disarm") == 0) return "Deaktiver";
   if (std::strcmp(text, "Disarmed") == 0) return "Deaktiveret";
+  if (std::strcmp(text, "Disconnected") == 0) return "Afbrudt";
   if (std::strcmp(text, "Door") == 0) return "Dør";
   if (std::strcmp(text, "Door Open") == 0) return "Dør åben";
   if (std::strcmp(text, "Docked") == 0) return "Docket";
@@ -326,6 +338,7 @@ inline const char *espcontrol_i18n_da(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Medie";
   if (std::strcmp(text, "Media Control") == 0) return "Mediestyring";
   if (std::strcmp(text, "Playlist") == 0) return "Afspilningsliste";
+  if (std::strcmp(text, "Cover Art") == 0) return "Albumcover";
   if (std::strcmp(text, "Mode") == 0) return "Tilstand";
   if (std::strcmp(text, "Group") == 0) return "Gruppe";
   if (std::strcmp(text, "Monthly") == 0) return "Månedligt";
@@ -394,6 +407,7 @@ inline const char *espcontrol_i18n_da(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Solnedgang ned";
   if (std::strcmp(text, "Sunset Up") == 0) return "Solnedgang op";
   if (std::strcmp(text, "Swing") == 0) return "Sving";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Horisontal sving";
   if (std::strcmp(text, "Target") == 0) return "Mål";
   if (std::strcmp(text, "Today") == 0) return "I dag";
   if (std::strcmp(text, "Too many") == 0) return "For mange";
@@ -466,6 +480,13 @@ inline const char *espcontrol_i18n_da(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Gruppering mislykkedes";
   if (std::strcmp(text, "Speakers updated") == 0) return "Højttalere opdateret";
   if (std::strcmp(text, "Updating speakers") == 0) return "Opdaterer højttalere";
+  if (std::strcmp(text, "Settings") == 0) return "Indstillinger";
+  if (std::strcmp(text, "Brightness") == 0) return "Lysstyrke";
+  if (std::strcmp(text, "Daytime") == 0) return "Dagtid";
+  if (std::strcmp(text, "Nighttime") == 0) return "Nattetid";
+  if (std::strcmp(text, "Confirm") == 0) return "Bekræft";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Gæste-Wi-Fi";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Wi-Fi blev ikke ændret";
   return text;
 }
 
@@ -511,6 +532,7 @@ inline const char *espcontrol_i18n_de(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Richtung";
   if (std::strcmp(text, "Disarm") == 0) return "Entschärfen";
   if (std::strcmp(text, "Disarmed") == 0) return "Entschärft";
+  if (std::strcmp(text, "Disconnected") == 0) return "Getrennt";
   if (std::strcmp(text, "Door") == 0) return "Tür";
   if (std::strcmp(text, "Door Open") == 0) return "Tür offen";
   if (std::strcmp(text, "Dock") == 0) return "Andocken";
@@ -552,6 +574,7 @@ inline const char *espcontrol_i18n_de(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Medien";
   if (std::strcmp(text, "Media Control") == 0) return "Mediensteuerung";
   if (std::strcmp(text, "Playlist") == 0) return "Wiedergabeliste";
+  if (std::strcmp(text, "Cover Art") == 0) return "Albumcover";
   if (std::strcmp(text, "Mode") == 0) return "Modus";
   if (std::strcmp(text, "Group") == 0) return "Gruppe";
   if (std::strcmp(text, "Monthly") == 0) return "Monatlich";
@@ -616,6 +639,7 @@ inline const char *espcontrol_i18n_de(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Sonnenuntergang ab";
   if (std::strcmp(text, "Sunset Up") == 0) return "Sonnenuntergang auf";
   if (std::strcmp(text, "Swing") == 0) return "Schwenken";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Horizontales Schwenken";
   if (std::strcmp(text, "Target") == 0) return "Ziel";
   if (std::strcmp(text, "Today") == 0) return "Heute";
   if (std::strcmp(text, "Too many") == 0) return "Zu viele";
@@ -688,6 +712,13 @@ inline const char *espcontrol_i18n_de(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Gruppierung fehlgeschlagen";
   if (std::strcmp(text, "Speakers updated") == 0) return "Lautsprecher aktualisiert";
   if (std::strcmp(text, "Updating speakers") == 0) return "Lautsprecher werden aktualisiert";
+  if (std::strcmp(text, "Settings") == 0) return "Einstellungen";
+  if (std::strcmp(text, "Brightness") == 0) return "Helligkeit";
+  if (std::strcmp(text, "Daytime") == 0) return "Tagsüber";
+  if (std::strcmp(text, "Nighttime") == 0) return "Nachts";
+  if (std::strcmp(text, "Confirm") == 0) return "Bestätigen";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Gast-WLAN";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "WLAN wurde nicht geändert";
   return text;
 }
 
@@ -733,6 +764,7 @@ inline const char *espcontrol_i18n_es(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Dirección";
   if (std::strcmp(text, "Disarm") == 0) return "Desarmar";
   if (std::strcmp(text, "Disarmed") == 0) return "Desarmada";
+  if (std::strcmp(text, "Disconnected") == 0) return "Desconectado";
   if (std::strcmp(text, "Door") == 0) return "Puerta";
   if (std::strcmp(text, "Door Open") == 0) return "Puerta abierta";
   if (std::strcmp(text, "Dock") == 0) return "Acoplar";
@@ -773,6 +805,7 @@ inline const char *espcontrol_i18n_es(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Multimedia";
   if (std::strcmp(text, "Media Control") == 0) return "Control multimedia";
   if (std::strcmp(text, "Playlist") == 0) return "Lista de reproducción";
+  if (std::strcmp(text, "Cover Art") == 0) return "Portada";
   if (std::strcmp(text, "Mode") == 0) return "Modo";
   if (std::strcmp(text, "Group") == 0) return "Grupo";
   if (std::strcmp(text, "Monthly") == 0) return "Mensual";
@@ -845,6 +878,7 @@ inline const char *espcontrol_i18n_es(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Puesta de sol abajo";
   if (std::strcmp(text, "Sunset Up") == 0) return "Puesta de sol arriba";
   if (std::strcmp(text, "Swing") == 0) return "Oscilación";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Oscilación horizontal";
   if (std::strcmp(text, "Target") == 0) return "Objetivo";
   if (std::strcmp(text, "Today") == 0) return "Hoy";
   if (std::strcmp(text, "Too many") == 0) return "Demasiados";
@@ -917,6 +951,14 @@ inline const char *espcontrol_i18n_es(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Error al agrupar";
   if (std::strcmp(text, "Speakers updated") == 0) return "Altavoces actualizados";
   if (std::strcmp(text, "Updating speakers") == 0) return "Actualizando altavoces";
+  if (std::strcmp(text, "Settings") == 0) return "Ajustes";
+  if (std::strcmp(text, "Brightness") == 0) return "Brillo";
+  if (std::strcmp(text, "Daytime") == 0) return "Día";
+  if (std::strcmp(text, "Nighttime") == 0) return "Noche";
+  if (std::strcmp(text, "Timer") == 0) return "Temporizador";
+  if (std::strcmp(text, "Confirm") == 0) return "Confirmar";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi de invitados";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "El Wi-Fi no ha cambiado";
   return text;
 }
 
@@ -964,6 +1006,7 @@ inline const char *espcontrol_i18n_fi(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Suunta";
   if (std::strcmp(text, "Disarm") == 0) return "Poista viritys";
   if (std::strcmp(text, "Disarmed") == 0) return "Poistettu käytöstä";
+  if (std::strcmp(text, "Disconnected") == 0) return "Yhteys katkaistu";
   if (std::strcmp(text, "Door") == 0) return "Ovi";
   if (std::strcmp(text, "Door Open") == 0) return "Ovi auki";
   if (std::strcmp(text, "Dock") == 0) return "Telakoi";
@@ -1005,6 +1048,7 @@ inline const char *espcontrol_i18n_fi(const char *text) {
   if (std::strcmp(text, "Low target") == 0) return "Alaraja";
   if (std::strcmp(text, "Media Control") == 0) return "Median ohjaus";
   if (std::strcmp(text, "Playlist") == 0) return "Soittolista";
+  if (std::strcmp(text, "Cover Art") == 0) return "Kansikuva";
   if (std::strcmp(text, "Medium") == 0) return "Keskitaso";
   if (std::strcmp(text, "Mode") == 0) return "Tila";
   if (std::strcmp(text, "Group") == 0) return "Ryhmä";
@@ -1082,6 +1126,7 @@ inline const char *espcontrol_i18n_fi(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Auringonlasku alas";
   if (std::strcmp(text, "Sunset Up") == 0) return "Auringonlasku ylös";
   if (std::strcmp(text, "Swing") == 0) return "Kääntö";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Vaakasuuntainen kääntö";
   if (std::strcmp(text, "Target") == 0) return "Tavoite";
   if (std::strcmp(text, "Temporaryhold") == 0) return "Väliaikainen pito";
   if (std::strcmp(text, "Today") == 0) return "Tänään";
@@ -1156,6 +1201,14 @@ inline const char *espcontrol_i18n_fi(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Ryhmittely epäonnistui";
   if (std::strcmp(text, "Speakers updated") == 0) return "Kaiuttimet päivitetty";
   if (std::strcmp(text, "Updating speakers") == 0) return "Päivitetään kaiuttimia";
+  if (std::strcmp(text, "Settings") == 0) return "Asetukset";
+  if (std::strcmp(text, "Brightness") == 0) return "Kirkkaus";
+  if (std::strcmp(text, "Daytime") == 0) return "Päivä";
+  if (std::strcmp(text, "Nighttime") == 0) return "Yö";
+  if (std::strcmp(text, "Timer") == 0) return "Ajastin";
+  if (std::strcmp(text, "Confirm") == 0) return "Vahvista";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Vieras-Wi-Fi";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Wi-Fi ei muuttunut";
   return text;
 }
 
@@ -1198,6 +1251,7 @@ inline const char *espcontrol_i18n_fr(const char *text) {
   if (std::strcmp(text, "Dimmed") == 0) return "Tamisé";
   if (std::strcmp(text, "Disarm") == 0) return "Désarmer";
   if (std::strcmp(text, "Disarmed") == 0) return "Désarmé";
+  if (std::strcmp(text, "Disconnected") == 0) return "Déconnecté";
   if (std::strcmp(text, "Door") == 0) return "Porte";
   if (std::strcmp(text, "Door Open") == 0) return "Porte ouverte";
   if (std::strcmp(text, "Dock") == 0) return "Station";
@@ -1239,6 +1293,7 @@ inline const char *espcontrol_i18n_fr(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Média";
   if (std::strcmp(text, "Media Control") == 0) return "Contrôle multimédia";
   if (std::strcmp(text, "Playlist") == 0) return "Liste de lecture";
+  if (std::strcmp(text, "Cover Art") == 0) return "Pochette";
   if (std::strcmp(text, "Group") == 0) return "Groupe";
   if (std::strcmp(text, "Monthly") == 0) return "Mensuel";
   if (std::strcmp(text, "more") == 0) return "de plus";
@@ -1306,6 +1361,7 @@ inline const char *espcontrol_i18n_fr(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Coucher bas";
   if (std::strcmp(text, "Sunset Up") == 0) return "Coucher haut";
   if (std::strcmp(text, "Swing") == 0) return "Oscillation";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Oscillation horizontale";
   if (std::strcmp(text, "Target") == 0) return "Cible";
   if (std::strcmp(text, "Today") == 0) return "Aujourd'hui";
   if (std::strcmp(text, "Too many") == 0) return "Trop nombreux";
@@ -1378,6 +1434,14 @@ inline const char *espcontrol_i18n_fr(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Échec du regroupement";
   if (std::strcmp(text, "Speakers updated") == 0) return "Enceintes mises à jour";
   if (std::strcmp(text, "Updating speakers") == 0) return "Mise à jour des enceintes";
+  if (std::strcmp(text, "Settings") == 0) return "Paramètres";
+  if (std::strcmp(text, "Brightness") == 0) return "Luminosité";
+  if (std::strcmp(text, "Daytime") == 0) return "Jour";
+  if (std::strcmp(text, "Nighttime") == 0) return "Nuit";
+  if (std::strcmp(text, "Timer") == 0) return "Minuteur";
+  if (std::strcmp(text, "Confirm") == 0) return "Confirmer";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi invité";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Le Wi-Fi n’a pas changé";
   return text;
 }
 
@@ -1396,7 +1460,7 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Arm Night") == 0) return "דריכה ללילה";
   if (std::strcmp(text, "Arm Vacation") == 0) return "דריכה לחופשה";
   if (std::strcmp(text, "Armed Away") == 0) return "דרוך מחוץ לבית";
-  if (std::strcmp(text, "Armed Custom") == 0) return "דרוך מותאם";
+  if (std::strcmp(text, "Armed Custom") == 0) return "דרוך מותאם אישית";
   if (std::strcmp(text, "Armed Home") == 0) return "דרוך בבית";
   if (std::strcmp(text, "Armed Night") == 0) return "דרוך ללילה";
   if (std::strcmp(text, "Armed Vacation") == 0) return "דרוך לחופשה";
@@ -1411,7 +1475,7 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Clock") == 0) return "שעון";
   if (std::strcmp(text, "Close") == 0) return "סגירה";
   if (std::strcmp(text, "Closed") == 0) return "סגור";
-  if (std::strcmp(text, "Closing") == 0) return "נסגר";
+  if (std::strcmp(text, "Closing") == 0) return "בסגירה";
   if (std::strcmp(text, "Cloudy") == 0) return "מעונן";
   if (std::strcmp(text, "Cloudy Alert") == 0) return "התראת עננות";
   if (std::strcmp(text, "Configure") == 0) return "להגדרה";
@@ -1428,6 +1492,7 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "כיוון";
   if (std::strcmp(text, "Disarm") == 0) return "נטרול";
   if (std::strcmp(text, "Disarmed") == 0) return "מנוטרל";
+  if (std::strcmp(text, "Disconnected") == 0) return "מנותק";
   if (std::strcmp(text, "Door") == 0) return "דלת";
   if (std::strcmp(text, "Door Open") == 0) return "דלת פתוחה";
   if (std::strcmp(text, "Dock") == 0) return "עגינה";
@@ -1453,7 +1518,7 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Heavy Snow") == 0) return "שלג כבד";
   if (std::strcmp(text, "High") == 0) return "גבוה";
   if (std::strcmp(text, "High target") == 0) return "יעד עליון";
-  if (std::strcmp(text, "Holduntil") == 0) return "החזקה עד";
+  if (std::strcmp(text, "Holduntil") == 0) return "קיבוע עד";
   if (std::strcmp(text, "Home") == 0) return "בבית";
   if (std::strcmp(text, "Hourly") == 0) return "כל שעה";
   if (std::strcmp(text, "Hurricane") == 0) return "הוריקן";
@@ -1470,6 +1535,7 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "מדיה";
   if (std::strcmp(text, "Media Control") == 0) return "בקרת מדיה";
   if (std::strcmp(text, "Playlist") == 0) return "רשימת השמעה";
+  if (std::strcmp(text, "Cover Art") == 0) return "עטיפת אלבום";
   if (std::strcmp(text, "Medium") == 0) return "בינוני";
   if (std::strcmp(text, "Mode") == 0) return "מצב";
   if (std::strcmp(text, "Group") == 0) return "קבוצה";
@@ -1492,30 +1558,30 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Next") == 0) return "הבא";
   if (std::strcmp(text, "Night") == 0) return "לילה";
   if (std::strcmp(text, "No") == 0) return "לא";
-  if (std::strcmp(text, "Nohold") == 0) return "ללא החזקה";
+  if (std::strcmp(text, "Nohold") == 0) return "ללא קיבוע";
   if (std::strcmp(text, "None") == 0) return "ללא";
   if (std::strcmp(text, "No options") == 0) return "אין אפשרויות";
   if (std::strcmp(text, "No presets") == 0) return "אין מצבים מוגדרים";
   if (std::strcmp(text, "No sources") == 0) return "אין מקורות";
   if (std::strcmp(text, "Source") == 0) return "מקור";
-  if (std::strcmp(text, "Not available") == 0) return "אינו זמין";
+  if (std::strcmp(text, "Not available") == 0) return "לא זמין";
   if (std::strcmp(text, "Off") == 0) return "כבוי";
-  if (std::strcmp(text, "On") == 0) return "פועל";
+  if (std::strcmp(text, "On") == 0) return "מופעל";
   if (std::strcmp(text, "Open") == 0) return "פתיחה";
-  if (std::strcmp(text, "Opening") == 0) return "נפתח";
+  if (std::strcmp(text, "Opening") == 0) return "בפתיחה";
   if (std::strcmp(text, "Option") == 0) return "אפשרות";
   if (std::strcmp(text, "Oscillating") == 0) return "מסתובב";
   if (std::strcmp(text, "Oscillation") == 0) return "סיבוב";
   if (std::strcmp(text, "Partly Cloudy") == 0) return "מעונן חלקית";
   if (std::strcmp(text, "Partly Cloudy Night") == 0) return "לילה מעונן חלקית";
-  if (std::strcmp(text, "Partly Lightning") == 0) return "ברקים חלקית";
-  if (std::strcmp(text, "Partly Rainy") == 0) return "גשום חלקית";
-  if (std::strcmp(text, "Partly Snow And Rain") == 0) return "שלג וגשם חלקית";
-  if (std::strcmp(text, "Partly Snowy") == 0) return "מושלג חלקית";
+  if (std::strcmp(text, "Partly Lightning") == 0) return "ברקים מקומיים";
+  if (std::strcmp(text, "Partly Rainy") == 0) return "גשם מקומי";
+  if (std::strcmp(text, "Partly Snow And Rain") == 0) return "שלג וגשם מקומיים";
+  if (std::strcmp(text, "Partly Snowy") == 0) return "שלג מקומי";
   if (std::strcmp(text, "Pause") == 0) return "השהיה";
   if (std::strcmp(text, "Paused") == 0) return "מושהה";
   if (std::strcmp(text, "Pending") == 0) return "בהמתנה";
-  if (std::strcmp(text, "Permanenthold") == 0) return "החזקה קבועה";
+  if (std::strcmp(text, "Permanenthold") == 0) return "קיבוע תמידי";
   if (std::strcmp(text, "PIN was not accepted") == 0) return "הקוד לא התקבל";
   if (std::strcmp(text, "Play/Pause") == 0) return "ניגון/השהיה";
   if (std::strcmp(text, "Playing") == 0) return "מנגן";
@@ -1532,14 +1598,15 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Run this script?") == 0) return "להריץ את הסקריפט?";
   if (std::strcmp(text, "Screen Dimmed") == 0) return "המסך מעומעם";
   if (std::strcmp(text, "Screen Locked") == 0) return "המסך נעול";
-  if (std::strcmp(text, "Screen Unlocked") == 0) return "המסך משוחרר";
-  if (std::strcmp(text, "Skip Next") == 0) return "לרצועה הבאה";
-  if (std::strcmp(text, "Skip Previous") == 0) return "לרצועה הקודמת";
+  if (std::strcmp(text, "Screen Unlocked") == 0) return "נעילת המסך בוטלה";
+  if (std::strcmp(text, "Skip Next") == 0) return "הרצועה הבאה";
+  if (std::strcmp(text, "Skip Previous") == 0) return "הרצועה הקודמת";
   if (std::strcmp(text, "Snowy") == 0) return "מושלג";
   if (std::strcmp(text, "Snowy And Rain") == 0) return "שלג וגשם";
   if (std::strcmp(text, "Spot Clean") == 0) return "ניקוי נקודתי";
   if (std::strcmp(text, "Start") == 0) return "הפעלה";
-  if (std::strcmp(text, "Still") == 0) return "נייח";
+  if (std::strcmp(text, "Start / Dock") == 0) return "הפעלה / עגינה";
+  if (std::strcmp(text, "Still") == 0) return "קבוע";
   if (std::strcmp(text, "Subpage") == 0) return "תת-עמוד";
   if (std::strcmp(text, "Stop") == 0) return "עצירה";
   if (std::strcmp(text, "Sunny") == 0) return "שמשי";
@@ -1548,8 +1615,9 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "שקיעה";
   if (std::strcmp(text, "Sunset Up") == 0) return "זריחה";
   if (std::strcmp(text, "Swing") == 0) return "נדנוד";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "נדנוד אופקי";
   if (std::strcmp(text, "Target") == 0) return "יעד";
-  if (std::strcmp(text, "Temporaryhold") == 0) return "החזקה זמנית";
+  if (std::strcmp(text, "Temporaryhold") == 0) return "קיבוע זמני";
   if (std::strcmp(text, "Today") == 0) return "היום";
   if (std::strcmp(text, "Too many") == 0) return "יותר מדי";
   if (std::strcmp(text, "Toggle this device?") == 0) return "להחליף את מצב המכשיר?";
@@ -1561,10 +1629,10 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Turn on this device?") == 0) return "להפעיל את המכשיר?";
   if (std::strcmp(text, "Unavailable") == 0) return "לא זמין";
   if (std::strcmp(text, "Unknown") == 0) return "לא ידוע";
-  if (std::strcmp(text, "Unlock") == 0) return "שחרור נעילה";
+  if (std::strcmp(text, "Unlock") == 0) return "ביטול נעילה";
   if (std::strcmp(text, "Unsupported") == 0) return "לא נתמך";
   if (std::strcmp(text, "Vacation") == 0) return "חופשה";
-  if (std::strcmp(text, "Vacationhold") == 0) return "החזקת חופשה";
+  if (std::strcmp(text, "Vacationhold") == 0) return "קיבוע לחופשה";
   if (std::strcmp(text, "Vacuum") == 0) return "שואב אבק";
   if (std::strcmp(text, "Version unknown") == 0) return "גרסה לא ידועה";
   if (std::strcmp(text, "Volume") == 0) return "עוצמה";
@@ -1585,7 +1653,7 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Booting") == 0) return "אתחול";
   if (std::strcmp(text, "Connect an Ethernet cable\nand wait for a network address") == 0) return "חברו כבל רשת\nוהמתינו לכתובת רשת";
   if (std::strcmp(text, "Connect to the setup hotspot\nthen open 192.168.4.1") == 0) return "התחברו לרשת ההגדרה\nופתחו את 192.168.4.1";
-  if (std::strcmp(text, "Connect to") == 0) return "התחבר אל";
+  if (std::strcmp(text, "Connect to") == 0) return "התחברו אל";
   if (std::strcmp(text, "Connect to WiFi") == 0) return "התחברות ל-WiFi";
   if (std::strcmp(text, "Scan to connect") == 0) return "סרקו כדי להתחבר";
   if (std::strcmp(text, "Network") == 0) return "רשת";
@@ -1598,8 +1666,8 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Ethernet Setup") == 0) return "הגדרת רשת קווית";
   if (std::strcmp(text, "Installing update") == 0) return "מתקין עדכון";
   if (std::strcmp(text, "Checking for updates") == 0) return "בודק עדכונים";
-  if (std::strcmp(text, "Latest installed") == 0) return "מותקנת הגרסה החדשה";
-  if (std::strcmp(text, "Update available") == 0) return "קיים עדכון";
+  if (std::strcmp(text, "Latest installed") == 0) return "מותקנת הגרסה העדכנית";
+  if (std::strcmp(text, "Update available") == 0) return "יש עדכון";
   if (std::strcmp(text, "Up-to-date") == 0) return "מעודכן";
   if (std::strcmp(text, "Install") == 0) return "התקנה";
   if (std::strcmp(text, "No saved WiFi connection\nReinstall by USB to reconfigure") == 0) return "אין חיבור WiFi שמור\nהתקינו מחדש דרך USB";
@@ -1610,14 +1678,14 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "See the install guide for help") == 0) return "לעזרה עיינו במדריך ההתקנה";
   if (std::strcmp(text, "Settings > Devices & Services") == 0) return "הגדרות > מכשירים ושירותים";
   if (std::strcmp(text, "Setup") == 0) return "הגדרה";
-  if (std::strcmp(text, "Starting up") == 0) return "מתחיל";
+  if (std::strcmp(text, "Starting up") == 0) return "בהפעלה";
   if (std::strcmp(text, "The screen may turn off\nDo not power off") == 0) return "המסך עשוי לכבות\nאין לנתק מהחשמל";
   if (std::strcmp(text, "Try installing the update again") == 0) return "נסו להתקין את העדכון שוב";
   if (std::strcmp(text, "Trying to reconnect\nto your saved network") == 0) return "מנסה להתחבר מחדש\nלרשת השמורה";
   if (std::strcmp(text, "Update complete") == 0) return "העדכון הושלם";
   if (std::strcmp(text, "Update failed") == 0) return "העדכון נכשל";
   if (std::strcmp(text, "WiFi Disconnected") == 0) return "WiFi מנותק";
-  if (std::strcmp(text, "to configure your network settings") == 0) return "כדי להגדיר את הגדרות הרשת";
+  if (std::strcmp(text, "to configure your network settings") == 0) return "כדי להגדיר את הרשת";
   if (std::strcmp(text, "Configure your WiFi") == 0) return "הגדרת WiFi";
   if (std::strcmp(text, "Speaker Group") == 0) return "קבוצת רמקולים";
   if (std::strcmp(text, "Speakers") == 0) return "רמקולים";
@@ -1625,6 +1693,14 @@ inline const char *espcontrol_i18n_he(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "הקיבוץ נכשל";
   if (std::strcmp(text, "Speakers updated") == 0) return "הרמקולים עודכנו";
   if (std::strcmp(text, "Updating speakers") == 0) return "מעדכן רמקולים";
+  if (std::strcmp(text, "Settings") == 0) return "הגדרות";
+  if (std::strcmp(text, "Brightness") == 0) return "בהירות";
+  if (std::strcmp(text, "Daytime") == 0) return "יום";
+  if (std::strcmp(text, "Nighttime") == 0) return "לילה";
+  if (std::strcmp(text, "Timer") == 0) return "טיימר";
+  if (std::strcmp(text, "Confirm") == 0) return "לאישור";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "רשת אורחים";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "מצב ה-WiFi לא השתנה";
   return text;
 }
 
@@ -1672,6 +1748,7 @@ inline const char *espcontrol_i18n_hu(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Irány";
   if (std::strcmp(text, "Disarm") == 0) return "Hatástalanítás";
   if (std::strcmp(text, "Disarmed") == 0) return "Hatástalanítva";
+  if (std::strcmp(text, "Disconnected") == 0) return "Lekapcsolva";
   if (std::strcmp(text, "Door") == 0) return "Ajtó";
   if (std::strcmp(text, "Door Open") == 0) return "Ajtó nyitva";
   if (std::strcmp(text, "Dock") == 0) return "Dokkolás";
@@ -1714,6 +1791,7 @@ inline const char *espcontrol_i18n_hu(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Média";
   if (std::strcmp(text, "Media Control") == 0) return "Médiavezérlés";
   if (std::strcmp(text, "Playlist") == 0) return "Lejátszási lista";
+  if (std::strcmp(text, "Cover Art") == 0) return "Albumborító";
   if (std::strcmp(text, "Medium") == 0) return "Közepes";
   if (std::strcmp(text, "Mode") == 0) return "Mód";
   if (std::strcmp(text, "Group") == 0) return "Csoport";
@@ -1789,6 +1867,7 @@ inline const char *espcontrol_i18n_hu(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Naplemente le";
   if (std::strcmp(text, "Sunset Up") == 0) return "Naplemente fel";
   if (std::strcmp(text, "Swing") == 0) return "Legyezés";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Vízszintes legyezés";
   if (std::strcmp(text, "Target") == 0) return "Célérték";
   if (std::strcmp(text, "Temporaryhold") == 0) return "Ideiglenes tartás";
   if (std::strcmp(text, "Today") == 0) return "Ma";
@@ -1864,6 +1943,14 @@ inline const char *espcontrol_i18n_hu(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "A csoportosítás sikertelen";
   if (std::strcmp(text, "Speakers updated") == 0) return "Hangszórók frissítve";
   if (std::strcmp(text, "Updating speakers") == 0) return "Hangszórók frissítése";
+  if (std::strcmp(text, "Settings") == 0) return "Beállítások";
+  if (std::strcmp(text, "Brightness") == 0) return "Fényerő";
+  if (std::strcmp(text, "Daytime") == 0) return "Nappal";
+  if (std::strcmp(text, "Nighttime") == 0) return "Éjszaka";
+  if (std::strcmp(text, "Timer") == 0) return "Időzítő";
+  if (std::strcmp(text, "Confirm") == 0) return "Megerősítés";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Vendég Wi-Fi";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "A Wi-Fi állapota nem változott";
   return text;
 }
 
@@ -1909,6 +1996,7 @@ inline const char *espcontrol_i18n_it(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Direzione";
   if (std::strcmp(text, "Disarm") == 0) return "Disinserisci";
   if (std::strcmp(text, "Disarmed") == 0) return "Disinserito";
+  if (std::strcmp(text, "Disconnected") == 0) return "Disconnesso";
   if (std::strcmp(text, "Door") == 0) return "Porta";
   if (std::strcmp(text, "Door Open") == 0) return "Porta aperta";
   if (std::strcmp(text, "Docked") == 0) return "In base";
@@ -1948,6 +2036,7 @@ inline const char *espcontrol_i18n_it(const char *text) {
   if (std::strcmp(text, "Low") == 0) return "Basso";
   if (std::strcmp(text, "Low target") == 0) return "Target basso";
   if (std::strcmp(text, "Media Control") == 0) return "Controllo multimediale";
+  if (std::strcmp(text, "Cover Art") == 0) return "Copertina";
   if (std::strcmp(text, "Medium") == 0) return "Medio";
   if (std::strcmp(text, "Mode") == 0) return "Modalità";
   if (std::strcmp(text, "Group") == 0) return "Gruppo";
@@ -2023,6 +2112,7 @@ inline const char *espcontrol_i18n_it(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Tramonto giù";
   if (std::strcmp(text, "Sunset Up") == 0) return "Tramonto su";
   if (std::strcmp(text, "Swing") == 0) return "Oscillazione";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Oscillazione orizzontale";
   if (std::strcmp(text, "Temporaryhold") == 0) return "Temporaneo";
   if (std::strcmp(text, "Today") == 0) return "Oggi";
   if (std::strcmp(text, "Too many") == 0) return "Troppi";
@@ -2094,6 +2184,13 @@ inline const char *espcontrol_i18n_it(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Raggruppamento non riuscito";
   if (std::strcmp(text, "Speakers updated") == 0) return "Altoparlanti aggiornati";
   if (std::strcmp(text, "Updating speakers") == 0) return "Aggiornamento altoparlanti";
+  if (std::strcmp(text, "Settings") == 0) return "Impostazioni";
+  if (std::strcmp(text, "Brightness") == 0) return "Luminosità";
+  if (std::strcmp(text, "Daytime") == 0) return "Giorno";
+  if (std::strcmp(text, "Nighttime") == 0) return "Notte";
+  if (std::strcmp(text, "Confirm") == 0) return "Confermare";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi ospiti";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Il Wi-Fi non è cambiato";
   return text;
 }
 
@@ -2138,6 +2235,7 @@ inline const char *espcontrol_i18n_nb(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Retning";
   if (std::strcmp(text, "Disarm") == 0) return "Deaktiver";
   if (std::strcmp(text, "Disarmed") == 0) return "Deaktivert";
+  if (std::strcmp(text, "Disconnected") == 0) return "Frakoblet";
   if (std::strcmp(text, "Door") == 0) return "Dør";
   if (std::strcmp(text, "Door Open") == 0) return "Dør åpen";
   if (std::strcmp(text, "Dock") == 0) return "Dokking";
@@ -2178,6 +2276,7 @@ inline const char *espcontrol_i18n_nb(const char *text) {
   if (std::strcmp(text, "Low target") == 0) return "Lavt mål";
   if (std::strcmp(text, "Media Control") == 0) return "Mediekontroll";
   if (std::strcmp(text, "Playlist") == 0) return "Spilleliste";
+  if (std::strcmp(text, "Cover Art") == 0) return "Albumomslag";
   if (std::strcmp(text, "Mode") == 0) return "Modus";
   if (std::strcmp(text, "Group") == 0) return "Gruppe";
   if (std::strcmp(text, "Monthly") == 0) return "Månedlig";
@@ -2249,6 +2348,7 @@ inline const char *espcontrol_i18n_nb(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Solnedgang ned";
   if (std::strcmp(text, "Sunset Up") == 0) return "Solnedgang opp";
   if (std::strcmp(text, "Swing") == 0) return "Sving";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Horisontal sving";
   if (std::strcmp(text, "Target") == 0) return "Mål";
   if (std::strcmp(text, "Today") == 0) return "I dag";
   if (std::strcmp(text, "Too many") == 0) return "For mange";
@@ -2321,6 +2421,14 @@ inline const char *espcontrol_i18n_nb(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Gruppering mislyktes";
   if (std::strcmp(text, "Speakers updated") == 0) return "Høyttalere oppdatert";
   if (std::strcmp(text, "Updating speakers") == 0) return "Oppdaterer høyttalere";
+  if (std::strcmp(text, "Settings") == 0) return "Innstillinger";
+  if (std::strcmp(text, "Brightness") == 0) return "Lysstyrke";
+  if (std::strcmp(text, "Daytime") == 0) return "Dagtid";
+  if (std::strcmp(text, "Nighttime") == 0) return "Nattetid";
+  if (std::strcmp(text, "Timer") == 0) return "Tidtaker";
+  if (std::strcmp(text, "Confirm") == 0) return "Bekreft";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Gjeste-Wi-Fi";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Wi-Fi ble ikke endret";
   return text;
 }
 
@@ -2367,6 +2475,7 @@ inline const char *espcontrol_i18n_nl(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Richting";
   if (std::strcmp(text, "Disarm") == 0) return "Uitschakelen";
   if (std::strcmp(text, "Disarmed") == 0) return "Uitgeschakeld";
+  if (std::strcmp(text, "Disconnected") == 0) return "Verbroken";
   if (std::strcmp(text, "Door") == 0) return "Deur";
   if (std::strcmp(text, "Door Open") == 0) return "Deur open";
   if (std::strcmp(text, "Dock") == 0) return "Docken";
@@ -2407,6 +2516,7 @@ inline const char *espcontrol_i18n_nl(const char *text) {
   if (std::strcmp(text, "Low target") == 0) return "Laag doel";
   if (std::strcmp(text, "Media Control") == 0) return "Mediabediening";
   if (std::strcmp(text, "Playlist") == 0) return "Afspeellijst";
+  if (std::strcmp(text, "Cover Art") == 0) return "Albumhoes";
   if (std::strcmp(text, "Mode") == 0) return "Modus";
   if (std::strcmp(text, "Group") == 0) return "Groep";
   if (std::strcmp(text, "Monthly") == 0) return "Maandelijks";
@@ -2479,6 +2589,7 @@ inline const char *espcontrol_i18n_nl(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Zon onder";
   if (std::strcmp(text, "Sunset Up") == 0) return "Zon op";
   if (std::strcmp(text, "Swing") == 0) return "Zwenken";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Horizontaal zwenken";
   if (std::strcmp(text, "Target") == 0) return "Doel";
   if (std::strcmp(text, "Today") == 0) return "Vandaag";
   if (std::strcmp(text, "Too many") == 0) return "Te veel";
@@ -2549,6 +2660,13 @@ inline const char *espcontrol_i18n_nl(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Groeperen mislukt";
   if (std::strcmp(text, "Speakers updated") == 0) return "Luidsprekers bijgewerkt";
   if (std::strcmp(text, "Updating speakers") == 0) return "Luidsprekers bijwerken";
+  if (std::strcmp(text, "Settings") == 0) return "Instellingen";
+  if (std::strcmp(text, "Brightness") == 0) return "Helderheid";
+  if (std::strcmp(text, "Daytime") == 0) return "Overdag";
+  if (std::strcmp(text, "Nighttime") == 0) return "Nacht";
+  if (std::strcmp(text, "Confirm") == 0) return "Bevestigen";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Gastwifi";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Wifi is niet gewijzigd";
   return text;
 }
 
@@ -2593,6 +2711,7 @@ inline const char *espcontrol_i18n_pl(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Kierunek";
   if (std::strcmp(text, "Disarm") == 0) return "Rozbrój";
   if (std::strcmp(text, "Disarmed") == 0) return "Rozbrojony";
+  if (std::strcmp(text, "Disconnected") == 0) return "Rozłączone";
   if (std::strcmp(text, "Door") == 0) return "Drzwi";
   if (std::strcmp(text, "Door Open") == 0) return "Drzwi otwarte";
   if (std::strcmp(text, "Dock") == 0) return "Dokuj";
@@ -2633,6 +2752,7 @@ inline const char *espcontrol_i18n_pl(const char *text) {
   if (std::strcmp(text, "Low target") == 0) return "Niski cel";
   if (std::strcmp(text, "Media Control") == 0) return "Sterowanie multimediami";
   if (std::strcmp(text, "Playlist") == 0) return "Playlista";
+  if (std::strcmp(text, "Cover Art") == 0) return "Okładka";
   if (std::strcmp(text, "Mode") == 0) return "Tryb";
   if (std::strcmp(text, "Group") == 0) return "Grupa";
   if (std::strcmp(text, "Monthly") == 0) return "Co miesiąc";
@@ -2704,6 +2824,7 @@ inline const char *espcontrol_i18n_pl(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Zachód słońca dół";
   if (std::strcmp(text, "Sunset Up") == 0) return "Zachód słońca góra";
   if (std::strcmp(text, "Swing") == 0) return "Ruch wahadłowy";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Ruch poziomy";
   if (std::strcmp(text, "Target") == 0) return "Cel";
   if (std::strcmp(text, "Today") == 0) return "Dziś";
   if (std::strcmp(text, "Too many") == 0) return "Za dużo";
@@ -2776,6 +2897,14 @@ inline const char *espcontrol_i18n_pl(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Grupowanie nie powiodło się";
   if (std::strcmp(text, "Speakers updated") == 0) return "Głośniki zaktualizowane";
   if (std::strcmp(text, "Updating speakers") == 0) return "Aktualizowanie głośników";
+  if (std::strcmp(text, "Settings") == 0) return "Ustawienia";
+  if (std::strcmp(text, "Brightness") == 0) return "Jasność";
+  if (std::strcmp(text, "Daytime") == 0) return "Dzień";
+  if (std::strcmp(text, "Nighttime") == 0) return "Noc";
+  if (std::strcmp(text, "Timer") == 0) return "Minutnik";
+  if (std::strcmp(text, "Confirm") == 0) return "Potwierdzić";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi dla gości";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Stan Wi-Fi nie zmienił się";
   return text;
 }
 
@@ -2821,6 +2950,7 @@ inline const char *espcontrol_i18n_pt_br(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Direção";
   if (std::strcmp(text, "Disarm") == 0) return "Desarmar";
   if (std::strcmp(text, "Disarmed") == 0) return "Desarmado";
+  if (std::strcmp(text, "Disconnected") == 0) return "Desconectado";
   if (std::strcmp(text, "Door") == 0) return "Porta";
   if (std::strcmp(text, "Door Open") == 0) return "Porta aberta";
   if (std::strcmp(text, "Docked") == 0) return "Na base";
@@ -2861,6 +2991,7 @@ inline const char *espcontrol_i18n_pt_br(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Mídia";
   if (std::strcmp(text, "Media Control") == 0) return "Controle de mídia";
   if (std::strcmp(text, "Playlist") == 0) return "Lista de reprodução";
+  if (std::strcmp(text, "Cover Art") == 0) return "Capa do álbum";
   if (std::strcmp(text, "Mode") == 0) return "Modo";
   if (std::strcmp(text, "Group") == 0) return "Grupo";
   if (std::strcmp(text, "Monthly") == 0) return "Mensal";
@@ -2934,6 +3065,7 @@ inline const char *espcontrol_i18n_pt_br(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Pôr do sol baixo";
   if (std::strcmp(text, "Sunset Up") == 0) return "Pôr do sol alto";
   if (std::strcmp(text, "Swing") == 0) return "Oscilação";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Oscilação horizontal";
   if (std::strcmp(text, "Target") == 0) return "Alvo";
   if (std::strcmp(text, "Today") == 0) return "Hoje";
   if (std::strcmp(text, "Too many") == 0) return "Muitos";
@@ -3005,6 +3137,14 @@ inline const char *espcontrol_i18n_pt_br(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Falha ao agrupar";
   if (std::strcmp(text, "Speakers updated") == 0) return "Alto-falantes atualizados";
   if (std::strcmp(text, "Updating speakers") == 0) return "Atualizando alto-falantes";
+  if (std::strcmp(text, "Settings") == 0) return "Configurações";
+  if (std::strcmp(text, "Brightness") == 0) return "Brilho";
+  if (std::strcmp(text, "Daytime") == 0) return "Dia";
+  if (std::strcmp(text, "Nighttime") == 0) return "Noite";
+  if (std::strcmp(text, "Timer") == 0) return "Temporizador";
+  if (std::strcmp(text, "Confirm") == 0) return "Confirmar";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi de convidados";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "O Wi-Fi não mudou";
   return text;
 }
 
@@ -3050,6 +3190,7 @@ inline const char *espcontrol_i18n_pt(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Direção";
   if (std::strcmp(text, "Disarm") == 0) return "Desarmar";
   if (std::strcmp(text, "Disarmed") == 0) return "Desarmado";
+  if (std::strcmp(text, "Disconnected") == 0) return "Desligado";
   if (std::strcmp(text, "Door") == 0) return "Porta";
   if (std::strcmp(text, "Door Open") == 0) return "Porta aberta";
   if (std::strcmp(text, "Dock") == 0) return "Ancorar";
@@ -3091,6 +3232,7 @@ inline const char *espcontrol_i18n_pt(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Multimédia";
   if (std::strcmp(text, "Media Control") == 0) return "Controlo multimédia";
   if (std::strcmp(text, "Playlist") == 0) return "Lista de reprodução";
+  if (std::strcmp(text, "Cover Art") == 0) return "Capa do álbum";
   if (std::strcmp(text, "Mode") == 0) return "Modo";
   if (std::strcmp(text, "Group") == 0) return "Grupo";
   if (std::strcmp(text, "Monthly") == 0) return "Mensal";
@@ -3164,6 +3306,7 @@ inline const char *espcontrol_i18n_pt(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Pôr do sol baixo";
   if (std::strcmp(text, "Sunset Up") == 0) return "Pôr do sol alto";
   if (std::strcmp(text, "Swing") == 0) return "Oscilação";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Oscilação horizontal";
   if (std::strcmp(text, "Target") == 0) return "Alvo";
   if (std::strcmp(text, "Today") == 0) return "Hoje";
   if (std::strcmp(text, "Too many") == 0) return "Demasiados";
@@ -3235,6 +3378,14 @@ inline const char *espcontrol_i18n_pt(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Falha ao agrupar";
   if (std::strcmp(text, "Speakers updated") == 0) return "Colunas atualizadas";
   if (std::strcmp(text, "Updating speakers") == 0) return "A atualizar colunas";
+  if (std::strcmp(text, "Settings") == 0) return "Definições";
+  if (std::strcmp(text, "Brightness") == 0) return "Brilho";
+  if (std::strcmp(text, "Daytime") == 0) return "Dia";
+  if (std::strcmp(text, "Nighttime") == 0) return "Noite";
+  if (std::strcmp(text, "Timer") == 0) return "Temporizador";
+  if (std::strcmp(text, "Confirm") == 0) return "Confirmar";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi de convidados";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "O Wi-Fi não mudou";
   return text;
 }
 
@@ -3282,6 +3433,7 @@ inline const char *espcontrol_i18n_ro(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Direcție";
   if (std::strcmp(text, "Disarm") == 0) return "Dezarmează";
   if (std::strcmp(text, "Disarmed") == 0) return "Dezarmat";
+  if (std::strcmp(text, "Disconnected") == 0) return "Deconectat";
   if (std::strcmp(text, "Door") == 0) return "Ușă";
   if (std::strcmp(text, "Door Open") == 0) return "Ușă deschisă";
   if (std::strcmp(text, "Dock") == 0) return "Andocare";
@@ -3323,6 +3475,7 @@ inline const char *espcontrol_i18n_ro(const char *text) {
   if (std::strcmp(text, "Low target") == 0) return "Țintă scăzută";
   if (std::strcmp(text, "Media Control") == 0) return "Control media";
   if (std::strcmp(text, "Playlist") == 0) return "Listă de redare";
+  if (std::strcmp(text, "Cover Art") == 0) return "Copertă album";
   if (std::strcmp(text, "Medium") == 0) return "Mediu";
   if (std::strcmp(text, "Mode") == 0) return "Mod";
   if (std::strcmp(text, "Group") == 0) return "Grup";
@@ -3399,6 +3552,7 @@ inline const char *espcontrol_i18n_ro(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Apus jos";
   if (std::strcmp(text, "Sunset Up") == 0) return "Apus sus";
   if (std::strcmp(text, "Swing") == 0) return "Balans";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Balans orizontal";
   if (std::strcmp(text, "Target") == 0) return "Țintă";
   if (std::strcmp(text, "Temporaryhold") == 0) return "Menținere temporară";
   if (std::strcmp(text, "Today") == 0) return "Astăzi";
@@ -3474,6 +3628,14 @@ inline const char *espcontrol_i18n_ro(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Gruparea a eșuat";
   if (std::strcmp(text, "Speakers updated") == 0) return "Difuzoare actualizate";
   if (std::strcmp(text, "Updating speakers") == 0) return "Se actualizează difuzoarele";
+  if (std::strcmp(text, "Settings") == 0) return "Setări";
+  if (std::strcmp(text, "Brightness") == 0) return "Luminozitate";
+  if (std::strcmp(text, "Daytime") == 0) return "Zi";
+  if (std::strcmp(text, "Nighttime") == 0) return "Noapte";
+  if (std::strcmp(text, "Timer") == 0) return "Temporizator";
+  if (std::strcmp(text, "Confirm") == 0) return "Confirmați";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi pentru oaspeți";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Starea Wi-Fi nu s-a schimbat";
   return text;
 }
 
@@ -3523,6 +3685,7 @@ inline const char *espcontrol_i18n_ru(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Направление";
   if (std::strcmp(text, "Disarm") == 0) return "Снять с охраны";
   if (std::strcmp(text, "Disarmed") == 0) return "Снято с охраны";
+  if (std::strcmp(text, "Disconnected") == 0) return "Отключено";
   if (std::strcmp(text, "Door") == 0) return "Дверь";
   if (std::strcmp(text, "Door Open") == 0) return "Дверь открыта";
   if (std::strcmp(text, "Dock") == 0) return "На базу";
@@ -3565,6 +3728,7 @@ inline const char *espcontrol_i18n_ru(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Медиа";
   if (std::strcmp(text, "Media Control") == 0) return "Управление медиа";
   if (std::strcmp(text, "Playlist") == 0) return "Плейлист";
+  if (std::strcmp(text, "Cover Art") == 0) return "Обложка";
   if (std::strcmp(text, "Medium") == 0) return "Средняя";
   if (std::strcmp(text, "Mode") == 0) return "Режим";
   if (std::strcmp(text, "Group") == 0) return "Группа";
@@ -3643,6 +3807,7 @@ inline const char *espcontrol_i18n_ru(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Закат: стемнело";
   if (std::strcmp(text, "Sunset Up") == 0) return "Закат: посветлело";
   if (std::strcmp(text, "Swing") == 0) return "Колебание";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Горизонтальное колебание";
   if (std::strcmp(text, "Target") == 0) return "Цель";
   if (std::strcmp(text, "Temporaryhold") == 0) return "Временное удержание";
   if (std::strcmp(text, "Today") == 0) return "Сегодня";
@@ -3720,6 +3885,14 @@ inline const char *espcontrol_i18n_ru(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Не удалось сгруппировать";
   if (std::strcmp(text, "Speakers updated") == 0) return "Динамики обновлены";
   if (std::strcmp(text, "Updating speakers") == 0) return "Обновление динамиков";
+  if (std::strcmp(text, "Settings") == 0) return "Настройки";
+  if (std::strcmp(text, "Brightness") == 0) return "Яркость";
+  if (std::strcmp(text, "Daytime") == 0) return "День";
+  if (std::strcmp(text, "Nighttime") == 0) return "Ночь";
+  if (std::strcmp(text, "Timer") == 0) return "Таймер";
+  if (std::strcmp(text, "Confirm") == 0) return "Подтвердить";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Гостевой Wi-Fi";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Состояние Wi-Fi не изменилось";
   return text;
 }
 
@@ -3764,6 +3937,7 @@ inline const char *espcontrol_i18n_sk(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Smer";
   if (std::strcmp(text, "Disarm") == 0) return "Odzbrojiť";
   if (std::strcmp(text, "Disarmed") == 0) return "Odzbrojené";
+  if (std::strcmp(text, "Disconnected") == 0) return "Odpojené";
   if (std::strcmp(text, "Door") == 0) return "Dvere";
   if (std::strcmp(text, "Door Open") == 0) return "Dvere otvorené";
   if (std::strcmp(text, "Dock") == 0) return "Dokovať";
@@ -3805,6 +3979,7 @@ inline const char *espcontrol_i18n_sk(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Médiá";
   if (std::strcmp(text, "Media Control") == 0) return "Ovládanie médií";
   if (std::strcmp(text, "Playlist") == 0) return "Zoznam skladieb";
+  if (std::strcmp(text, "Cover Art") == 0) return "Obal albumu";
   if (std::strcmp(text, "Mode") == 0) return "Režim";
   if (std::strcmp(text, "Group") == 0) return "Skupina";
   if (std::strcmp(text, "Monthly") == 0) return "Mesačne";
@@ -3878,6 +4053,7 @@ inline const char *espcontrol_i18n_sk(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Západ slnka dole";
   if (std::strcmp(text, "Sunset Up") == 0) return "Západ slnka hore";
   if (std::strcmp(text, "Swing") == 0) return "Kývanie";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Horizontálne kývanie";
   if (std::strcmp(text, "Target") == 0) return "Cieľ";
   if (std::strcmp(text, "Today") == 0) return "Dnes";
   if (std::strcmp(text, "Too many") == 0) return "Príliš veľa";
@@ -3951,6 +4127,14 @@ inline const char *espcontrol_i18n_sk(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Zoskupenie zlyhalo";
   if (std::strcmp(text, "Speakers updated") == 0) return "Reproduktory aktualizované";
   if (std::strcmp(text, "Updating speakers") == 0) return "Aktualizácia reproduktorov";
+  if (std::strcmp(text, "Settings") == 0) return "Nastavenia";
+  if (std::strcmp(text, "Brightness") == 0) return "Jas";
+  if (std::strcmp(text, "Daytime") == 0) return "Deň";
+  if (std::strcmp(text, "Nighttime") == 0) return "Noc";
+  if (std::strcmp(text, "Timer") == 0) return "Časovač";
+  if (std::strcmp(text, "Confirm") == 0) return "Potvrdiť";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi pre hostí";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Stav Wi-Fi sa nezmenil";
   return text;
 }
 
@@ -3997,6 +4181,7 @@ inline const char *espcontrol_i18n_sl(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Smer";
   if (std::strcmp(text, "Disarm") == 0) return "Izklopi varovanje";
   if (std::strcmp(text, "Disarmed") == 0) return "Varovanje izklopljeno";
+  if (std::strcmp(text, "Disconnected") == 0) return "Prekinjeno";
   if (std::strcmp(text, "Door") == 0) return "Vrata";
   if (std::strcmp(text, "Door Open") == 0) return "Vrata odprta";
   if (std::strcmp(text, "Dock") == 0) return "Priklop";
@@ -4039,6 +4224,7 @@ inline const char *espcontrol_i18n_sl(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Predstavnost";
   if (std::strcmp(text, "Media Control") == 0) return "Nadzor predstavnosti";
   if (std::strcmp(text, "Playlist") == 0) return "Seznam predvajanja";
+  if (std::strcmp(text, "Cover Art") == 0) return "Naslovnica";
   if (std::strcmp(text, "Medium") == 0) return "Srednje";
   if (std::strcmp(text, "Mode") == 0) return "Način";
   if (std::strcmp(text, "Group") == 0) return "Skupina";
@@ -4112,6 +4298,7 @@ inline const char *espcontrol_i18n_sl(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Sončni zahod dol";
   if (std::strcmp(text, "Sunset Up") == 0) return "Sončni zahod gor";
   if (std::strcmp(text, "Swing") == 0) return "Nihanje";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Vodoravno nihanje";
   if (std::strcmp(text, "Target") == 0) return "Cilj";
   if (std::strcmp(text, "Temporaryhold") == 0) return "Začasno zadržanje";
   if (std::strcmp(text, "Today") == 0) return "Danes";
@@ -4186,6 +4373,14 @@ inline const char *espcontrol_i18n_sl(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Združevanje ni uspelo";
   if (std::strcmp(text, "Speakers updated") == 0) return "Zvočniki posodobljeni";
   if (std::strcmp(text, "Updating speakers") == 0) return "Posodabljanje zvočnikov";
+  if (std::strcmp(text, "Settings") == 0) return "Nastavitve";
+  if (std::strcmp(text, "Brightness") == 0) return "Svetlost";
+  if (std::strcmp(text, "Daytime") == 0) return "Dan";
+  if (std::strcmp(text, "Nighttime") == 0) return "Noč";
+  if (std::strcmp(text, "Timer") == 0) return "Časovnik";
+  if (std::strcmp(text, "Confirm") == 0) return "Potrdi";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Wi-Fi za goste";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Stanje Wi-Fi se ni spremenilo";
   return text;
 }
 
@@ -4231,6 +4426,7 @@ inline const char *espcontrol_i18n_sv(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Riktning";
   if (std::strcmp(text, "Disarm") == 0) return "Avlarma";
   if (std::strcmp(text, "Disarmed") == 0) return "Avlarmat";
+  if (std::strcmp(text, "Disconnected") == 0) return "Frånkopplad";
   if (std::strcmp(text, "Door") == 0) return "Dörr";
   if (std::strcmp(text, "Door Open") == 0) return "Dörr öppen";
   if (std::strcmp(text, "Dock") == 0) return "Docka";
@@ -4271,6 +4467,7 @@ inline const char *espcontrol_i18n_sv(const char *text) {
   if (std::strcmp(text, "Low target") == 0) return "Lågt mål";
   if (std::strcmp(text, "Media Control") == 0) return "Mediekontroll";
   if (std::strcmp(text, "Playlist") == 0) return "Spellista";
+  if (std::strcmp(text, "Cover Art") == 0) return "Skivomslag";
   if (std::strcmp(text, "Mode") == 0) return "Läge";
   if (std::strcmp(text, "Group") == 0) return "Grupp";
   if (std::strcmp(text, "Monthly") == 0) return "Månadsvis";
@@ -4341,6 +4538,7 @@ inline const char *espcontrol_i18n_sv(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Solnedgång ner";
   if (std::strcmp(text, "Sunset Up") == 0) return "Solnedgång upp";
   if (std::strcmp(text, "Swing") == 0) return "Svängning";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Horisontell svängning";
   if (std::strcmp(text, "Target") == 0) return "Mål";
   if (std::strcmp(text, "Today") == 0) return "Idag";
   if (std::strcmp(text, "Too many") == 0) return "För många";
@@ -4413,6 +4611,13 @@ inline const char *espcontrol_i18n_sv(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Gruppering misslyckades";
   if (std::strcmp(text, "Speakers updated") == 0) return "Högtalare uppdaterade";
   if (std::strcmp(text, "Updating speakers") == 0) return "Uppdaterar högtalare";
+  if (std::strcmp(text, "Settings") == 0) return "Inställningar";
+  if (std::strcmp(text, "Brightness") == 0) return "Ljusstyrka";
+  if (std::strcmp(text, "Daytime") == 0) return "Dagtid";
+  if (std::strcmp(text, "Nighttime") == 0) return "Nattetid";
+  if (std::strcmp(text, "Confirm") == 0) return "Bekräfta";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Gäst-Wi-Fi";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Wi-Fi ändrades inte";
   return text;
 }
 
@@ -4459,6 +4664,7 @@ inline const char *espcontrol_i18n_tr(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Yön";
   if (std::strcmp(text, "Disarm") == 0) return "Devre dışı bırak";
   if (std::strcmp(text, "Disarmed") == 0) return "Devre dışı";
+  if (std::strcmp(text, "Disconnected") == 0) return "Bağlantısı kesildi";
   if (std::strcmp(text, "Door") == 0) return "Kapı";
   if (std::strcmp(text, "Door Open") == 0) return "Kapı açık";
   if (std::strcmp(text, "Dock") == 0) return "Yuvaya dön";
@@ -4500,6 +4706,7 @@ inline const char *espcontrol_i18n_tr(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Medya";
   if (std::strcmp(text, "Media Control") == 0) return "Medya kontrolü";
   if (std::strcmp(text, "Playlist") == 0) return "Çalma listesi";
+  if (std::strcmp(text, "Cover Art") == 0) return "Albüm kapağı";
   if (std::strcmp(text, "Medium") == 0) return "Orta";
   if (std::strcmp(text, "Mode") == 0) return "Mod";
   if (std::strcmp(text, "Group") == 0) return "Grup";
@@ -4577,6 +4784,7 @@ inline const char *espcontrol_i18n_tr(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Gün batımı aşağı";
   if (std::strcmp(text, "Sunset Up") == 0) return "Gün batımı yukarı";
   if (std::strcmp(text, "Swing") == 0) return "Salınım";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Yatay salınım";
   if (std::strcmp(text, "Target") == 0) return "Hedef";
   if (std::strcmp(text, "Temporaryhold") == 0) return "Geçici tutma";
   if (std::strcmp(text, "Today") == 0) return "Bugün";
@@ -4652,6 +4860,14 @@ inline const char *espcontrol_i18n_tr(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Gruplama başarısız";
   if (std::strcmp(text, "Speakers updated") == 0) return "Hoparlörler güncellendi";
   if (std::strcmp(text, "Updating speakers") == 0) return "Hoparlörler güncelleniyor";
+  if (std::strcmp(text, "Settings") == 0) return "Ayarlar";
+  if (std::strcmp(text, "Brightness") == 0) return "Parlaklık";
+  if (std::strcmp(text, "Daytime") == 0) return "Gündüz";
+  if (std::strcmp(text, "Nighttime") == 0) return "Gece";
+  if (std::strcmp(text, "Timer") == 0) return "Zamanlayıcı";
+  if (std::strcmp(text, "Confirm") == 0) return "Onayla";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Misafir Wi-Fi";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Wi-Fi durumu değişmedi";
   return text;
 }
 
@@ -4699,6 +4915,7 @@ inline const char *espcontrol_i18n_uk(const char *text) {
   if (std::strcmp(text, "Direction") == 0) return "Напрямок";
   if (std::strcmp(text, "Disarm") == 0) return "Вимкнути охорону";
   if (std::strcmp(text, "Disarmed") == 0) return "Охорону вимкнено";
+  if (std::strcmp(text, "Disconnected") == 0) return "Від’єднано";
   if (std::strcmp(text, "Door") == 0) return "Двері";
   if (std::strcmp(text, "Door Open") == 0) return "Двері відчинені";
   if (std::strcmp(text, "Dock") == 0) return "До бази";
@@ -4741,6 +4958,7 @@ inline const char *espcontrol_i18n_uk(const char *text) {
   if (std::strcmp(text, "Media") == 0) return "Медіа";
   if (std::strcmp(text, "Media Control") == 0) return "Керування медіа";
   if (std::strcmp(text, "Playlist") == 0) return "Список відтворення";
+  if (std::strcmp(text, "Cover Art") == 0) return "Обкладинка";
   if (std::strcmp(text, "Medium") == 0) return "Середньо";
   if (std::strcmp(text, "Mode") == 0) return "Режим";
   if (std::strcmp(text, "Group") == 0) return "Група";
@@ -4818,6 +5036,7 @@ inline const char *espcontrol_i18n_uk(const char *text) {
   if (std::strcmp(text, "Sunset Down") == 0) return "Захід сонця вниз";
   if (std::strcmp(text, "Sunset Up") == 0) return "Захід сонця вгору";
   if (std::strcmp(text, "Swing") == 0) return "Коливання";
+  if (std::strcmp(text, "Horizontal Swing") == 0) return "Горизонтальне коливання";
   if (std::strcmp(text, "Target") == 0) return "Ціль";
   if (std::strcmp(text, "Temporaryhold") == 0) return "Тимчасове утримання";
   if (std::strcmp(text, "Today") == 0) return "Сьогодні";
@@ -4893,6 +5112,14 @@ inline const char *espcontrol_i18n_uk(const char *text) {
   if (std::strcmp(text, "Grouping failed") == 0) return "Не вдалося згрупувати";
   if (std::strcmp(text, "Speakers updated") == 0) return "Динаміки оновлено";
   if (std::strcmp(text, "Updating speakers") == 0) return "Оновлення динаміків";
+  if (std::strcmp(text, "Settings") == 0) return "Налаштування";
+  if (std::strcmp(text, "Brightness") == 0) return "Яскравість";
+  if (std::strcmp(text, "Daytime") == 0) return "День";
+  if (std::strcmp(text, "Nighttime") == 0) return "Ніч";
+  if (std::strcmp(text, "Timer") == 0) return "Таймер";
+  if (std::strcmp(text, "Confirm") == 0) return "Підтвердити";
+  if (std::strcmp(text, "Guest Wi-Fi") == 0) return "Гостьовий Wi-Fi";
+  if (std::strcmp(text, "Wi-Fi did not change") == 0) return "Стан Wi-Fi не змінився";
   return text;
 }
 
@@ -4943,6 +5170,7 @@ inline const char *espcontrol_i18n_key_en(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Direction";
   if (std::strcmp(key, "disarm") == 0) return "Disarm";
   if (std::strcmp(key, "disarmed") == 0) return "Disarmed";
+  if (std::strcmp(key, "disconnected") == 0) return "Disconnected";
   if (std::strcmp(key, "door") == 0) return "Door";
   if (std::strcmp(key, "door_open") == 0) return "Door Open";
   if (std::strcmp(key, "dock") == 0) return "Dock";
@@ -4985,6 +5213,7 @@ inline const char *espcontrol_i18n_key_en(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Media";
   if (std::strcmp(key, "media_control") == 0) return "Media Control";
   if (std::strcmp(key, "playlist") == 0) return "Playlist";
+  if (std::strcmp(key, "cover_art") == 0) return "Cover Art";
   if (std::strcmp(key, "medium") == 0) return "Medium";
   if (std::strcmp(key, "mode") == 0) return "Mode";
   if (std::strcmp(key, "group") == 0) return "Group";
@@ -5055,6 +5284,7 @@ inline const char *espcontrol_i18n_key_en(const char *key) {
   if (std::strcmp(key, "snowy_and_rain") == 0) return "Snowy And Rain";
   if (std::strcmp(key, "spot_clean") == 0) return "Spot Clean";
   if (std::strcmp(key, "start") == 0) return "Start";
+  if (std::strcmp(key, "start_dock") == 0) return "Start / Dock";
   if (std::strcmp(key, "still") == 0) return "Still";
   if (std::strcmp(key, "subpage") == 0) return "Subpage";
   if (std::strcmp(key, "stop") == 0) return "Stop";
@@ -5064,6 +5294,7 @@ inline const char *espcontrol_i18n_key_en(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Sunset Down";
   if (std::strcmp(key, "sunset_up") == 0) return "Sunset Up";
   if (std::strcmp(key, "swing") == 0) return "Swing";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Horizontal Swing";
   if (std::strcmp(key, "target") == 0) return "Target";
   if (std::strcmp(key, "temporaryhold") == 0) return "Temporaryhold";
   if (std::strcmp(key, "today") == 0) return "Today";
@@ -5142,6 +5373,14 @@ inline const char *espcontrol_i18n_key_en(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Grouping failed";
   if (std::strcmp(key, "speakers_updated") == 0) return "Speakers updated";
   if (std::strcmp(key, "updating_speakers") == 0) return "Updating speakers";
+  if (std::strcmp(key, "settings") == 0) return "Settings";
+  if (std::strcmp(key, "brightness") == 0) return "Brightness";
+  if (std::strcmp(key, "daytime") == 0) return "Daytime";
+  if (std::strcmp(key, "nighttime") == 0) return "Nighttime";
+  if (std::strcmp(key, "timer") == 0) return "Timer";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Confirm";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Guest Wi-Fi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Wi-Fi did not change";
   return key;
 }
 
@@ -5186,6 +5425,7 @@ inline const char *espcontrol_i18n_key_cs(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Směr";
   if (std::strcmp(key, "disarm") == 0) return "Odzajistit";
   if (std::strcmp(key, "disarmed") == 0) return "Odzajištěno";
+  if (std::strcmp(key, "disconnected") == 0) return "Odpojeno";
   if (std::strcmp(key, "door") == 0) return "Dveře";
   if (std::strcmp(key, "door_open") == 0) return "Dveře otevřeny";
   if (std::strcmp(key, "dock") == 0) return "Dokovat";
@@ -5226,6 +5466,7 @@ inline const char *espcontrol_i18n_key_cs(const char *key) {
   if (std::strcmp(key, "low_target") == 0) return "Nízký cíl";
   if (std::strcmp(key, "media") == 0) return "Média";
   if (std::strcmp(key, "media_control") == 0) return "Ovládání médií";
+  if (std::strcmp(key, "cover_art") == 0) return "Obal alba";
   if (std::strcmp(key, "mode") == 0) return "Režim";
   if (std::strcmp(key, "group") == 0) return "Skupina";
   if (std::strcmp(key, "monthly") == 0) return "Měsíčně";
@@ -5300,6 +5541,7 @@ inline const char *espcontrol_i18n_key_cs(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Západ slunce dolů";
   if (std::strcmp(key, "sunset_up") == 0) return "Západ slunce nahoru";
   if (std::strcmp(key, "swing") == 0) return "Kývání";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Horizontální kývání";
   if (std::strcmp(key, "target") == 0) return "Cíl";
   if (std::strcmp(key, "today") == 0) return "Dnes";
   if (std::strcmp(key, "too_many") == 0) return "Příliš mnoho";
@@ -5373,6 +5615,14 @@ inline const char *espcontrol_i18n_key_cs(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Seskupení se nezdařilo";
   if (std::strcmp(key, "speakers_updated") == 0) return "Reproduktory aktualizovány";
   if (std::strcmp(key, "updating_speakers") == 0) return "Aktualizace reproduktorů";
+  if (std::strcmp(key, "settings") == 0) return "Nastavení";
+  if (std::strcmp(key, "brightness") == 0) return "Jas";
+  if (std::strcmp(key, "daytime") == 0) return "Den";
+  if (std::strcmp(key, "nighttime") == 0) return "Noc";
+  if (std::strcmp(key, "timer") == 0) return "Časovač";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Potvrdit";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi pro hosty";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Stav Wi-Fi se nezměnil";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -5417,6 +5667,7 @@ inline const char *espcontrol_i18n_key_da(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Retning";
   if (std::strcmp(key, "disarm") == 0) return "Deaktiver";
   if (std::strcmp(key, "disarmed") == 0) return "Deaktiveret";
+  if (std::strcmp(key, "disconnected") == 0) return "Afbrudt";
   if (std::strcmp(key, "door") == 0) return "Dør";
   if (std::strcmp(key, "door_open") == 0) return "Dør åben";
   if (std::strcmp(key, "docked") == 0) return "Docket";
@@ -5457,6 +5708,7 @@ inline const char *espcontrol_i18n_key_da(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Medie";
   if (std::strcmp(key, "media_control") == 0) return "Mediestyring";
   if (std::strcmp(key, "playlist") == 0) return "Afspilningsliste";
+  if (std::strcmp(key, "cover_art") == 0) return "Albumcover";
   if (std::strcmp(key, "mode") == 0) return "Tilstand";
   if (std::strcmp(key, "group") == 0) return "Gruppe";
   if (std::strcmp(key, "monthly") == 0) return "Månedligt";
@@ -5526,6 +5778,7 @@ inline const char *espcontrol_i18n_key_da(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Solnedgang ned";
   if (std::strcmp(key, "sunset_up") == 0) return "Solnedgang op";
   if (std::strcmp(key, "swing") == 0) return "Sving";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Horisontal sving";
   if (std::strcmp(key, "target") == 0) return "Mål";
   if (std::strcmp(key, "today") == 0) return "I dag";
   if (std::strcmp(key, "too_many") == 0) return "For mange";
@@ -5598,6 +5851,13 @@ inline const char *espcontrol_i18n_key_da(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Gruppering mislykkedes";
   if (std::strcmp(key, "speakers_updated") == 0) return "Højttalere opdateret";
   if (std::strcmp(key, "updating_speakers") == 0) return "Opdaterer højttalere";
+  if (std::strcmp(key, "settings") == 0) return "Indstillinger";
+  if (std::strcmp(key, "brightness") == 0) return "Lysstyrke";
+  if (std::strcmp(key, "daytime") == 0) return "Dagtid";
+  if (std::strcmp(key, "nighttime") == 0) return "Nattetid";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Bekræft";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Gæste-Wi-Fi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Wi-Fi blev ikke ændret";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -5643,6 +5903,7 @@ inline const char *espcontrol_i18n_key_de(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Richtung";
   if (std::strcmp(key, "disarm") == 0) return "Entschärfen";
   if (std::strcmp(key, "disarmed") == 0) return "Entschärft";
+  if (std::strcmp(key, "disconnected") == 0) return "Getrennt";
   if (std::strcmp(key, "door") == 0) return "Tür";
   if (std::strcmp(key, "door_open") == 0) return "Tür offen";
   if (std::strcmp(key, "dock") == 0) return "Andocken";
@@ -5684,6 +5945,7 @@ inline const char *espcontrol_i18n_key_de(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Medien";
   if (std::strcmp(key, "media_control") == 0) return "Mediensteuerung";
   if (std::strcmp(key, "playlist") == 0) return "Wiedergabeliste";
+  if (std::strcmp(key, "cover_art") == 0) return "Albumcover";
   if (std::strcmp(key, "mode") == 0) return "Modus";
   if (std::strcmp(key, "group") == 0) return "Gruppe";
   if (std::strcmp(key, "monthly") == 0) return "Monatlich";
@@ -5749,6 +6011,7 @@ inline const char *espcontrol_i18n_key_de(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Sonnenuntergang ab";
   if (std::strcmp(key, "sunset_up") == 0) return "Sonnenuntergang auf";
   if (std::strcmp(key, "swing") == 0) return "Schwenken";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Horizontales Schwenken";
   if (std::strcmp(key, "target") == 0) return "Ziel";
   if (std::strcmp(key, "today") == 0) return "Heute";
   if (std::strcmp(key, "too_many") == 0) return "Zu viele";
@@ -5821,6 +6084,13 @@ inline const char *espcontrol_i18n_key_de(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Gruppierung fehlgeschlagen";
   if (std::strcmp(key, "speakers_updated") == 0) return "Lautsprecher aktualisiert";
   if (std::strcmp(key, "updating_speakers") == 0) return "Lautsprecher werden aktualisiert";
+  if (std::strcmp(key, "settings") == 0) return "Einstellungen";
+  if (std::strcmp(key, "brightness") == 0) return "Helligkeit";
+  if (std::strcmp(key, "daytime") == 0) return "Tagsüber";
+  if (std::strcmp(key, "nighttime") == 0) return "Nachts";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Bestätigen";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Gast-WLAN";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "WLAN wurde nicht geändert";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -5866,6 +6136,7 @@ inline const char *espcontrol_i18n_key_es(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Dirección";
   if (std::strcmp(key, "disarm") == 0) return "Desarmar";
   if (std::strcmp(key, "disarmed") == 0) return "Desarmada";
+  if (std::strcmp(key, "disconnected") == 0) return "Desconectado";
   if (std::strcmp(key, "door") == 0) return "Puerta";
   if (std::strcmp(key, "door_open") == 0) return "Puerta abierta";
   if (std::strcmp(key, "dock") == 0) return "Acoplar";
@@ -5906,6 +6177,7 @@ inline const char *espcontrol_i18n_key_es(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Multimedia";
   if (std::strcmp(key, "media_control") == 0) return "Control multimedia";
   if (std::strcmp(key, "playlist") == 0) return "Lista de reproducción";
+  if (std::strcmp(key, "cover_art") == 0) return "Portada";
   if (std::strcmp(key, "mode") == 0) return "Modo";
   if (std::strcmp(key, "group") == 0) return "Grupo";
   if (std::strcmp(key, "monthly") == 0) return "Mensual";
@@ -5979,6 +6251,7 @@ inline const char *espcontrol_i18n_key_es(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Puesta de sol abajo";
   if (std::strcmp(key, "sunset_up") == 0) return "Puesta de sol arriba";
   if (std::strcmp(key, "swing") == 0) return "Oscilación";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Oscilación horizontal";
   if (std::strcmp(key, "target") == 0) return "Objetivo";
   if (std::strcmp(key, "today") == 0) return "Hoy";
   if (std::strcmp(key, "too_many") == 0) return "Demasiados";
@@ -6051,6 +6324,14 @@ inline const char *espcontrol_i18n_key_es(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Error al agrupar";
   if (std::strcmp(key, "speakers_updated") == 0) return "Altavoces actualizados";
   if (std::strcmp(key, "updating_speakers") == 0) return "Actualizando altavoces";
+  if (std::strcmp(key, "settings") == 0) return "Ajustes";
+  if (std::strcmp(key, "brightness") == 0) return "Brillo";
+  if (std::strcmp(key, "daytime") == 0) return "Día";
+  if (std::strcmp(key, "nighttime") == 0) return "Noche";
+  if (std::strcmp(key, "timer") == 0) return "Temporizador";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Confirmar";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi de invitados";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "El Wi-Fi no ha cambiado";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -6098,6 +6379,7 @@ inline const char *espcontrol_i18n_key_fi(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Suunta";
   if (std::strcmp(key, "disarm") == 0) return "Poista viritys";
   if (std::strcmp(key, "disarmed") == 0) return "Poistettu käytöstä";
+  if (std::strcmp(key, "disconnected") == 0) return "Yhteys katkaistu";
   if (std::strcmp(key, "door") == 0) return "Ovi";
   if (std::strcmp(key, "door_open") == 0) return "Ovi auki";
   if (std::strcmp(key, "dock") == 0) return "Telakoi";
@@ -6139,6 +6421,7 @@ inline const char *espcontrol_i18n_key_fi(const char *key) {
   if (std::strcmp(key, "low_target") == 0) return "Alaraja";
   if (std::strcmp(key, "media_control") == 0) return "Median ohjaus";
   if (std::strcmp(key, "playlist") == 0) return "Soittolista";
+  if (std::strcmp(key, "cover_art") == 0) return "Kansikuva";
   if (std::strcmp(key, "medium") == 0) return "Keskitaso";
   if (std::strcmp(key, "mode") == 0) return "Tila";
   if (std::strcmp(key, "group") == 0) return "Ryhmä";
@@ -6217,6 +6500,7 @@ inline const char *espcontrol_i18n_key_fi(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Auringonlasku alas";
   if (std::strcmp(key, "sunset_up") == 0) return "Auringonlasku ylös";
   if (std::strcmp(key, "swing") == 0) return "Kääntö";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Vaakasuuntainen kääntö";
   if (std::strcmp(key, "target") == 0) return "Tavoite";
   if (std::strcmp(key, "temporaryhold") == 0) return "Väliaikainen pito";
   if (std::strcmp(key, "today") == 0) return "Tänään";
@@ -6291,6 +6575,14 @@ inline const char *espcontrol_i18n_key_fi(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Ryhmittely epäonnistui";
   if (std::strcmp(key, "speakers_updated") == 0) return "Kaiuttimet päivitetty";
   if (std::strcmp(key, "updating_speakers") == 0) return "Päivitetään kaiuttimia";
+  if (std::strcmp(key, "settings") == 0) return "Asetukset";
+  if (std::strcmp(key, "brightness") == 0) return "Kirkkaus";
+  if (std::strcmp(key, "daytime") == 0) return "Päivä";
+  if (std::strcmp(key, "nighttime") == 0) return "Yö";
+  if (std::strcmp(key, "timer") == 0) return "Ajastin";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Vahvista";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Vieras-Wi-Fi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Wi-Fi ei muuttunut";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -6333,6 +6625,7 @@ inline const char *espcontrol_i18n_key_fr(const char *key) {
   if (std::strcmp(key, "dimmed") == 0) return "Tamisé";
   if (std::strcmp(key, "disarm") == 0) return "Désarmer";
   if (std::strcmp(key, "disarmed") == 0) return "Désarmé";
+  if (std::strcmp(key, "disconnected") == 0) return "Déconnecté";
   if (std::strcmp(key, "door") == 0) return "Porte";
   if (std::strcmp(key, "door_open") == 0) return "Porte ouverte";
   if (std::strcmp(key, "dock") == 0) return "Station";
@@ -6374,6 +6667,7 @@ inline const char *espcontrol_i18n_key_fr(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Média";
   if (std::strcmp(key, "media_control") == 0) return "Contrôle multimédia";
   if (std::strcmp(key, "playlist") == 0) return "Liste de lecture";
+  if (std::strcmp(key, "cover_art") == 0) return "Pochette";
   if (std::strcmp(key, "group") == 0) return "Groupe";
   if (std::strcmp(key, "monthly") == 0) return "Mensuel";
   if (std::strcmp(key, "more") == 0) return "de plus";
@@ -6442,6 +6736,7 @@ inline const char *espcontrol_i18n_key_fr(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Coucher bas";
   if (std::strcmp(key, "sunset_up") == 0) return "Coucher haut";
   if (std::strcmp(key, "swing") == 0) return "Oscillation";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Oscillation horizontale";
   if (std::strcmp(key, "target") == 0) return "Cible";
   if (std::strcmp(key, "today") == 0) return "Aujourd'hui";
   if (std::strcmp(key, "too_many") == 0) return "Trop nombreux";
@@ -6514,6 +6809,14 @@ inline const char *espcontrol_i18n_key_fr(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Échec du regroupement";
   if (std::strcmp(key, "speakers_updated") == 0) return "Enceintes mises à jour";
   if (std::strcmp(key, "updating_speakers") == 0) return "Mise à jour des enceintes";
+  if (std::strcmp(key, "settings") == 0) return "Paramètres";
+  if (std::strcmp(key, "brightness") == 0) return "Luminosité";
+  if (std::strcmp(key, "daytime") == 0) return "Jour";
+  if (std::strcmp(key, "nighttime") == 0) return "Nuit";
+  if (std::strcmp(key, "timer") == 0) return "Minuteur";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Confirmer";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi invité";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Le Wi-Fi n’a pas changé";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -6532,7 +6835,7 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "arm_night") == 0) return "דריכה ללילה";
   if (std::strcmp(key, "arm_vacation") == 0) return "דריכה לחופשה";
   if (std::strcmp(key, "armed_away") == 0) return "דרוך מחוץ לבית";
-  if (std::strcmp(key, "armed_custom") == 0) return "דרוך מותאם";
+  if (std::strcmp(key, "armed_custom") == 0) return "דרוך מותאם אישית";
   if (std::strcmp(key, "armed_home") == 0) return "דרוך בבית";
   if (std::strcmp(key, "armed_night") == 0) return "דרוך ללילה";
   if (std::strcmp(key, "armed_vacation") == 0) return "דרוך לחופשה";
@@ -6547,7 +6850,7 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "clock") == 0) return "שעון";
   if (std::strcmp(key, "close") == 0) return "סגירה";
   if (std::strcmp(key, "closed") == 0) return "סגור";
-  if (std::strcmp(key, "closing") == 0) return "נסגר";
+  if (std::strcmp(key, "closing") == 0) return "בסגירה";
   if (std::strcmp(key, "cloudy") == 0) return "מעונן";
   if (std::strcmp(key, "cloudy_alert") == 0) return "התראת עננות";
   if (std::strcmp(key, "configure") == 0) return "להגדרה";
@@ -6564,6 +6867,7 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "כיוון";
   if (std::strcmp(key, "disarm") == 0) return "נטרול";
   if (std::strcmp(key, "disarmed") == 0) return "מנוטרל";
+  if (std::strcmp(key, "disconnected") == 0) return "מנותק";
   if (std::strcmp(key, "door") == 0) return "דלת";
   if (std::strcmp(key, "door_open") == 0) return "דלת פתוחה";
   if (std::strcmp(key, "dock") == 0) return "עגינה";
@@ -6589,7 +6893,7 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "heavy_snow") == 0) return "שלג כבד";
   if (std::strcmp(key, "high") == 0) return "גבוה";
   if (std::strcmp(key, "high_target") == 0) return "יעד עליון";
-  if (std::strcmp(key, "holduntil") == 0) return "החזקה עד";
+  if (std::strcmp(key, "holduntil") == 0) return "קיבוע עד";
   if (std::strcmp(key, "home") == 0) return "בבית";
   if (std::strcmp(key, "hourly") == 0) return "כל שעה";
   if (std::strcmp(key, "hurricane") == 0) return "הוריקן";
@@ -6606,6 +6910,7 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "media") == 0) return "מדיה";
   if (std::strcmp(key, "media_control") == 0) return "בקרת מדיה";
   if (std::strcmp(key, "playlist") == 0) return "רשימת השמעה";
+  if (std::strcmp(key, "cover_art") == 0) return "עטיפת אלבום";
   if (std::strcmp(key, "medium") == 0) return "בינוני";
   if (std::strcmp(key, "mode") == 0) return "מצב";
   if (std::strcmp(key, "group") == 0) return "קבוצה";
@@ -6628,31 +6933,31 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "next") == 0) return "הבא";
   if (std::strcmp(key, "night") == 0) return "לילה";
   if (std::strcmp(key, "no") == 0) return "לא";
-  if (std::strcmp(key, "nohold") == 0) return "ללא החזקה";
+  if (std::strcmp(key, "nohold") == 0) return "ללא קיבוע";
   if (std::strcmp(key, "none") == 0) return "ללא";
   if (std::strcmp(key, "no_options") == 0) return "אין אפשרויות";
   if (std::strcmp(key, "no_presets") == 0) return "אין מצבים מוגדרים";
   if (std::strcmp(key, "no_sources") == 0) return "אין מקורות";
   if (std::strcmp(key, "source") == 0) return "מקור";
-  if (std::strcmp(key, "not_available") == 0) return "אינו זמין";
+  if (std::strcmp(key, "not_available") == 0) return "לא זמין";
   if (std::strcmp(key, "off") == 0) return "כבוי";
-  if (std::strcmp(key, "on") == 0) return "פועל";
+  if (std::strcmp(key, "on") == 0) return "מופעל";
   if (std::strcmp(key, "open") == 0) return "פתיחה";
-  if (std::strcmp(key, "opening") == 0) return "נפתח";
+  if (std::strcmp(key, "opening") == 0) return "בפתיחה";
   if (std::strcmp(key, "state_open") == 0) return "פתוח";
   if (std::strcmp(key, "option") == 0) return "אפשרות";
   if (std::strcmp(key, "oscillating") == 0) return "מסתובב";
   if (std::strcmp(key, "oscillation") == 0) return "סיבוב";
   if (std::strcmp(key, "partly_cloudy") == 0) return "מעונן חלקית";
   if (std::strcmp(key, "partly_cloudy_night") == 0) return "לילה מעונן חלקית";
-  if (std::strcmp(key, "partly_lightning") == 0) return "ברקים חלקית";
-  if (std::strcmp(key, "partly_rainy") == 0) return "גשום חלקית";
-  if (std::strcmp(key, "partly_snow_and_rain") == 0) return "שלג וגשם חלקית";
-  if (std::strcmp(key, "partly_snowy") == 0) return "מושלג חלקית";
+  if (std::strcmp(key, "partly_lightning") == 0) return "ברקים מקומיים";
+  if (std::strcmp(key, "partly_rainy") == 0) return "גשם מקומי";
+  if (std::strcmp(key, "partly_snow_and_rain") == 0) return "שלג וגשם מקומיים";
+  if (std::strcmp(key, "partly_snowy") == 0) return "שלג מקומי";
   if (std::strcmp(key, "pause") == 0) return "השהיה";
   if (std::strcmp(key, "paused") == 0) return "מושהה";
   if (std::strcmp(key, "pending") == 0) return "בהמתנה";
-  if (std::strcmp(key, "permanenthold") == 0) return "החזקה קבועה";
+  if (std::strcmp(key, "permanenthold") == 0) return "קיבוע תמידי";
   if (std::strcmp(key, "pin_was_not_accepted") == 0) return "הקוד לא התקבל";
   if (std::strcmp(key, "play_pause") == 0) return "ניגון/השהיה";
   if (std::strcmp(key, "playing") == 0) return "מנגן";
@@ -6669,14 +6974,15 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "run_this_script") == 0) return "להריץ את הסקריפט?";
   if (std::strcmp(key, "screen_dimmed") == 0) return "המסך מעומעם";
   if (std::strcmp(key, "screen_locked") == 0) return "המסך נעול";
-  if (std::strcmp(key, "screen_unlocked") == 0) return "המסך משוחרר";
-  if (std::strcmp(key, "skip_next") == 0) return "לרצועה הבאה";
-  if (std::strcmp(key, "skip_previous") == 0) return "לרצועה הקודמת";
+  if (std::strcmp(key, "screen_unlocked") == 0) return "נעילת המסך בוטלה";
+  if (std::strcmp(key, "skip_next") == 0) return "הרצועה הבאה";
+  if (std::strcmp(key, "skip_previous") == 0) return "הרצועה הקודמת";
   if (std::strcmp(key, "snowy") == 0) return "מושלג";
   if (std::strcmp(key, "snowy_and_rain") == 0) return "שלג וגשם";
   if (std::strcmp(key, "spot_clean") == 0) return "ניקוי נקודתי";
   if (std::strcmp(key, "start") == 0) return "הפעלה";
-  if (std::strcmp(key, "still") == 0) return "נייח";
+  if (std::strcmp(key, "start_dock") == 0) return "הפעלה / עגינה";
+  if (std::strcmp(key, "still") == 0) return "קבוע";
   if (std::strcmp(key, "subpage") == 0) return "תת-עמוד";
   if (std::strcmp(key, "stop") == 0) return "עצירה";
   if (std::strcmp(key, "sunny") == 0) return "שמשי";
@@ -6685,8 +6991,9 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "שקיעה";
   if (std::strcmp(key, "sunset_up") == 0) return "זריחה";
   if (std::strcmp(key, "swing") == 0) return "נדנוד";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "נדנוד אופקי";
   if (std::strcmp(key, "target") == 0) return "יעד";
-  if (std::strcmp(key, "temporaryhold") == 0) return "החזקה זמנית";
+  if (std::strcmp(key, "temporaryhold") == 0) return "קיבוע זמני";
   if (std::strcmp(key, "today") == 0) return "היום";
   if (std::strcmp(key, "too_many") == 0) return "יותר מדי";
   if (std::strcmp(key, "toggle_this_device") == 0) return "להחליף את מצב המכשיר?";
@@ -6698,10 +7005,10 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "turn_on_this_device") == 0) return "להפעיל את המכשיר?";
   if (std::strcmp(key, "unavailable") == 0) return "לא זמין";
   if (std::strcmp(key, "unknown") == 0) return "לא ידוע";
-  if (std::strcmp(key, "unlock") == 0) return "שחרור נעילה";
+  if (std::strcmp(key, "unlock") == 0) return "ביטול נעילה";
   if (std::strcmp(key, "unsupported") == 0) return "לא נתמך";
   if (std::strcmp(key, "vacation") == 0) return "חופשה";
-  if (std::strcmp(key, "vacationhold") == 0) return "החזקת חופשה";
+  if (std::strcmp(key, "vacationhold") == 0) return "קיבוע לחופשה";
   if (std::strcmp(key, "vacuum") == 0) return "שואב אבק";
   if (std::strcmp(key, "version_unknown") == 0) return "גרסה לא ידועה";
   if (std::strcmp(key, "volume") == 0) return "עוצמה";
@@ -6722,6 +7029,7 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "booting") == 0) return "אתחול";
   if (std::strcmp(key, "connect_an_ethernet_cable_and_wait_for_a_network_address") == 0) return "חברו כבל רשת\nוהמתינו לכתובת רשת";
   if (std::strcmp(key, "connect_to_the_setup_hotspot_then_open_192_168_4_1") == 0) return "התחברו לרשת ההגדרה\nופתחו את 192.168.4.1";
+  if (std::strcmp(key, "connect_to") == 0) return "התחברו אל";
   if (std::strcmp(key, "connect_to_wifi") == 0) return "התחברות ל-WiFi";
   if (std::strcmp(key, "scan_to_connect") == 0) return "סרקו כדי להתחבר";
   if (std::strcmp(key, "network") == 0) return "רשת";
@@ -6734,8 +7042,8 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "ethernet_setup") == 0) return "הגדרת רשת קווית";
   if (std::strcmp(key, "installing_update") == 0) return "מתקין עדכון";
   if (std::strcmp(key, "checking_for_updates") == 0) return "בודק עדכונים";
-  if (std::strcmp(key, "latest_installed") == 0) return "מותקנת הגרסה החדשה";
-  if (std::strcmp(key, "update_available") == 0) return "קיים עדכון";
+  if (std::strcmp(key, "latest_installed") == 0) return "מותקנת הגרסה העדכנית";
+  if (std::strcmp(key, "update_available") == 0) return "יש עדכון";
   if (std::strcmp(key, "up_to_date") == 0) return "מעודכן";
   if (std::strcmp(key, "update_firmware") == 0) return "התקנה";
   if (std::strcmp(key, "no_saved_wifi_connection_reinstall_by_usb_to_reconfigure") == 0) return "אין חיבור WiFi שמור\nהתקינו מחדש דרך USB";
@@ -6746,15 +7054,14 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "see_the_install_guide_for_help") == 0) return "לעזרה עיינו במדריך ההתקנה";
   if (std::strcmp(key, "settings_devices_services") == 0) return "הגדרות > מכשירים ושירותים";
   if (std::strcmp(key, "setup") == 0) return "הגדרה";
-  if (std::strcmp(key, "starting_up") == 0) return "מתחיל";
+  if (std::strcmp(key, "starting_up") == 0) return "בהפעלה";
   if (std::strcmp(key, "the_screen_may_turn_off_do_not_power_off") == 0) return "המסך עשוי לכבות\nאין לנתק מהחשמל";
   if (std::strcmp(key, "try_installing_the_update_again") == 0) return "נסו להתקין את העדכון שוב";
   if (std::strcmp(key, "trying_to_reconnect_to_your_saved_network") == 0) return "מנסה להתחבר מחדש\nלרשת השמורה";
   if (std::strcmp(key, "update_complete") == 0) return "העדכון הושלם";
   if (std::strcmp(key, "update_failed") == 0) return "העדכון נכשל";
   if (std::strcmp(key, "wifi_disconnected") == 0) return "WiFi מנותק";
-  if (std::strcmp(key, "connect_to") == 0) return "התחבר אל";
-  if (std::strcmp(key, "to_configure_your_network_settings") == 0) return "כדי להגדיר את הגדרות הרשת";
+  if (std::strcmp(key, "to_configure_your_network_settings") == 0) return "כדי להגדיר את הרשת";
   if (std::strcmp(key, "wifi_setup") == 0) return "הגדרת WiFi";
   if (std::strcmp(key, "speaker_group") == 0) return "קבוצת רמקולים";
   if (std::strcmp(key, "speakers") == 0) return "רמקולים";
@@ -6762,6 +7069,14 @@ inline const char *espcontrol_i18n_key_he(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "הקיבוץ נכשל";
   if (std::strcmp(key, "speakers_updated") == 0) return "הרמקולים עודכנו";
   if (std::strcmp(key, "updating_speakers") == 0) return "מעדכן רמקולים";
+  if (std::strcmp(key, "settings") == 0) return "הגדרות";
+  if (std::strcmp(key, "brightness") == 0) return "בהירות";
+  if (std::strcmp(key, "daytime") == 0) return "יום";
+  if (std::strcmp(key, "nighttime") == 0) return "לילה";
+  if (std::strcmp(key, "timer") == 0) return "טיימר";
+  if (std::strcmp(key, "timer_confirm") == 0) return "לאישור";
+  if (std::strcmp(key, "guest_wifi") == 0) return "רשת אורחים";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "מצב ה-WiFi לא השתנה";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -6809,6 +7124,7 @@ inline const char *espcontrol_i18n_key_hu(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Irány";
   if (std::strcmp(key, "disarm") == 0) return "Hatástalanítás";
   if (std::strcmp(key, "disarmed") == 0) return "Hatástalanítva";
+  if (std::strcmp(key, "disconnected") == 0) return "Lekapcsolva";
   if (std::strcmp(key, "door") == 0) return "Ajtó";
   if (std::strcmp(key, "door_open") == 0) return "Ajtó nyitva";
   if (std::strcmp(key, "dock") == 0) return "Dokkolás";
@@ -6851,6 +7167,7 @@ inline const char *espcontrol_i18n_key_hu(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Média";
   if (std::strcmp(key, "media_control") == 0) return "Médiavezérlés";
   if (std::strcmp(key, "playlist") == 0) return "Lejátszási lista";
+  if (std::strcmp(key, "cover_art") == 0) return "Albumborító";
   if (std::strcmp(key, "medium") == 0) return "Közepes";
   if (std::strcmp(key, "mode") == 0) return "Mód";
   if (std::strcmp(key, "group") == 0) return "Csoport";
@@ -6927,6 +7244,7 @@ inline const char *espcontrol_i18n_key_hu(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Naplemente le";
   if (std::strcmp(key, "sunset_up") == 0) return "Naplemente fel";
   if (std::strcmp(key, "swing") == 0) return "Legyezés";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Vízszintes legyezés";
   if (std::strcmp(key, "target") == 0) return "Célérték";
   if (std::strcmp(key, "temporaryhold") == 0) return "Ideiglenes tartás";
   if (std::strcmp(key, "today") == 0) return "Ma";
@@ -7002,6 +7320,14 @@ inline const char *espcontrol_i18n_key_hu(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "A csoportosítás sikertelen";
   if (std::strcmp(key, "speakers_updated") == 0) return "Hangszórók frissítve";
   if (std::strcmp(key, "updating_speakers") == 0) return "Hangszórók frissítése";
+  if (std::strcmp(key, "settings") == 0) return "Beállítások";
+  if (std::strcmp(key, "brightness") == 0) return "Fényerő";
+  if (std::strcmp(key, "daytime") == 0) return "Nappal";
+  if (std::strcmp(key, "nighttime") == 0) return "Éjszaka";
+  if (std::strcmp(key, "timer") == 0) return "Időzítő";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Megerősítés";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Vendég Wi-Fi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "A Wi-Fi állapota nem változott";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -7047,6 +7373,7 @@ inline const char *espcontrol_i18n_key_it(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Direzione";
   if (std::strcmp(key, "disarm") == 0) return "Disinserisci";
   if (std::strcmp(key, "disarmed") == 0) return "Disinserito";
+  if (std::strcmp(key, "disconnected") == 0) return "Disconnesso";
   if (std::strcmp(key, "door") == 0) return "Porta";
   if (std::strcmp(key, "door_open") == 0) return "Porta aperta";
   if (std::strcmp(key, "docked") == 0) return "In base";
@@ -7086,6 +7413,7 @@ inline const char *espcontrol_i18n_key_it(const char *key) {
   if (std::strcmp(key, "low") == 0) return "Basso";
   if (std::strcmp(key, "low_target") == 0) return "Target basso";
   if (std::strcmp(key, "media_control") == 0) return "Controllo multimediale";
+  if (std::strcmp(key, "cover_art") == 0) return "Copertina";
   if (std::strcmp(key, "medium") == 0) return "Medio";
   if (std::strcmp(key, "mode") == 0) return "Modalità";
   if (std::strcmp(key, "group") == 0) return "Gruppo";
@@ -7162,6 +7490,7 @@ inline const char *espcontrol_i18n_key_it(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Tramonto giù";
   if (std::strcmp(key, "sunset_up") == 0) return "Tramonto su";
   if (std::strcmp(key, "swing") == 0) return "Oscillazione";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Oscillazione orizzontale";
   if (std::strcmp(key, "temporaryhold") == 0) return "Temporaneo";
   if (std::strcmp(key, "today") == 0) return "Oggi";
   if (std::strcmp(key, "too_many") == 0) return "Troppi";
@@ -7233,6 +7562,13 @@ inline const char *espcontrol_i18n_key_it(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Raggruppamento non riuscito";
   if (std::strcmp(key, "speakers_updated") == 0) return "Altoparlanti aggiornati";
   if (std::strcmp(key, "updating_speakers") == 0) return "Aggiornamento altoparlanti";
+  if (std::strcmp(key, "settings") == 0) return "Impostazioni";
+  if (std::strcmp(key, "brightness") == 0) return "Luminosità";
+  if (std::strcmp(key, "daytime") == 0) return "Giorno";
+  if (std::strcmp(key, "nighttime") == 0) return "Notte";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Confermare";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi ospiti";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Il Wi-Fi non è cambiato";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -7277,6 +7613,7 @@ inline const char *espcontrol_i18n_key_nb(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Retning";
   if (std::strcmp(key, "disarm") == 0) return "Deaktiver";
   if (std::strcmp(key, "disarmed") == 0) return "Deaktivert";
+  if (std::strcmp(key, "disconnected") == 0) return "Frakoblet";
   if (std::strcmp(key, "door") == 0) return "Dør";
   if (std::strcmp(key, "door_open") == 0) return "Dør åpen";
   if (std::strcmp(key, "dock") == 0) return "Dokking";
@@ -7317,6 +7654,7 @@ inline const char *espcontrol_i18n_key_nb(const char *key) {
   if (std::strcmp(key, "low_target") == 0) return "Lavt mål";
   if (std::strcmp(key, "media_control") == 0) return "Mediekontroll";
   if (std::strcmp(key, "playlist") == 0) return "Spilleliste";
+  if (std::strcmp(key, "cover_art") == 0) return "Albumomslag";
   if (std::strcmp(key, "mode") == 0) return "Modus";
   if (std::strcmp(key, "group") == 0) return "Gruppe";
   if (std::strcmp(key, "monthly") == 0) return "Månedlig";
@@ -7389,6 +7727,7 @@ inline const char *espcontrol_i18n_key_nb(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Solnedgang ned";
   if (std::strcmp(key, "sunset_up") == 0) return "Solnedgang opp";
   if (std::strcmp(key, "swing") == 0) return "Sving";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Horisontal sving";
   if (std::strcmp(key, "target") == 0) return "Mål";
   if (std::strcmp(key, "today") == 0) return "I dag";
   if (std::strcmp(key, "too_many") == 0) return "For mange";
@@ -7461,6 +7800,14 @@ inline const char *espcontrol_i18n_key_nb(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Gruppering mislyktes";
   if (std::strcmp(key, "speakers_updated") == 0) return "Høyttalere oppdatert";
   if (std::strcmp(key, "updating_speakers") == 0) return "Oppdaterer høyttalere";
+  if (std::strcmp(key, "settings") == 0) return "Innstillinger";
+  if (std::strcmp(key, "brightness") == 0) return "Lysstyrke";
+  if (std::strcmp(key, "daytime") == 0) return "Dagtid";
+  if (std::strcmp(key, "nighttime") == 0) return "Nattetid";
+  if (std::strcmp(key, "timer") == 0) return "Tidtaker";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Bekreft";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Gjeste-Wi-Fi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Wi-Fi ble ikke endret";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -7507,6 +7854,7 @@ inline const char *espcontrol_i18n_key_nl(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Richting";
   if (std::strcmp(key, "disarm") == 0) return "Uitschakelen";
   if (std::strcmp(key, "disarmed") == 0) return "Uitgeschakeld";
+  if (std::strcmp(key, "disconnected") == 0) return "Verbroken";
   if (std::strcmp(key, "door") == 0) return "Deur";
   if (std::strcmp(key, "door_open") == 0) return "Deur open";
   if (std::strcmp(key, "dock") == 0) return "Docken";
@@ -7547,6 +7895,7 @@ inline const char *espcontrol_i18n_key_nl(const char *key) {
   if (std::strcmp(key, "low_target") == 0) return "Laag doel";
   if (std::strcmp(key, "media_control") == 0) return "Mediabediening";
   if (std::strcmp(key, "playlist") == 0) return "Afspeellijst";
+  if (std::strcmp(key, "cover_art") == 0) return "Albumhoes";
   if (std::strcmp(key, "mode") == 0) return "Modus";
   if (std::strcmp(key, "group") == 0) return "Groep";
   if (std::strcmp(key, "monthly") == 0) return "Maandelijks";
@@ -7619,6 +7968,7 @@ inline const char *espcontrol_i18n_key_nl(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Zon onder";
   if (std::strcmp(key, "sunset_up") == 0) return "Zon op";
   if (std::strcmp(key, "swing") == 0) return "Zwenken";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Horizontaal zwenken";
   if (std::strcmp(key, "target") == 0) return "Doel";
   if (std::strcmp(key, "today") == 0) return "Vandaag";
   if (std::strcmp(key, "too_many") == 0) return "Te veel";
@@ -7689,6 +8039,13 @@ inline const char *espcontrol_i18n_key_nl(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Groeperen mislukt";
   if (std::strcmp(key, "speakers_updated") == 0) return "Luidsprekers bijgewerkt";
   if (std::strcmp(key, "updating_speakers") == 0) return "Luidsprekers bijwerken";
+  if (std::strcmp(key, "settings") == 0) return "Instellingen";
+  if (std::strcmp(key, "brightness") == 0) return "Helderheid";
+  if (std::strcmp(key, "daytime") == 0) return "Overdag";
+  if (std::strcmp(key, "nighttime") == 0) return "Nacht";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Bevestigen";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Gastwifi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Wifi is niet gewijzigd";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -7733,6 +8090,7 @@ inline const char *espcontrol_i18n_key_pl(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Kierunek";
   if (std::strcmp(key, "disarm") == 0) return "Rozbrój";
   if (std::strcmp(key, "disarmed") == 0) return "Rozbrojony";
+  if (std::strcmp(key, "disconnected") == 0) return "Rozłączone";
   if (std::strcmp(key, "door") == 0) return "Drzwi";
   if (std::strcmp(key, "door_open") == 0) return "Drzwi otwarte";
   if (std::strcmp(key, "dock") == 0) return "Dokuj";
@@ -7773,6 +8131,7 @@ inline const char *espcontrol_i18n_key_pl(const char *key) {
   if (std::strcmp(key, "low_target") == 0) return "Niski cel";
   if (std::strcmp(key, "media_control") == 0) return "Sterowanie multimediami";
   if (std::strcmp(key, "playlist") == 0) return "Playlista";
+  if (std::strcmp(key, "cover_art") == 0) return "Okładka";
   if (std::strcmp(key, "mode") == 0) return "Tryb";
   if (std::strcmp(key, "group") == 0) return "Grupa";
   if (std::strcmp(key, "monthly") == 0) return "Co miesiąc";
@@ -7845,6 +8204,7 @@ inline const char *espcontrol_i18n_key_pl(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Zachód słońca dół";
   if (std::strcmp(key, "sunset_up") == 0) return "Zachód słońca góra";
   if (std::strcmp(key, "swing") == 0) return "Ruch wahadłowy";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Ruch poziomy";
   if (std::strcmp(key, "target") == 0) return "Cel";
   if (std::strcmp(key, "today") == 0) return "Dziś";
   if (std::strcmp(key, "too_many") == 0) return "Za dużo";
@@ -7917,6 +8277,14 @@ inline const char *espcontrol_i18n_key_pl(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Grupowanie nie powiodło się";
   if (std::strcmp(key, "speakers_updated") == 0) return "Głośniki zaktualizowane";
   if (std::strcmp(key, "updating_speakers") == 0) return "Aktualizowanie głośników";
+  if (std::strcmp(key, "settings") == 0) return "Ustawienia";
+  if (std::strcmp(key, "brightness") == 0) return "Jasność";
+  if (std::strcmp(key, "daytime") == 0) return "Dzień";
+  if (std::strcmp(key, "nighttime") == 0) return "Noc";
+  if (std::strcmp(key, "timer") == 0) return "Minutnik";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Potwierdzić";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi dla gości";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Stan Wi-Fi nie zmienił się";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -7962,6 +8330,7 @@ inline const char *espcontrol_i18n_key_pt_br(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Direção";
   if (std::strcmp(key, "disarm") == 0) return "Desarmar";
   if (std::strcmp(key, "disarmed") == 0) return "Desarmado";
+  if (std::strcmp(key, "disconnected") == 0) return "Desconectado";
   if (std::strcmp(key, "door") == 0) return "Porta";
   if (std::strcmp(key, "door_open") == 0) return "Porta aberta";
   if (std::strcmp(key, "docked") == 0) return "Na base";
@@ -8002,6 +8371,7 @@ inline const char *espcontrol_i18n_key_pt_br(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Mídia";
   if (std::strcmp(key, "media_control") == 0) return "Controle de mídia";
   if (std::strcmp(key, "playlist") == 0) return "Lista de reprodução";
+  if (std::strcmp(key, "cover_art") == 0) return "Capa do álbum";
   if (std::strcmp(key, "mode") == 0) return "Modo";
   if (std::strcmp(key, "group") == 0) return "Grupo";
   if (std::strcmp(key, "monthly") == 0) return "Mensal";
@@ -8076,6 +8446,7 @@ inline const char *espcontrol_i18n_key_pt_br(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Pôr do sol baixo";
   if (std::strcmp(key, "sunset_up") == 0) return "Pôr do sol alto";
   if (std::strcmp(key, "swing") == 0) return "Oscilação";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Oscilação horizontal";
   if (std::strcmp(key, "target") == 0) return "Alvo";
   if (std::strcmp(key, "today") == 0) return "Hoje";
   if (std::strcmp(key, "too_many") == 0) return "Muitos";
@@ -8147,6 +8518,14 @@ inline const char *espcontrol_i18n_key_pt_br(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Falha ao agrupar";
   if (std::strcmp(key, "speakers_updated") == 0) return "Alto-falantes atualizados";
   if (std::strcmp(key, "updating_speakers") == 0) return "Atualizando alto-falantes";
+  if (std::strcmp(key, "settings") == 0) return "Configurações";
+  if (std::strcmp(key, "brightness") == 0) return "Brilho";
+  if (std::strcmp(key, "daytime") == 0) return "Dia";
+  if (std::strcmp(key, "nighttime") == 0) return "Noite";
+  if (std::strcmp(key, "timer") == 0) return "Temporizador";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Confirmar";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi de convidados";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "O Wi-Fi não mudou";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -8192,6 +8571,7 @@ inline const char *espcontrol_i18n_key_pt(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Direção";
   if (std::strcmp(key, "disarm") == 0) return "Desarmar";
   if (std::strcmp(key, "disarmed") == 0) return "Desarmado";
+  if (std::strcmp(key, "disconnected") == 0) return "Desligado";
   if (std::strcmp(key, "door") == 0) return "Porta";
   if (std::strcmp(key, "door_open") == 0) return "Porta aberta";
   if (std::strcmp(key, "dock") == 0) return "Ancorar";
@@ -8233,6 +8613,7 @@ inline const char *espcontrol_i18n_key_pt(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Multimédia";
   if (std::strcmp(key, "media_control") == 0) return "Controlo multimédia";
   if (std::strcmp(key, "playlist") == 0) return "Lista de reprodução";
+  if (std::strcmp(key, "cover_art") == 0) return "Capa do álbum";
   if (std::strcmp(key, "mode") == 0) return "Modo";
   if (std::strcmp(key, "group") == 0) return "Grupo";
   if (std::strcmp(key, "monthly") == 0) return "Mensal";
@@ -8307,6 +8688,7 @@ inline const char *espcontrol_i18n_key_pt(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Pôr do sol baixo";
   if (std::strcmp(key, "sunset_up") == 0) return "Pôr do sol alto";
   if (std::strcmp(key, "swing") == 0) return "Oscilação";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Oscilação horizontal";
   if (std::strcmp(key, "target") == 0) return "Alvo";
   if (std::strcmp(key, "today") == 0) return "Hoje";
   if (std::strcmp(key, "too_many") == 0) return "Demasiados";
@@ -8378,6 +8760,14 @@ inline const char *espcontrol_i18n_key_pt(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Falha ao agrupar";
   if (std::strcmp(key, "speakers_updated") == 0) return "Colunas atualizadas";
   if (std::strcmp(key, "updating_speakers") == 0) return "A atualizar colunas";
+  if (std::strcmp(key, "settings") == 0) return "Definições";
+  if (std::strcmp(key, "brightness") == 0) return "Brilho";
+  if (std::strcmp(key, "daytime") == 0) return "Dia";
+  if (std::strcmp(key, "nighttime") == 0) return "Noite";
+  if (std::strcmp(key, "timer") == 0) return "Temporizador";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Confirmar";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi de convidados";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "O Wi-Fi não mudou";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -8425,6 +8815,7 @@ inline const char *espcontrol_i18n_key_ro(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Direcție";
   if (std::strcmp(key, "disarm") == 0) return "Dezarmează";
   if (std::strcmp(key, "disarmed") == 0) return "Dezarmat";
+  if (std::strcmp(key, "disconnected") == 0) return "Deconectat";
   if (std::strcmp(key, "door") == 0) return "Ușă";
   if (std::strcmp(key, "door_open") == 0) return "Ușă deschisă";
   if (std::strcmp(key, "dock") == 0) return "Andocare";
@@ -8466,6 +8857,7 @@ inline const char *espcontrol_i18n_key_ro(const char *key) {
   if (std::strcmp(key, "low_target") == 0) return "Țintă scăzută";
   if (std::strcmp(key, "media_control") == 0) return "Control media";
   if (std::strcmp(key, "playlist") == 0) return "Listă de redare";
+  if (std::strcmp(key, "cover_art") == 0) return "Copertă album";
   if (std::strcmp(key, "medium") == 0) return "Mediu";
   if (std::strcmp(key, "mode") == 0) return "Mod";
   if (std::strcmp(key, "group") == 0) return "Grup";
@@ -8543,6 +8935,7 @@ inline const char *espcontrol_i18n_key_ro(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Apus jos";
   if (std::strcmp(key, "sunset_up") == 0) return "Apus sus";
   if (std::strcmp(key, "swing") == 0) return "Balans";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Balans orizontal";
   if (std::strcmp(key, "target") == 0) return "Țintă";
   if (std::strcmp(key, "temporaryhold") == 0) return "Menținere temporară";
   if (std::strcmp(key, "today") == 0) return "Astăzi";
@@ -8618,6 +9011,14 @@ inline const char *espcontrol_i18n_key_ro(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Gruparea a eșuat";
   if (std::strcmp(key, "speakers_updated") == 0) return "Difuzoare actualizate";
   if (std::strcmp(key, "updating_speakers") == 0) return "Se actualizează difuzoarele";
+  if (std::strcmp(key, "settings") == 0) return "Setări";
+  if (std::strcmp(key, "brightness") == 0) return "Luminozitate";
+  if (std::strcmp(key, "daytime") == 0) return "Zi";
+  if (std::strcmp(key, "nighttime") == 0) return "Noapte";
+  if (std::strcmp(key, "timer") == 0) return "Temporizator";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Confirmați";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi pentru oaspeți";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Starea Wi-Fi nu s-a schimbat";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -8667,6 +9068,7 @@ inline const char *espcontrol_i18n_key_ru(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Направление";
   if (std::strcmp(key, "disarm") == 0) return "Снять с охраны";
   if (std::strcmp(key, "disarmed") == 0) return "Снято с охраны";
+  if (std::strcmp(key, "disconnected") == 0) return "Отключено";
   if (std::strcmp(key, "door") == 0) return "Дверь";
   if (std::strcmp(key, "door_open") == 0) return "Дверь открыта";
   if (std::strcmp(key, "dock") == 0) return "На базу";
@@ -8709,6 +9111,7 @@ inline const char *espcontrol_i18n_key_ru(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Медиа";
   if (std::strcmp(key, "media_control") == 0) return "Управление медиа";
   if (std::strcmp(key, "playlist") == 0) return "Плейлист";
+  if (std::strcmp(key, "cover_art") == 0) return "Обложка";
   if (std::strcmp(key, "medium") == 0) return "Средняя";
   if (std::strcmp(key, "mode") == 0) return "Режим";
   if (std::strcmp(key, "group") == 0) return "Группа";
@@ -8788,6 +9191,7 @@ inline const char *espcontrol_i18n_key_ru(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Закат: стемнело";
   if (std::strcmp(key, "sunset_up") == 0) return "Закат: посветлело";
   if (std::strcmp(key, "swing") == 0) return "Колебание";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Горизонтальное колебание";
   if (std::strcmp(key, "target") == 0) return "Цель";
   if (std::strcmp(key, "temporaryhold") == 0) return "Временное удержание";
   if (std::strcmp(key, "today") == 0) return "Сегодня";
@@ -8865,6 +9269,14 @@ inline const char *espcontrol_i18n_key_ru(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Не удалось сгруппировать";
   if (std::strcmp(key, "speakers_updated") == 0) return "Динамики обновлены";
   if (std::strcmp(key, "updating_speakers") == 0) return "Обновление динамиков";
+  if (std::strcmp(key, "settings") == 0) return "Настройки";
+  if (std::strcmp(key, "brightness") == 0) return "Яркость";
+  if (std::strcmp(key, "daytime") == 0) return "День";
+  if (std::strcmp(key, "nighttime") == 0) return "Ночь";
+  if (std::strcmp(key, "timer") == 0) return "Таймер";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Подтвердить";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Гостевой Wi-Fi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Состояние Wi-Fi не изменилось";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -8909,6 +9321,7 @@ inline const char *espcontrol_i18n_key_sk(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Smer";
   if (std::strcmp(key, "disarm") == 0) return "Odzbrojiť";
   if (std::strcmp(key, "disarmed") == 0) return "Odzbrojené";
+  if (std::strcmp(key, "disconnected") == 0) return "Odpojené";
   if (std::strcmp(key, "door") == 0) return "Dvere";
   if (std::strcmp(key, "door_open") == 0) return "Dvere otvorené";
   if (std::strcmp(key, "dock") == 0) return "Dokovať";
@@ -8950,6 +9363,7 @@ inline const char *espcontrol_i18n_key_sk(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Médiá";
   if (std::strcmp(key, "media_control") == 0) return "Ovládanie médií";
   if (std::strcmp(key, "playlist") == 0) return "Zoznam skladieb";
+  if (std::strcmp(key, "cover_art") == 0) return "Obal albumu";
   if (std::strcmp(key, "mode") == 0) return "Režim";
   if (std::strcmp(key, "group") == 0) return "Skupina";
   if (std::strcmp(key, "monthly") == 0) return "Mesačne";
@@ -9024,6 +9438,7 @@ inline const char *espcontrol_i18n_key_sk(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Západ slnka dole";
   if (std::strcmp(key, "sunset_up") == 0) return "Západ slnka hore";
   if (std::strcmp(key, "swing") == 0) return "Kývanie";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Horizontálne kývanie";
   if (std::strcmp(key, "target") == 0) return "Cieľ";
   if (std::strcmp(key, "today") == 0) return "Dnes";
   if (std::strcmp(key, "too_many") == 0) return "Príliš veľa";
@@ -9097,6 +9512,14 @@ inline const char *espcontrol_i18n_key_sk(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Zoskupenie zlyhalo";
   if (std::strcmp(key, "speakers_updated") == 0) return "Reproduktory aktualizované";
   if (std::strcmp(key, "updating_speakers") == 0) return "Aktualizácia reproduktorov";
+  if (std::strcmp(key, "settings") == 0) return "Nastavenia";
+  if (std::strcmp(key, "brightness") == 0) return "Jas";
+  if (std::strcmp(key, "daytime") == 0) return "Deň";
+  if (std::strcmp(key, "nighttime") == 0) return "Noc";
+  if (std::strcmp(key, "timer") == 0) return "Časovač";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Potvrdiť";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi pre hostí";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Stav Wi-Fi sa nezmenil";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -9143,6 +9566,7 @@ inline const char *espcontrol_i18n_key_sl(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Smer";
   if (std::strcmp(key, "disarm") == 0) return "Izklopi varovanje";
   if (std::strcmp(key, "disarmed") == 0) return "Varovanje izklopljeno";
+  if (std::strcmp(key, "disconnected") == 0) return "Prekinjeno";
   if (std::strcmp(key, "door") == 0) return "Vrata";
   if (std::strcmp(key, "door_open") == 0) return "Vrata odprta";
   if (std::strcmp(key, "dock") == 0) return "Priklop";
@@ -9185,6 +9609,7 @@ inline const char *espcontrol_i18n_key_sl(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Predstavnost";
   if (std::strcmp(key, "media_control") == 0) return "Nadzor predstavnosti";
   if (std::strcmp(key, "playlist") == 0) return "Seznam predvajanja";
+  if (std::strcmp(key, "cover_art") == 0) return "Naslovnica";
   if (std::strcmp(key, "medium") == 0) return "Srednje";
   if (std::strcmp(key, "mode") == 0) return "Način";
   if (std::strcmp(key, "group") == 0) return "Skupina";
@@ -9259,6 +9684,7 @@ inline const char *espcontrol_i18n_key_sl(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Sončni zahod dol";
   if (std::strcmp(key, "sunset_up") == 0) return "Sončni zahod gor";
   if (std::strcmp(key, "swing") == 0) return "Nihanje";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Vodoravno nihanje";
   if (std::strcmp(key, "target") == 0) return "Cilj";
   if (std::strcmp(key, "temporaryhold") == 0) return "Začasno zadržanje";
   if (std::strcmp(key, "today") == 0) return "Danes";
@@ -9333,6 +9759,14 @@ inline const char *espcontrol_i18n_key_sl(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Združevanje ni uspelo";
   if (std::strcmp(key, "speakers_updated") == 0) return "Zvočniki posodobljeni";
   if (std::strcmp(key, "updating_speakers") == 0) return "Posodabljanje zvočnikov";
+  if (std::strcmp(key, "settings") == 0) return "Nastavitve";
+  if (std::strcmp(key, "brightness") == 0) return "Svetlost";
+  if (std::strcmp(key, "daytime") == 0) return "Dan";
+  if (std::strcmp(key, "nighttime") == 0) return "Noč";
+  if (std::strcmp(key, "timer") == 0) return "Časovnik";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Potrdi";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Wi-Fi za goste";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Stanje Wi-Fi se ni spremenilo";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -9378,6 +9812,7 @@ inline const char *espcontrol_i18n_key_sv(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Riktning";
   if (std::strcmp(key, "disarm") == 0) return "Avlarma";
   if (std::strcmp(key, "disarmed") == 0) return "Avlarmat";
+  if (std::strcmp(key, "disconnected") == 0) return "Frånkopplad";
   if (std::strcmp(key, "door") == 0) return "Dörr";
   if (std::strcmp(key, "door_open") == 0) return "Dörr öppen";
   if (std::strcmp(key, "dock") == 0) return "Docka";
@@ -9418,6 +9853,7 @@ inline const char *espcontrol_i18n_key_sv(const char *key) {
   if (std::strcmp(key, "low_target") == 0) return "Lågt mål";
   if (std::strcmp(key, "media_control") == 0) return "Mediekontroll";
   if (std::strcmp(key, "playlist") == 0) return "Spellista";
+  if (std::strcmp(key, "cover_art") == 0) return "Skivomslag";
   if (std::strcmp(key, "mode") == 0) return "Läge";
   if (std::strcmp(key, "group") == 0) return "Grupp";
   if (std::strcmp(key, "monthly") == 0) return "Månadsvis";
@@ -9489,6 +9925,7 @@ inline const char *espcontrol_i18n_key_sv(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Solnedgång ner";
   if (std::strcmp(key, "sunset_up") == 0) return "Solnedgång upp";
   if (std::strcmp(key, "swing") == 0) return "Svängning";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Horisontell svängning";
   if (std::strcmp(key, "target") == 0) return "Mål";
   if (std::strcmp(key, "today") == 0) return "Idag";
   if (std::strcmp(key, "too_many") == 0) return "För många";
@@ -9561,6 +9998,13 @@ inline const char *espcontrol_i18n_key_sv(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Gruppering misslyckades";
   if (std::strcmp(key, "speakers_updated") == 0) return "Högtalare uppdaterade";
   if (std::strcmp(key, "updating_speakers") == 0) return "Uppdaterar högtalare";
+  if (std::strcmp(key, "settings") == 0) return "Inställningar";
+  if (std::strcmp(key, "brightness") == 0) return "Ljusstyrka";
+  if (std::strcmp(key, "daytime") == 0) return "Dagtid";
+  if (std::strcmp(key, "nighttime") == 0) return "Nattetid";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Bekräfta";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Gäst-Wi-Fi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Wi-Fi ändrades inte";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -9607,6 +10051,7 @@ inline const char *espcontrol_i18n_key_tr(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Yön";
   if (std::strcmp(key, "disarm") == 0) return "Devre dışı bırak";
   if (std::strcmp(key, "disarmed") == 0) return "Devre dışı";
+  if (std::strcmp(key, "disconnected") == 0) return "Bağlantısı kesildi";
   if (std::strcmp(key, "door") == 0) return "Kapı";
   if (std::strcmp(key, "door_open") == 0) return "Kapı açık";
   if (std::strcmp(key, "dock") == 0) return "Yuvaya dön";
@@ -9648,6 +10093,7 @@ inline const char *espcontrol_i18n_key_tr(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Medya";
   if (std::strcmp(key, "media_control") == 0) return "Medya kontrolü";
   if (std::strcmp(key, "playlist") == 0) return "Çalma listesi";
+  if (std::strcmp(key, "cover_art") == 0) return "Albüm kapağı";
   if (std::strcmp(key, "medium") == 0) return "Orta";
   if (std::strcmp(key, "mode") == 0) return "Mod";
   if (std::strcmp(key, "group") == 0) return "Grup";
@@ -9726,6 +10172,7 @@ inline const char *espcontrol_i18n_key_tr(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Gün batımı aşağı";
   if (std::strcmp(key, "sunset_up") == 0) return "Gün batımı yukarı";
   if (std::strcmp(key, "swing") == 0) return "Salınım";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Yatay salınım";
   if (std::strcmp(key, "target") == 0) return "Hedef";
   if (std::strcmp(key, "temporaryhold") == 0) return "Geçici tutma";
   if (std::strcmp(key, "today") == 0) return "Bugün";
@@ -9801,6 +10248,14 @@ inline const char *espcontrol_i18n_key_tr(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Gruplama başarısız";
   if (std::strcmp(key, "speakers_updated") == 0) return "Hoparlörler güncellendi";
   if (std::strcmp(key, "updating_speakers") == 0) return "Hoparlörler güncelleniyor";
+  if (std::strcmp(key, "settings") == 0) return "Ayarlar";
+  if (std::strcmp(key, "brightness") == 0) return "Parlaklık";
+  if (std::strcmp(key, "daytime") == 0) return "Gündüz";
+  if (std::strcmp(key, "nighttime") == 0) return "Gece";
+  if (std::strcmp(key, "timer") == 0) return "Zamanlayıcı";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Onayla";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Misafir Wi-Fi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Wi-Fi durumu değişmedi";
   return espcontrol_i18n_key_en(key);
 }
 
@@ -9848,6 +10303,7 @@ inline const char *espcontrol_i18n_key_uk(const char *key) {
   if (std::strcmp(key, "direction") == 0) return "Напрямок";
   if (std::strcmp(key, "disarm") == 0) return "Вимкнути охорону";
   if (std::strcmp(key, "disarmed") == 0) return "Охорону вимкнено";
+  if (std::strcmp(key, "disconnected") == 0) return "Від’єднано";
   if (std::strcmp(key, "door") == 0) return "Двері";
   if (std::strcmp(key, "door_open") == 0) return "Двері відчинені";
   if (std::strcmp(key, "dock") == 0) return "До бази";
@@ -9890,6 +10346,7 @@ inline const char *espcontrol_i18n_key_uk(const char *key) {
   if (std::strcmp(key, "media") == 0) return "Медіа";
   if (std::strcmp(key, "media_control") == 0) return "Керування медіа";
   if (std::strcmp(key, "playlist") == 0) return "Список відтворення";
+  if (std::strcmp(key, "cover_art") == 0) return "Обкладинка";
   if (std::strcmp(key, "medium") == 0) return "Середньо";
   if (std::strcmp(key, "mode") == 0) return "Режим";
   if (std::strcmp(key, "group") == 0) return "Група";
@@ -9968,6 +10425,7 @@ inline const char *espcontrol_i18n_key_uk(const char *key) {
   if (std::strcmp(key, "sunset_down") == 0) return "Захід сонця вниз";
   if (std::strcmp(key, "sunset_up") == 0) return "Захід сонця вгору";
   if (std::strcmp(key, "swing") == 0) return "Коливання";
+  if (std::strcmp(key, "horizontal_swing") == 0) return "Горизонтальне коливання";
   if (std::strcmp(key, "target") == 0) return "Ціль";
   if (std::strcmp(key, "temporaryhold") == 0) return "Тимчасове утримання";
   if (std::strcmp(key, "today") == 0) return "Сьогодні";
@@ -10043,6 +10501,14 @@ inline const char *espcontrol_i18n_key_uk(const char *key) {
   if (std::strcmp(key, "grouping_failed") == 0) return "Не вдалося згрупувати";
   if (std::strcmp(key, "speakers_updated") == 0) return "Динаміки оновлено";
   if (std::strcmp(key, "updating_speakers") == 0) return "Оновлення динаміків";
+  if (std::strcmp(key, "settings") == 0) return "Налаштування";
+  if (std::strcmp(key, "brightness") == 0) return "Яскравість";
+  if (std::strcmp(key, "daytime") == 0) return "День";
+  if (std::strcmp(key, "nighttime") == 0) return "Ніч";
+  if (std::strcmp(key, "timer") == 0) return "Таймер";
+  if (std::strcmp(key, "timer_confirm") == 0) return "Підтвердити";
+  if (std::strcmp(key, "guest_wifi") == 0) return "Гостьовий Wi-Fi";
+  if (std::strcmp(key, "wifi_did_not_change") == 0) return "Стан Wi-Fi не змінився";
   return espcontrol_i18n_key_en(key);
 }
 

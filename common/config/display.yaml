@@ -6,6 +6,10 @@
 # =============================================================================
 
 globals:
+  - id: metadata_overlay_toggle_migrated
+    type: bool
+    restore_value: yes
+    initial_value: 'false'
   - id: screen_rotation_ready
     type: bool
     restore_value: no
@@ -27,6 +31,7 @@ esphome:
     - priority: -100
       then:
         - lambda: |-
+            clock_bar_enable_settings_access(id(network_status_button));
             navigation_subpage_clock_bar_refresh() = []() {
               navigation_refresh_subpage_label();
               refresh_clock_bar_temperature_label_values(
@@ -45,6 +50,13 @@ esphome:
       then:
         - lambda: |-
             bool preferences_changed = false;
+            if (!id(metadata_overlay_toggle_migrated)) {
+              // Preserve metadata already enabled by the previous entity-only setting.
+              if (id(screensaver_metadata_entity).state.rfind("sensor.", 0) == 0)
+                id(metadata_overlay_enabled).turn_on();
+              id(metadata_overlay_toggle_migrated) = true;
+              preferences_changed = true;
+            }
             if (!id(media_player_sleep_prevention_default_on_migrated)) {
               id(media_player_sleep_prevention_enabled).turn_on();
               id(media_player_sleep_prevention_default_on_migrated) = true;
@@ -99,7 +111,6 @@ script:
                                            id(display_time),
                                            id(network_status_button));
           clock_bar_set_widget_hidden(id(night_mode_status_icon), true);
-          ${voice_clock_bar_hide_code}
           ${battery_status_hide_code}
           network_status_hide_modal();
 
@@ -144,7 +155,6 @@ script:
                                              id(display_time),
                                              id(network_status_button));
             clock_bar_set_widget_hidden(id(night_mode_status_icon), true);
-            ${voice_clock_bar_hide_code}
             ${battery_status_hide_code}
             network_status_hide_modal();
             return;
@@ -189,7 +199,6 @@ script:
             lv_obj_add_flag(id(network_status_button), LV_OBJ_FLAG_HIDDEN);
             network_status_hide_modal();
           }
-          ${voice_clock_bar_apply_code}
           ${battery_status_apply_code}
           if (show_night_mode) {
             const int night_mode_box = lv_obj_get_width(id(night_mode_status_icon));
@@ -290,6 +299,7 @@ switch:
       sorting_group_id: sg_display
     on_turn_on:
       - script.execute: clock_bar_apply
+      - script.execute: refresh_display_sensor_subscriptions
       - lambda: |-
           refresh_clock_bar_temperature_label_values(
             id(main_page)->obj,
@@ -303,6 +313,7 @@ switch:
             id(indoor_temp), id(outdoor_temp));
     on_turn_off:
       - script.execute: clock_bar_apply
+      - script.execute: refresh_display_sensor_subscriptions
       - lambda: |-
           refresh_clock_bar_temperature_label_values(
             id(main_page)->obj,
@@ -327,6 +338,7 @@ switch:
       sorting_group_id: sg_display
     on_turn_on:
       - script.execute: clock_bar_apply
+      - script.execute: refresh_display_sensor_subscriptions
       - lambda: |-
           refresh_clock_bar_temperature_label_values(
             id(main_page)->obj,
@@ -340,6 +352,7 @@ switch:
             id(indoor_temp), id(outdoor_temp));
     on_turn_off:
       - script.execute: clock_bar_apply
+      - script.execute: refresh_display_sensor_subscriptions
       - lambda: |-
           refresh_clock_bar_temperature_label_values(
             id(main_page)->obj,
@@ -465,6 +478,21 @@ switch:
             - script.execute: screensaver_idle_check
 
   - platform: template
+    name: "${entity_screen_saver_cover_art_playback_control}"
+    internal: true
+    id: cover_art_playback_control_enabled
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    icon: "mdi:play-pause"
+    entity_category: config
+    web_server:
+      sorting_group_id: sg_screensaver
+    on_turn_on:
+      - script.execute: cover_art_refresh_playback_setting
+    on_turn_off:
+      - script.execute: cover_art_refresh_playback_setting
+
+  - platform: template
     name: "${entity_screen_saver_cover_art}"
     internal: true
     id: cover_art_screensaver_enabled
@@ -479,6 +507,40 @@ switch:
       - script.execute: cover_art_playback_refresh
     on_turn_off:
       - script.execute: cover_art_disable
+
+  - platform: template
+    name: "${entity_screen_saver_clock_overlay}"
+    internal: true
+    id: clock_overlay_enabled
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    icon: "mdi:clock-digital"
+    entity_category: config
+    web_server:
+      sorting_group_id: sg_screensaver
+    on_turn_on:
+      - script.execute:
+          id: clock_overlay_apply
+          target_mode: !lambda 'return static_cast<int>(id(espcontrol_app).display().current_mode());'
+    on_turn_off:
+      - script.execute:
+          id: clock_overlay_apply
+          target_mode: !lambda 'return static_cast<int>(id(espcontrol_app).display().current_mode());'
+
+  - platform: template
+    name: "${entity_screen_saver_metadata_overlay}"
+    internal: true
+    id: metadata_overlay_enabled
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    icon: "mdi:information-outline"
+    entity_category: config
+    web_server:
+      sorting_group_id: sg_screensaver
+    on_turn_on:
+      - script.execute: photo_metadata_refresh_subscription
+    on_turn_off:
+      - script.execute: photo_metadata_refresh_subscription
 
   - platform: template
     name: "${entity_screen_saver_hide_cover_art_external_input}"
@@ -509,6 +571,7 @@ select:
       - "Display Off"
       - "Screen Dimmed"
       - "Clock"
+      - "Camera"
     web_server:
       sorting_group_id: sg_screensaver
     on_value:
@@ -517,6 +580,8 @@ select:
             std::string action = id(screensaver_action).current_option();
             id(screensaver_action_clock) = screensaver_action_clock_mode(action);
             id(screensaver_action_dimmed) = screensaver_action_dimmed_mode(action);
+            id(screensaver_action_camera) =
+                ${screensaver_camera_supported} && screensaver_action_camera_mode(action);
         - if:
             condition:
               lambda: |-
@@ -531,9 +596,44 @@ select:
               - switch.turn_off: clock_screensaver_enabled
         - if:
             condition:
+              lambda: |-
+                return screensaver_action_camera_mode(id(screensaver_action).current_option()) &&
+                       !${screensaver_camera_supported};
+            then:
+              - lambda: |-
+                  auto call = id(screensaver_action).make_call();
+                  call.set_option("Display Off");
+                  call.perform();
+        - if:
+            condition:
               lambda: 'return id(espcontrol_app).display().current_mode_is(espcontrol::DisplayMode::ACTIVE) && lv_scr_act() == id(main_page)->obj;'
             then:
               - script.execute: screensaver_idle_check
+
+  - platform: template
+    name: "${entity_screen_saver_camera_image_mode}"
+    internal: true
+    id: screensaver_camera_image_mode
+    entity_category: config
+    icon: "mdi:image-size-select-large"
+    optimistic: true
+    restore_value: true
+    initial_option: "Fit"
+    options:
+      - "Fit"
+      - "Fill"
+    web_server:
+      sorting_group_id: sg_screensaver
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: |-
+                return id(espcontrol_app).display().target_mode_is(
+                  espcontrol::DisplayMode::CAMERA);
+            then:
+              - lambda: 'id(camera_screensaver_downloaded_image)->cancel_update();'
+              - script.execute: camera_screensaver_request_image
 
   - platform: template
     name: "${entity_screen_temperature_unit}"
@@ -606,6 +706,7 @@ text:
                 return id(outdoor_temp_enable).state;
               });
         - script.execute: clock_bar_apply
+        - script.execute: refresh_display_sensor_subscriptions
 
   - platform: template
     name: "${entity_indoor_temp_entity}"
@@ -622,6 +723,9 @@ text:
     update_interval: never
     web_server:
       sorting_group_id: sg_display
+    on_value:
+      then:
+        - script.execute: refresh_display_sensor_subscriptions
 
   - platform: template
     name: "${entity_outdoor_temp_entity}"
@@ -638,6 +742,9 @@ text:
     update_interval: never
     web_server:
       sorting_group_id: sg_display
+    on_value:
+      then:
+        - script.execute: refresh_display_sensor_subscriptions
 
   - platform: template
     name: "Screensaver Mode"
@@ -680,7 +787,46 @@ text:
       sorting_group_id: sg_screensaver
     on_value:
       then:
+        - script.execute: refresh_display_sensor_subscriptions
         - script.execute: refresh_button_grid
+
+  - platform: template
+    name: "${entity_screen_saver_camera_entity}"
+    internal: true
+    id: screensaver_camera_entity
+    optimistic: true
+    restore_value: true
+    initial_value: ""
+    min_length: 0
+    max_length: 100
+    mode: text
+    entity_category: config
+    icon: "mdi:camera"
+    update_interval: never
+    web_server:
+      sorting_group_id: sg_screensaver
+    on_value:
+      then:
+        - script.execute: camera_screensaver_config_changed
+
+  - platform: template
+    name: "${entity_screen_saver_metadata_entity}"
+    internal: true
+    id: screensaver_metadata_entity
+    optimistic: true
+    restore_value: true
+    initial_value: ""
+    min_length: 0
+    max_length: 100
+    mode: text
+    entity_category: config
+    icon: "mdi:information-outline"
+    update_interval: never
+    web_server:
+      sorting_group_id: sg_screensaver
+    on_value:
+      then:
+        - script.execute: photo_metadata_refresh_subscription
 
   # Optional media player that keeps the screensaver awake while playing.
   - platform: template
@@ -700,6 +846,7 @@ text:
       sorting_group_id: sg_screensaver
     on_value:
       then:
+        - script.execute: refresh_display_sensor_subscriptions
         - if:
             condition:
               lambda: 'return id(espcontrol_app).display().current_mode_is(espcontrol::DisplayMode::ACTIVE) && lv_scr_act() == id(main_page)->obj;'

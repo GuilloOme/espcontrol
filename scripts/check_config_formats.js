@@ -361,7 +361,7 @@ assert.strictEqual(hooks.mediaEditorMode("controls"), "play_pause", "legacy medi
 assert.strictEqual(hooks.mediaEditorMode("cover_art"), "cover_art", "cover art media mode maps through spec");
 assert.strictEqual(hooks.mediaEditorMode("speaker_group"), "speaker_group", "speaker group media mode maps through spec");
 assert.strictEqual(hooks.mediaEditorMode("bad"), "play_pause", "invalid media mode falls back through spec");
-assert.strictEqual(hooks.cardRequiresSquareSize({ type: "media", sensor: "cover_art" }), true, "cover art cards require square sizes");
+assert.strictEqual(hooks.cardRequiresSquareSize({ type: "media", sensor: "cover_art" }), false, "cover art cards can use rectangular sizes");
 assert.strictEqual(hooks.cardSupportsExtraLargeSize({ type: "wifi_qr" }), true, "Wifi Connect cards support 3x3 sizes");
 assert.strictEqual(hooks.cardSupportsExtraLargeSize({ type: "wifi_qr_card" }), true, "Wifi QR cards support 3x3 sizes");
 assert.strictEqual(hooks.cardSupportsWifiPortraitSizes({ type: "wifi_qr" }), false, "non-10-inch Wifi cards reject portrait sizes");
@@ -377,7 +377,11 @@ assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "media", sensor: "co
 assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "media", sensor: "cover_art" }, 7), 7, "cover art keeps 3x3 size");
 assert.strictEqual(tenInchHooks.cardSupportsPortraitLargeSize({ type: "media", sensor: "cover_art" }), true, "10-inch cover art supports portrait-large size");
 assert.strictEqual(tenInchHooks.normalizeCardSizeForConfig({ type: "media", sensor: "cover_art" }, 10), 10, "10-inch cover art keeps 3x4 size");
-assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "media", sensor: "cover_art" }, 6), 1, "cover art rejects non-square sizes");
+assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "media", sensor: "cover_art" }, 2), 2, "cover art keeps tall size");
+assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "media", sensor: "cover_art" }, 6), 6, "cover art keeps extra-wide size");
+assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "media", sensor: "cover_art" }, 8), 8, "cover art keeps max-wide size");
+assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "media", sensor: "cover_art" }, 9), 9, "cover art keeps max-tall size");
+assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "media", sensor: "cover_art" }, 11), 11, "landscape 7-inch cover art keeps Massive Wide size");
 assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "image" }, 8), 8, "camera cards keep max-wide size");
 assert.strictEqual(hooks.normalizeCardSizeForConfig({ type: "image" }, 9), 9, "camera cards keep max-tall size");
 assert.strictEqual(hooks.cardSupportsLandscapeLargeSize({ type: "image" }), true, "landscape 7-inch camera cards support Massive Wide");
@@ -482,29 +486,26 @@ assert.strictEqual(
   false,
   "card transfer downgrades unsupported 3x4 sizes inside subpages",
 );
-assert.throws(
-  () => s3Hooks.cardTransferEntriesFromEnvelopeForTest({
-    cards: [{ type: "image", entity: "camera.front_door", label: "Front Door", size: 1 }],
-  }, false),
-  (error) => String(error.cardTransferMessage || error.message).includes("does not support the image card type"),
-  "S3 card transfer rejects disabled image cards",
+const transferredS3Camera = s3Hooks.cardTransferEntriesFromEnvelopeForTest({
+  cards: [{ type: "image", entity: "camera.front_door", label: "Front Door", size: 1 }],
+}, false);
+assert.strictEqual(transferredS3Camera.entries[0].type, "image", "S3 card transfer accepts Camera Cards");
+const transferredS3CameraSubpage = s3Hooks.cardTransferEntriesFromEnvelopeForTest({
+  cards: [{
+    type: "subpage",
+    label: "Cameras",
+    size: 1,
+    subpage: {
+      order: ["1", "B"],
+      back_label: "Back",
+      buttons: [{ type: "image", entity: "camera.front_door", label: "Front Door" }],
+    },
+  }],
+}, false);
+const transferredS3Subpage = s3Hooks.parseSubpageConfig(
+  transferredS3CameraSubpage.entries[0].subpageConfig,
 );
-assert.throws(
-  () => s3Hooks.cardTransferEntriesFromEnvelopeForTest({
-    cards: [{
-      type: "subpage",
-      label: "Cameras",
-      size: 1,
-      subpage: {
-        order: ["1", "B"],
-        back_label: "Back",
-        buttons: [{ type: "image", entity: "camera.front_door", label: "Front Door" }],
-      },
-    }],
-  }, false),
-  (error) => String(error.cardTransferMessage || error.message).includes("does not support the image card type"),
-  "S3 card transfer rejects disabled image cards inside subpages",
-);
+assert.strictEqual(transferredS3Subpage.buttons[0].type, "image", "S3 subpage transfer accepts Camera Cards");
 const coverArtActionButton = { type: "media", sensor: "cover_art", options: "cover_art_action=play_pause" };
 hooks.setMediaCoverArtDetailsEnabled(coverArtActionButton, true);
 assert.strictEqual(coverArtActionButton.options, "cover_art_details", "cover art removes its retired press action while preserving track details");
@@ -665,7 +666,7 @@ assert.strictEqual(
   "plain climate cards omit climate control tabs"
 );
 assert.strictEqual(
-  hooks.normalizeClimateOptions("climate_tabs=temperature%7Cmode%7Cpreset%7Cfan%7Cswing", true),
+  hooks.normalizeClimateOptions("climate_tabs=temperature%7Cmode%7Cpreset%7Cfan%7Cswing%7Chorizontal_swing", true),
   "",
   "default climate control tab order is omitted"
 );
@@ -2625,9 +2626,9 @@ assertButtonRoundTrip(hooks, "image card label and icon options", {
   precision: "",
   options: "image_label,image_icon",
 }, false);
-assertButtonMigration(hooks, "image card clears label without overlay option", "camera.front_door;Front Door;Auto;Auto;;;image;;", {
+assertButtonRoundTrip(hooks, "image card preserves name without overlay option", {
   entity: "camera.front_door",
-  label: "",
+  label: "Front Door",
   icon: "Auto",
   icon_on: "Auto",
   sensor: "",
@@ -2635,7 +2636,7 @@ assertButtonMigration(hooks, "image card clears label without overlay option", "
   type: "image",
   precision: "",
   options: "",
-});
+}, false);
 assert.strictEqual(hooks.buttonTypeVisibleInPickerFor("fan_switch", false), false, "fan subtype hidden from top-level picker");
 assert.strictEqual(hooks.buttonTypeVisibleInPickerFor("fan_control", false), false, "fan modal subtype hidden from top-level picker");
 assert.strictEqual(hooks.buttonTypeVisibleInPickerFor("fan_control", true), false, "fan modal subtype hidden from subpage picker");
@@ -3022,6 +3023,7 @@ assertButtonMigration(hooks, "legacy vacuum return to base action card", "vacuum
 [
   ["status", ""],
   ["start_stop", ""],
+  ["start_dock", ""],
   ["dock", ""],
   ["pause_resume", ""],
   ["clean_spot", ""],

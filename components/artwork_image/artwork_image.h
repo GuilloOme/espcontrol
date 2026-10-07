@@ -9,6 +9,7 @@
 #include "artwork_url.h"
 #include "image_decoder.h"
 #include "image_service.h"
+#include "transfer_observer.h"
 
 namespace esphome {
 namespace artwork_image {
@@ -156,6 +157,9 @@ class ArtworkImage : public PollingComponent,
     return this->data_start_ != nullptr && this->buffer_width_ > 0 &&
            this->buffer_height_ > 0;
   }
+  bool request_is_active() const {
+    return ImageService::instance().is_active(this);
+  }
 
  protected:
   bool validate_url_(const std::string &url);
@@ -219,7 +223,7 @@ class ArtworkImage : public PollingComponent,
   bool start_p4_pipeline_(std::vector<http_request::Header> &headers);
   bool consume_p4_pipeline_result_();
   void cancel_p4_pipeline_();
-  bool start_s3_transfer_(const std::vector<http_request::Header> &headers);
+  bool start_s3_transfer_(std::vector<http_request::Header> &&headers);
   bool consume_s3_transfer_result_();
   void cancel_s3_transfer_();
   void note_response_bytes_();
@@ -266,6 +270,8 @@ class ArtworkImage : public PollingComponent,
   image::Image *placeholder_{nullptr};
 
   std::string url_{""};
+  TransferStamp transfer_stamp_;
+  TransferFailure transfer_failure_{TransferFailure::CONTENT};
   int last_http_status_{0};
   bool last_error_was_ha_media_proxy_{false};
 
@@ -337,6 +343,8 @@ class ArtworkImage : public PollingComponent,
   static constexpr uint32_t DOWNLOAD_STALL_TIMEOUT_MS = 10000;
 
   friend bool ImageDecoder::set_size(int width, int height);
+  friend bool ImageDecoder::prepare_filtered_resize(int width, int height);
+  friend void ImageDecoder::draw_filtered_rgb888_row(int y, const uint8_t *data);
   friend void ImageDecoder::draw(int x, int y, int w, int h, const Color &color);
   friend void ImageDecoder::draw_rgb565_block(int x, int y, int w, int h, const uint8_t *data);
   friend void ImageDecoder::draw_rgb565_frame(int width, int height, size_t stride_bytes,

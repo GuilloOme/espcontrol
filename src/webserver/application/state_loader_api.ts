@@ -30,7 +30,7 @@ export interface StateLoaderFeature {
     subpageStateEntities(): any[];
     loadStateItems(items?: any[], handleState?: (state: any) => void, concurrency?: number): Promise<number>;
     loadInitialState(handleState?: (state: any) => void, onLoaded?: () => void): void;
-    refreshFirmwareVersion(): void;
+    refreshFirmwareVersion(): Promise<void>;
     refreshScreensaverTimeout(): void;
     waitForReboot(): void;
 }
@@ -72,14 +72,8 @@ export function createStateLoaderFeature(runtime: UiRuntimeState, layout: Applic
         if (layout.config.features && layout.config.features.screenRotation) {
             items = items.concat(entityStateItems(ENTITY_CATALOG.groups.settings_optional));
         }
-        if (layout.config.features && layout.config.features.voiceServices) {
-            items = items.concat(entityStateItems(ENTITY_CATALOG.groups.settings_voice));
-        }
         if (layout.config.features && layout.config.features.battery) {
             items = items.concat(entityStateItems(ENTITY_CATALOG.groups.settings_battery));
-        }
-        if (layout.config.features && layout.config.features.alarmDelayAudio) {
-            items = items.concat(entityStateItems(ENTITY_CATALOG.groups.settings_alarm_audio));
         }
         return items;
     }
@@ -134,8 +128,10 @@ export function createStateLoaderFeature(runtime: UiRuntimeState, layout: Applic
             });
         });
     }
-    function refreshFirmwareVersion(this: any) {
+    function refreshFirmwareVersion(this: any): Promise<void> {
         var pending: any = 13;
+        let completeRefresh!: () => void;
+        const completed = new Promise<void>(resolve => { completeRefresh = resolve; });
         if (!state.firmwareVersion) {
             state.firmwareVersionRefreshPending = true;
             renderFirmwareVersion();
@@ -146,16 +142,17 @@ export function createStateLoaderFeature(runtime: UiRuntimeState, layout: Applic
                 return;
             state.firmwareVersionRefreshPending = false;
             renderFirmwareVersion();
+            completeRefresh();
         }
         getJsonQuietly(FIRMWARE_VERSION_METADATA_PATH, function (this: any, d?: any) {
             setFirmwareVersion(firmwareVersionFromMetadata(d));
         }).then(finishFirmwareVersionRefresh, finishFirmwareVersionRefresh);
         getJsonQuietly(publicFirmwareManifestUrl(), function (this: any, d?: any) {
             setPublicFirmwareInfo(firmwareInfoFromPublicManifest(d));
-        }).then(finishFirmwareVersionRefresh, finishFirmwareVersionRefresh);
+        }, { credentials: "omit" }).then(finishFirmwareVersionRefresh, finishFirmwareVersionRefresh);
         getJsonQuietly(publicFirmwareVersionsUrl(), function (this: any, d?: any) {
             setPublicFirmwareVersions(firmwareInfosFromPublicVersions(d));
-        }).then(finishFirmwareVersionRefresh, finishFirmwareVersionRefresh);
+        }, { credentials: "omit" }).then(finishFirmwareVersionRefresh, finishFirmwareVersionRefresh);
         getJsonFirst(entityDetailPaths("text_sensor", entityLookupNames("firmware_version")), function (this: any, d?: any) {
             setFirmwareVersion(d.state || d.value);
         }).then(finishFirmwareVersionRefresh, finishFirmwareVersionRefresh);
@@ -212,6 +209,7 @@ export function createStateLoaderFeature(runtime: UiRuntimeState, layout: Applic
             state.c6FirmwareAutoUpdate = d.value === true || d.state === "ON";
             syncC6FirmwareUi();
         }).then(finishFirmwareVersionRefresh, finishFirmwareVersionRefresh);
+        return completed;
     }
     function refreshScreensaverTimeout(this: any) {
         getJsonQuietly("/number/" + encodeURIComponent(entityName("screensaver_timeout")) + "?detail=all", applyScreensaverTimeoutState)

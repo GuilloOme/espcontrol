@@ -54,7 +54,6 @@ struct GridConfig {
   std::string timezone;
   std::function<void(espcontrol::DisplayTakeoverKind)> begin_display_takeover;
   std::function<void(espcontrol::DisplayTakeoverKind)> end_display_takeover;
-  AlarmDelayAudioHooks alarm_delay_audio;
   esphome::artwork_image::ArtworkImage **image_card_images = nullptr;
   esphome::artwork_image::ArtworkImage *image_card_modal_image = nullptr;
   int image_card_image_count = 0;
@@ -74,6 +73,18 @@ inline void grid_log_memory(const char *stage) {
 #else
   (void) stage;
 #endif
+}
+
+// Remote modal requests must wait until the subscription/runtime phase has
+// finished. Phase 1 has already registered navigation targets, but the card
+// contexts and subpage runtimes are not safe to use until phase 2 completes.
+inline bool &grid_phase2_complete_state() {
+  static bool complete = false;
+  return complete;
+}
+
+inline bool grid_phase2_complete() {
+  return grid_phase2_complete_state();
 }
 
 inline DisplayProfile display_profile_from_grid_config(const GridConfig &cfg) {
@@ -250,6 +261,8 @@ inline void apply_wide_large_date_time_card_layout(const BtnSlot &s,
   if (s.sensor_container) lv_obj_align(s.sensor_container, align, 0, 0);
 }
 
+inline void grid_prepare_timer_visual_reset(lv_obj_t *owner);
+#include "button_grid_timer_driver.h"
 #include "button_grid_date_time_driver.h"
 #include "button_grid_sensor_driver.h"
 #include "button_grid_weather_driver.h"
@@ -296,7 +309,7 @@ inline void reset_card_slot_dynamic_children(BtnSlot &s) {
   lv_obj_clear_flag(s.btn, LV_OBJ_FLAG_HIDDEN);
   lv_obj_clear_state(s.btn, LV_STATE_CHECKED);
   sync_card_checked_text_color(s.btn);
-  lv_obj_clear_state(s.btn, LV_STATE_DISABLED);
+  set_card_disabled_state(s.btn, false);
   lv_obj_set_style_opa(s.btn, LV_OPA_COVER, LV_PART_MAIN);
   if (s.icon_lbl) lv_obj_clear_flag(s.icon_lbl, LV_OBJ_FLAG_HIDDEN);
   if (s.sensor_container) lv_obj_set_user_data(s.sensor_container, nullptr);
@@ -530,6 +543,7 @@ inline void setup_card_visual(BtnSlot &s, const ParsedCfg &p,
                               int col_span = 1) {
   const DisplayProfile display = display_profile_from_grid_config(cfg);
   const auto family = context.family;
+  grid_prepare_timer_visual_reset(s.btn);
   espcontrol::cards::status_entity_driver_cleanup(s, p, context);
   espcontrol::cards::date_time_driver_cleanup(s, p, context);
   espcontrol::cards::sensor_driver_cleanup(s, p, context);
@@ -574,6 +588,7 @@ inline void setup_card_visual(BtnSlot &s, const ParsedCfg &p,
 
   if (context.known) screen_lock_register_controlled_button(s.btn);
 
+  if (espcontrol::cards::timer_driver_setup_visual(s, p, context)) return;
   if (espcontrol::cards::image_driver_setup_visual(s, p, context)) {
     espcontrol::cards::image_driver_attach_interaction(s, p, context);
     espcontrol::cards::image_driver_refresh_layout(s, p, context);
@@ -910,6 +925,7 @@ inline void refresh_card_layout(BtnSlot &s, const ParsedCfg &p,
     lv_obj_set_width(s.text_lbl, lv_pct(100));
   }
   display_apply_main_width(s.icon_lbl, display);
+  control_modal_register_card_label(s);
   display_apply_slot_text_width(s, display);
   if (espcontrol::cards::navigation_driver_refresh_layout(
         s, p, context, cfg)) return;
@@ -1009,6 +1025,9 @@ inline void grid_phase1(
     const std::string &on_hex,
     lv_obj_t *main_page_obj = nullptr) {
   ESP_LOGI("sensors", "Phase 1: visual setup start (%lu ms)", esphome::millis());
+  grid_phase2_complete_state() = false;
+  // Remote controls may be open over a non-grid page when widgets are rebuilt.
+  navigation_hide_modals();
   set_backlight_display_takeover_callback(navigation_close_modals_for_display_takeover);
   set_display_temperature_unit(cfg.temperature_unit, cfg.timezone);
   const DisplayProfile display = display_profile_from_grid_config(cfg);
@@ -1226,6 +1245,7 @@ inline bool grid_refresh_subpage_layouts(
         ESP_LOGW("sensors", "Subpage %d is missing card %d", si + 1, button_index);
         continue;
       }
+      card->display_order = gp;
       const int col = sp_order.has_back_token ? gp % COLS : (gp + 1) % COLS;
       const int row = sp_order.has_back_token ? gp / COLS : (gp + 1) / COLS;
       const int col_span = sp_order.col_span[button_index - 1] > 0
@@ -1328,6 +1348,17 @@ inline void grid_delete_runtime_ptr(void *ptr) {
   delete static_cast<T *>(ptr);
 }
 
+inline void grid_prepare_timer_visual_reset(lv_obj_t *owner) {
+  for (const auto &allocation : grid_runtime_allocations()) {
+    if (allocation.owner == owner &&
+        allocation.deleter == grid_delete_runtime_ptr<TimerCardCtx>) {
+      auto *timer = static_cast<TimerCardCtx *>(allocation.ptr);
+      if (lv_obj_get_user_data(owner) == timer) lv_obj_set_user_data(owner, nullptr);
+      timer->detach();
+    }
+  }
+}
+
 inline void grid_delete_transient_status_label(TransientStatusLabel *ctx) {
   if (ctx != nullptr) {
     if (ctx->revert_timer != nullptr) {
@@ -1345,12 +1376,6 @@ inline void grid_delete_transient_status_label_runtime_ptr(void *ptr) {
 inline void grid_delete_alarm_card_runtime_ptr(void *ptr) {
   AlarmCardCtx *ctx = static_cast<AlarmCardCtx *>(ptr);
   if (ctx != nullptr) {
-    bool owned_alarm_audio = alarm_delay_audio_coordinator().source == ctx;
-    alarm_delay_audio_unregister_context(ctx);
-    if (owned_alarm_audio) {
-      alarm_delay_audio_stop();
-      alarm_delay_audio_resume_context(ctx, /* exclude_same_entity= */ false);
-    }
     AlarmControlModalUi &control_ui = alarm_control_modal_ui();
     if (control_ui.active == ctx) alarm_control_hide_modal();
     AlarmPinModalUi &pin_ui = alarm_pin_modal_ui();
@@ -1466,6 +1491,8 @@ inline void grid_release_runtime_allocations(
     lv_obj_t *owner, void *preserve_primary = nullptr,
     void *preserve_secondary = nullptr) {
   if (owner == nullptr) return;
+  // Close before any context is freed, including an inactive subpage's owner.
+  navigation_hide_modals();
   std::vector<GridRuntimeAllocation> &allocations = grid_runtime_allocations();
   size_t write_index = 0;
   for (size_t read_index = 0; read_index < allocations.size(); read_index++) {
@@ -1800,6 +1827,7 @@ inline void grid_phase2(
   set_switch_confirmation_message_font(display_switch_confirmation_message_font(display));
   set_switch_confirmation_icon_font(display_icon_font(display));
   set_wifi_qr_icon_font(display_icon_font(display));
+  network_status_card_icon_font() = display_icon_font(display);
   set_wifi_qr_heading_font(display_media_title_font(display));
   int NS = bounded_grid_slots(cfg.num_slots);
   int COLS = cfg.cols > 0 ? cfg.cols : 1;
@@ -1907,6 +1935,7 @@ inline void grid_phase2(
       palette, display, s, cfg);
     if (espcontrol::cards::media_driver_bind_main(
           s, p, context, media_environment)) continue;
+    if (espcontrol::cards::timer_driver_bind_data(s, p, context)) continue;
     if (bind_basic_sensor_card(s, p, context, palette, col_span)) continue;
     espcontrol::cards::ToggleDriverState toggle_state;
     toggle_state.has_sensor = &has_sensor[idx - 1];
@@ -1935,7 +1964,12 @@ inline void grid_phase2(
              p.type.c_str());
   }
 
-  if (cfg.info_only) return;
+  if (cfg.info_only) {
+    // Info-only profiles still bind main-card runtimes in phase 2. They do not
+    // build subpages, but remote modal actions can safely use those runtimes.
+    grid_phase2_complete_state() = true;
+    return;
+  }
 
   // --- Subpage creation ---
   static lv_coord_t sp_col_dsc[MAX_GRID_SLOTS + 1];
@@ -2034,6 +2068,7 @@ inline void grid_phase2(
 
     lv_obj_add_event_cb(back_btn, [](lv_event_t *e) {
       lv_scr_load_anim((lv_obj_t *)lv_event_get_user_data(e), LV_SCR_LOAD_ANIM_NONE, 0, 0, false);
+      refresh_visible_image_cards();
     }, LV_EVENT_CLICKED, main_page_obj);
     screen_lock_register_controlled_button(back_btn);
     navigation_register_subpage_back_button(si + 1, back_slot);
@@ -2139,6 +2174,10 @@ inline void grid_phase2(
         [&](const std::string &entity_id) { add_parent_indicator(entity_id); };
       if (espcontrol::cards::media_driver_bind_subpage(
             sub_slot, sb_cfg, context, media_environment)) continue;
+      if (espcontrol::cards::timer_driver_bind_data(
+            sub_slot, sb_cfg, context, [&](const std::string &entity_id) {
+              add_parent_indicator(entity_id, timer_card_state_active_ref);
+            })) continue;
       if (bind_basic_sensor_card(sub_slot, sb_cfg, context, palette, cs)) continue;
       espcontrol::cards::BasicActionSubpageEnvironment action_environment;
       action_environment.grid_config = &cfg;
@@ -2218,6 +2257,7 @@ inline void grid_phase2(
   }
   refresh_weather_forecast_cards();
   ha_log_subscription_diagnostics("grid-complete");
+  grid_phase2_complete_state() = true;
   grid_log_memory("end");
   ESP_LOGI("sensors", "Phase 2: done (%lu ms)", esphome::millis());
 }
@@ -2369,6 +2409,14 @@ inline void grid_phase3(
     std::function<bool()> clock_bar_temperature_visible_callback = nullptr) {
   ESP_LOGI("sensors", "Phase 3: temp/presence/media subscriptions start (%lu ms)", esphome::millis());
   ha_reset_subscription_callbacks(HA_SUBSCRIPTION_SCOPE_PHASE3);
+  // Rebinding can remove an entity or wait for a new state. Values from the
+  // previous subscriptions must not keep controlling the screen meanwhile.
+  const bool schedule_presence_was_detected = schedule_presence_detected_ptr && *schedule_presence_detected_ptr;
+  if (indoor_temp_ptr) *indoor_temp_ptr = NAN;
+  if (outdoor_temp_ptr) *outdoor_temp_ptr = NAN;
+  if (presence_detected_ptr) *presence_detected_ptr = false;
+  if (schedule_presence_detected_ptr) *schedule_presence_detected_ptr = false;
+  if (media_player_playing_ptr) *media_player_playing_ptr = false;
   bool has_clock_bar_entities = configure_clock_bar_temperature_entities(
       temperature_entities, temperature_labels, temperature_label_count,
       main_page_obj, clock_bar_visible_callback,
@@ -2467,6 +2515,9 @@ inline void grid_phase3(
         }),
       HA_SUBSCRIPTION_SCOPE_PHASE3
     );
+  }
+  if (schedule_presence_was_detected && !*schedule_presence_detected_ptr && schedule_presence_changed_callback) {
+    schedule_presence_changed_callback();
   }
   ESP_LOGI("sensors", "Phase 3: done (%lu ms)", esphome::millis());
 }

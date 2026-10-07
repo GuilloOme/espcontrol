@@ -13,6 +13,7 @@ export interface DeviceConfigFeatures {
   voiceServices?: boolean;
   battery?: boolean;
   alarmDelayAudio?: boolean;
+  cameraScreensaver?: boolean;
 }
 
 export interface DeviceConfig {
@@ -35,6 +36,7 @@ export interface DeviceConfig {
   readonly portrait?: {
     readonly cols: number;
     readonly rows: number;
+    readonly slots?: number;
     readonly screen: {
       readonly width: string;
       readonly aspect: string;
@@ -141,20 +143,30 @@ export interface AppState {
   temperatureDegreeSymbolOn: boolean;
   subpageChevronsOn: boolean;
   presenceEntity: string;
+  screensaverCameraEntity: string;
+  screensaverCameraSupported: boolean;
+  clockOverlaySupported: boolean;
+  screensaverMetadataEntity: string;
+  metadataOverlayOn: boolean;
+  screensaverCameraImageMode: string;
   mediaPlayerSleepPreventionOn: boolean;
   mediaPlayerSleepPreventionEntity: string;
   coverArtScreensaverOn: boolean;
+  clockOverlayOn: boolean;
   coverArtMediaPlayerEntity: string;
   coverArtSecondaryMediaPlayerEntity: string;
   coverArtAttributeConditions: string;
   coverArtFilteringEnabled: boolean;
   coverArtDelay: number;
+  coverArtPlaybackControlOn: boolean;
   coverArtTrackOverlayDuration: number;
   coverArtHideExternalInputOn: boolean;
   homeAssistantArtworkProtocol: string;
+  homeAssistantArtworkHost: string;
   coverArtHomeAssistantPort: number;
   homeAssistantArtworkEndpointMode: string;
   homeAssistantArtworkEndpointStatus: string;
+  homeAssistantArtworkEndpointHealth: string;
   screensaverMode: string;
   _screensaverModeReceived: boolean;
   screensaverAction: string;
@@ -217,6 +229,7 @@ export interface AppState {
   firmwareChecking: boolean;
   firmwareVersionRefreshPending: boolean;
   firmwareInstallTargetVersion: string;
+  firmwareWebOtaDownloadPending: boolean;
   firmwareInstallPostPending: boolean;
   firmwareInstallStatus: string;
   firmwareInstallError: string;

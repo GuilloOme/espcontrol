@@ -1,3 +1,4 @@
+import { configOptionValue, setConfigOptionValue } from "../model/config_primitives";
 import {
     cardContractAllowInSubpage,
     cardContractCard,
@@ -25,6 +26,7 @@ export function registerImageCardTypes(
         imageLabelEnabled,
         imageIconEnabled,
         normalizeImageOptions,
+        validImageRefreshTrigger,
         setImageLabelEnabled,
         setImageIconEnabled,
         setImageModalMode,
@@ -63,26 +65,12 @@ export function registerImageCardTypes(
         iconField.classList.add("sp-cond-field");
         var labelToggle: any = helpers.toggleRow("Show Label", helpers.idPrefix + "image-label-toggle", imageLabelEnabled(b));
         panel.appendChild(labelToggle.row);
-        var labelField: any = helpers.renderCardTextField(panel, b, helpers, {
-            text: {
-                label: "Label",
-                idSuffix: "image-label",
-                placeholder: "Uses entity name when blank",
-                bindName: "label",
-                rerender: true,
-            },
-        });
-        function syncLabelField(this: any) {
-            labelField.field.hidden = !imageLabelEnabled(b);
-        }
         function syncIconField(this: any) {
             iconField.classList.toggle("sp-visible", imageIconEnabled(b));
         }
         labelToggle.input.addEventListener("change", function (this: any) {
             setImageLabelEnabled(b, this.checked);
             helpers.saveField("options", b.options);
-            helpers.saveField("label", b.label);
-            syncLabelField();
             renderPreview();
         });
         iconToggle.input.addEventListener("change", function (this: any) {
@@ -99,7 +87,6 @@ export function registerImageCardTypes(
             syncIconField();
             renderPreview();
         });
-        syncLabelField();
         syncIconField();
     }
     function renderImageModalSettings(this: any, panel?: any, b?: any, helpers?: any) {
@@ -109,6 +96,48 @@ export function registerImageCardTypes(
             setImageModalMode(b, this.value);
             helpers.saveField("options", b.options);
         });
+    }
+    function renderImageRefreshSettings(panel: any, b: any, helpers: any, entityInput: any, refreshPanel: any) {
+        const isCamera = () => String(b.entity || "").startsWith("camera.");
+        const refresh = helpers.selectField("Camera refresh", helpers.idPrefix + "image-refresh-mode", [
+            ["off", "Off"], ["periodic", "Periodic"], ["activity", "On activity"],
+        ], configOptionValue(b.options, "image_modal_refresh_mode") || "off");
+        const interval = helpers.selectField("Refresh interval", helpers.idPrefix + "image-refresh-interval", [
+            ["5", "5 seconds"], ["10", "10 seconds"], ["30", "30 seconds"],
+        ], configOptionValue(b.options, "image_modal_refresh_interval") || "10");
+        const trigger = helpers.entityField("Trigger entity", helpers.idPrefix + "image-refresh-trigger",
+            configOptionValue(b.options, "image_modal_refresh_trigger"),
+            "e.g. binary_sensor.front_door_motion", ["binary_sensor", "event"]);
+        const help = document.createElement("p");
+        help.className = "sp-setting-note";
+        help.textContent = "Periodic refresh updates the visible card and expanded image at the selected interval. On activity refreshes them every 5 seconds for 30 seconds. New activity restarts this period. Refreshing stops when the card is hidden. The return-home timeout still applies.";
+        panel.appendChild(refresh.field);
+        panel.appendChild(interval.field);
+        panel.appendChild(trigger.field);
+        panel.appendChild(help);
+        helpers.requireField(trigger.input, "Choose a binary sensor or event entity for activity refresh.",
+            () => isCamera() && refresh.select.value === "activity", (value: string) => validImageRefreshTrigger(value.trim()));
+        function syncVisibility() {
+            refreshPanel.hidden = !isCamera();
+            refresh.field.hidden = !isCamera();
+            interval.field.hidden = !isCamera() || refresh.select.value !== "periodic";
+            trigger.field.hidden = help.hidden = !isCamera() || refresh.select.value !== "activity";
+        }
+        function syncRefreshSettings() {
+            syncVisibility();
+            let options = setConfigOptionValue(b.options, "image_modal_refresh_mode", refresh.select.value);
+            options = setConfigOptionValue(options, "image_modal_refresh_interval", interval.select.value);
+            options = setConfigOptionValue(options, "image_modal_refresh_trigger", trigger.input.value.trim());
+            b.options = normalizeImageOptions(options, b.entity, true);
+            helpers.saveField("options", b.options);
+        }
+        refresh.select.addEventListener("change", syncRefreshSettings);
+        interval.select.addEventListener("change", syncRefreshSettings);
+        trigger.input.addEventListener("input", syncRefreshSettings);
+        trigger.input.addEventListener("change", syncRefreshSettings);
+        entityInput.addEventListener("input", syncRefreshSettings);
+        entityInput.addEventListener("change", syncRefreshSettings);
+        syncVisibility();
     }
     registry.register("image", {
         label: function (this: any) { return cardContractCardLabel("image"); },
@@ -125,7 +154,7 @@ export function registerImageCardTypes(
             b.sensor = "";
             b.unit = "";
             b.precision = "";
-            b.options = normalizeImageOptions(b.options);
+            b.options = normalizeImageOptions(b.options, b.entity, true);
         },
         renderSettings: function (this: any, panel?: any, b?: any, slot?: any, helpers?: any) {
             if (imageIconEnabled(b)) {
@@ -139,14 +168,24 @@ export function registerImageCardTypes(
             b.sensor = "";
             b.unit = "";
             b.precision = "";
-            b.options = normalizeImageOptions(b.options);
-            if (!imageLabelEnabled(b))
-                b.label = "";
-            helpers.renderCardEntityField(panel, b, helpers, IMAGE_CARD_METADATA);
+            b.options = normalizeImageOptions(b.options, b.entity, true);
+            const entityField = helpers.renderCardEntityField(panel, b, helpers, IMAGE_CARD_METADATA);
+            var nameField: any = helpers.renderCardTextField(panel, b, helpers, {
+                text: {
+                    label: "Name",
+                    idSuffix: "image-name",
+                    bindName: "label",
+                    rerender: true,
+                },
+            });
+            nameField.field.setAttribute("data-sp-card-primary", "name");
             renderImageLabelSettings(panel, b, helpers);
             var modalSettingsDisclosure: any = helpers.disclosureSection("Modal Settings", helpers.idPrefix + "image-modal-settings", false);
             renderImageModalSettings(modalSettingsDisclosure.section, b, helpers);
             panel.appendChild(modalSettingsDisclosure.panel);
+            const refreshSettings = helpers.disclosureSection("Refresh Settings", helpers.idPrefix + "image-refresh-settings", false);
+            renderImageRefreshSettings(refreshSettings.section, b, helpers, entityField.input, refreshSettings.panel);
+            panel.appendChild(refreshSettings.panel);
         },
         renderPreview: function (this: any, b?: any, helpers?: any) {
             var tertiaryColor: any = WEB_UI_COLORS.tertiary;

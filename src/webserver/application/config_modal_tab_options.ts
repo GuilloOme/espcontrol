@@ -160,6 +160,7 @@ export function createConfigModalTabOptionsFeature(
             { value: "preset", label: "Preset" },
             { value: "fan", label: "Fan" },
             { value: "swing", label: "Swing" },
+            { value: "horizontal_swing", label: "Horizontal Swing" },
         ];
     }
     function climateControlDefaultTabs(this: any) {
@@ -259,6 +260,7 @@ export function createConfigModalTabOptionsFeature(
         return [
             { value: "qr", label: "QR Code" },
             { value: "credentials", label: "Connection Details" },
+            { value: "guest", label: "Guest Wi-Fi" },
         ];
     }
     function wifiQrDefaultTabs(this: any) {
