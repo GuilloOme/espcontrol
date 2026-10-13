@@ -145,6 +145,8 @@ export interface AppState {
   presenceEntity: string;
   screensaverCameraEntity: string;
   screensaverCameraSupported: boolean;
+  clockDateSupported: boolean;
+  clockDateOn: boolean;
   clockOverlaySupported: boolean;
   screensaverMetadataEntity: string;
   metadataOverlayOn: boolean;
@@ -186,6 +188,13 @@ export interface AppState {
   brightnessDayVal: number;
   brightnessNightVal: number;
   brightnessMode: string;
+  themeMode: string;
+  themeAutoMethod: string;
+  themeActive: string;
+  themeLightStart: string;
+  themeDarkStart: string;
+  themeSunriseOffset: number;
+  themeSunsetOffset: number;
   manualBrightnessVal: number;
   brightnessDawnTime: string;
   brightnessDuskTime: string;

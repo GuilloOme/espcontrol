@@ -152,6 +152,7 @@ relay=Releu
 returning=Revine
 run_this_script=Rulați acest script?
 screen_dimmed=Ecran estompat
+screen_lock=Blocare ecran
 screen_locked=Ecran blocat
 screen_unlocked=Ecran deblocat
 skip_next=Următorul
@@ -258,3 +259,9 @@ timer=Temporizator
 timer_confirm=Confirmați
 guest_wifi=Wi-Fi pentru oaspeți
 wifi_did_not_change=Starea Wi-Fi nu s-a schimbat
+connect_to_the_wifi_hotspot=Conectați-vă la hotspotul WiFi
+to_configure_your_network=pentru a configura rețeaua.
+then_visit_192_168_4_1_in_your_browser=Apoi deschideți 192.168.4.1 în browser
+
+screensaver=Economizor de ecran
+incorrect_pin=PIN incorect
