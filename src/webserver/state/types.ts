@@ -17,10 +17,15 @@ export interface DeviceConfigFeatures {
 }
 
 export interface DeviceConfig {
+  readonly cardRadiusPixels?: number;
+  readonly cardCurveRadii?: Readonly<Record<string, number>>;
+  readonly continuousCorners?: boolean;
   readonly slots: number;
   readonly cols: number;
   readonly rows: number;
   readonly screenSize: string;
+  readonly displayWidth?: number;
+  readonly displayHeight?: number;
   readonly dragMode: "swap" | "displace";
   readonly dragAnimation: boolean;
   readonly imageSlotCapacity: number;
@@ -87,6 +92,7 @@ export interface RuntimeSubpage {
   grid: number[];
   sizes: SlotSizeMap;
   backLabel?: string;
+  backColor?: string;
 }
 
 export interface AppClipboard {
@@ -189,6 +195,8 @@ export interface AppState {
   brightnessNightVal: number;
   brightnessMode: string;
   themeMode: string;
+  cardCurve: string;
+  cardCurveSupported: boolean;
   themeAutoMethod: string;
   themeActive: string;
   themeLightStart: string;

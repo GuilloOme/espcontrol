@@ -8,13 +8,17 @@ description:
 
 Your EspControl panel has a built-in web page where you can set everything up. Open it by typing the panel's address into any browser on your phone or computer.
 
-![Screen setup page](/images/screen-setup.png)
+Use **Layout** to add and arrange cards, **Screen** for appearance, display, and sleep options, and **System** for preferences and system controls.
+
+![Example card layout on a portrait panel](/images/screen-setup.png)
 
 ![Webserver card grid with examples of lights, climate, media, weather, covers, locks, actions, sensors, and date cards](/images/webserver-card-gallery.png)
 
 ::: tip Finding the address
 The address is shown on the display screen when no cards are configured yet. You can also find it in your router's connected devices list, or in Home Assistant under **Settings > Devices & Services > ESPHome**.
 :::
+
+Click a card's title in **Layout** to rename it directly. Press **Enter** to save, or **Escape** (or click away) to cancel. You can also rename cards inside subpages and the Back button this way. Automatically generated text, such as dates, temperatures, and live status, cannot be renamed. For cards with a label display setting, choose the name or label mode to rename the card.
 
 ### Adding a Card
 
@@ -103,20 +107,25 @@ If a card already occupies the space needed for a larger size, the setup page tr
 
 ## Device Settings
 
-The **Settings** tab groups the current controls as follows. Open a card to see its options; some options appear only when their feature is enabled.
+In **Screen**, the groups appear in this order: **Appearance**, **Display**, then **Sleep & Schedule**. **Display** contains Backlight and, on supported panels, Rotation. Use **System** for preferences, backups, and firmware updates.
 
-| Section | Settings |
-|---|---|
-| **Display** | [Appearance](/features/appearance), [Backlight](/features/backlight), [Idle](/features/idle), [Clock Bar](/features/clock-bar), [Rotation](/features/rotation) |
-| **Sleep & Schedule** | [Cover Art Screen Saver](/features/media-cover-art), [Screensaver](/features/screensaver), [Night Schedule](/features/screen-schedule) |
-| **Preferences** | [Language](/features/language), [Time](/features/clock), [Temperature](/features/temperature) |
-| **System** | [Device Name](#naming-your-panel), [Backup](/features/backup), [Firmware](/features/firmware-updates), [Home Assistant Settings](#home-assistant-settings), [Battery](/features/battery), [Factory Reset](/features/backup#reset-the-display) |
+![Screen tab showing Display between Appearance and Sleep & Schedule](/images/screen-settings.png)
+
+The table below lists the controls in each group. Open a card to see its options; some options appear only when their feature is enabled.
+
+| Tab | Section | Controls |
+|---|---|---|
+| **Screen** | **Appearance** | [Active Colour, Card Style, Theme](/features/appearance), [Idle](/features/idle), [Clock Bar](/features/clock-bar) |
+| **Screen** | **Display** | [Backlight](/features/backlight), [Rotation](/features/rotation) |
+| **Screen** | **Sleep & Schedule** | [Cover Art Screen Saver](/features/media-cover-art), [Screensaver](/features/screensaver), [Night Schedule](/features/screen-schedule), [Pin Protection](/features/screensaver#pin-protection-after-wake) |
+| **System** | **Preferences** | [Language](/features/language), [Time](/features/clock), [Temperature](/features/temperature) |
+| **System** | **System** | [Device Name](#naming-your-panel), [Backup](/features/backup), [Firmware](/features/firmware-updates), [Home Assistant Settings](#home-assistant-settings), [Battery](/features/battery), [Factory Reset](/features/backup#reset-the-display) |
 
 Device-specific settings, including Rotation and Battery, appear only on supported panels. Device Name and Factory Reset also require firmware that supports them.
 
 ### Home Assistant Settings
 
-Open **Settings > System > Home Assistant Settings** to manage camera/image and media artwork connections. **Automatic** can use the local URL advertised by the connected Home Assistant instance when the URL uses the same IP address as the native ESPHome connection; it keeps the advertised protocol and port together. Home Assistant's separate Internet URL is not used.
+Open **System > Home Assistant Settings** to manage camera/image and media artwork connections. **Automatic** can use the local URL advertised by the connected Home Assistant instance when the URL uses the same IP address as the native ESPHome connection; it keeps the advertised protocol and port together. Home Assistant's separate Internet URL is not used.
 
 The panel checks candidates in the background. If the advertised local URL cannot be reached, it checks the connected server's advertised HTTP port with the configured protocol, then the other protocol for a local/private address. Its final fallback uses the configured protocol and port with the connected server's IP. If multicast discovery is blocked or ambiguous, only that configured fallback is used; EspControl does not scan ports or guess hostnames.
 
@@ -128,7 +137,7 @@ The native ESPHome connection and image downloads are separate connections. If c
 
 ## Apply Configuration
 
-After making changes, tap **Apply Configuration** at the bottom of the page. The panel restarts and loads your new settings — you'll see a message while it reconnects.
+After making changes, tap **Apply Configuration** at the bottom of the **Layout**, **Screen**, or **System** tab. The panel restarts and loads your new settings — you'll see a message while it reconnects.
 
 ## Restart From Home Assistant
 
@@ -159,7 +168,7 @@ The web setup page's **Apply Configuration** button remains separate: use it aft
 
 ## Naming Your Panel
 
-On firmware that supports panel naming, open **Settings > System > Device Name**.
+On firmware that supports panel naming, open **System > Device Name**.
 Enter a name such as **Kitchen**, check the address preview, then choose
 **Save & Restart**. The name appears in the web interface, browser tab, the
 panel's network information and Home Assistant. The address becomes something

@@ -92,7 +92,7 @@ Yes, through a Home Assistant `image` entity. The separate Immich Companion mana
 
 ### How Do I Update the Firmware?
 
-Standard firmware offers **Auto Update** and **Check for Update** under Firmware settings. Custom, Ethernet-only, and V3 installation paths have exceptions. Follow [Firmware Updates](/features/firmware-updates) for the correct method and release status.
+Standard firmware offers **Auto Update** and **Check for Update** under **System > Firmware**. Custom, Ethernet-only, and V3 installation paths have exceptions. Follow [Firmware Updates](/features/firmware-updates) for the correct method and release status.
 
 ### Will Automatic Updates Keep My Custom ESPHome YAML?
 
@@ -104,11 +104,11 @@ Mixed custom and stock firmware can change encryption behaviour. Keep the device
 
 ### Can I Rename a Panel Without Compiling Firmware?
 
-Yes. Use **Settings > System > Device Name > Save & Restart**. Entity IDs stay unchanged, but hostname-based ESPHome action names change. Update affected automations. See [Naming Your Panel](/features/setup#naming-your-panel).
+Yes. Use **System > Device Name > Save & Restart**. Entity IDs stay unchanged, but hostname-based ESPHome action names change. Update affected automations. See [Naming Your Panel](/features/setup#naming-your-panel).
 
 ### Can I Back Up My Setup?
 
-Yes. Use **Export** and **Import** under Backup to save cards and settings or copy a setup to another panel. Layouts adapt to different screen sizes. See [Backup and restore](/features/backup) for exclusions.
+Yes. Use **Export** and **Import** under **System > Backup** to save cards and settings or copy a setup to another panel. Layouts adapt to different screen sizes. See [Backup and restore](/features/backup) for exclusions.
 
 ### Can I Copy Just a Few Cards to Another Panel?
 
@@ -120,7 +120,7 @@ Yes. Home Assistant exposes a [Restart button](/features/setup#restart-from-home
 
 ### How Do I Reset the Device?
 
-Back up first, then use **Settings > System > Factory Reset**. Partial reset keeps WiFi and the Home Assistant key; Complete reset clears them. Both retain firmware. Follow [Reset the display](/features/backup#reset-the-display).
+Back up first, then use **System > Factory Reset**. Partial reset keeps WiFi and the Home Assistant key; Complete reset clears them. Both retain firmware. Follow [Reset the display](/features/backup#reset-the-display).
 
 ### Can I Stay on Releases While Managing the Panel in ESPHome?
 
@@ -184,11 +184,11 @@ Yes, when the Home Assistant climate entity exposes those capabilities. Range th
 
 ### Why Does My Weather Card Only Show Cloudy Instead of a Temperature?
 
-**Current Conditions** shows the state. Select **Temperatures Today** or **Temperatures Tomorrow** for forecast highs/lows and enable actions permission. Use a Sensor card for measured temperature. See [Weather](/card-types/weather).
+**Current Conditions** shows the state. Select **Today's Forecast** or **Tomorrow's Forecast** for forecast conditions and high temperatures and enable actions permission. Use a Sensor card for measured temperature. See [Weather](/card-types/weather).
 
 ### Can I Choose a Different Background Colour for Every Card?
 
-Open an individual card's settings and expand **Custom Colours** to choose a preset from the compact grid, or select the final dashed eyedropper swatch to open your browser's native colour picker. A checkmark shows the selected preset; an accent outline highlights a custom colour. The active state automatically uses a lighter version of that colour, and text adjusts for readability. While the section is open, the reset icon beside its arrow removes the custom colour so the card uses the panel's defaults again. Image and full QR cards use fixed backgrounds and do not offer this control. The shared active colour remains available in [Appearance](/features/appearance).
+Open an individual card's settings and expand **Custom Colours** to choose a preset from the compact grid, or select the final dashed eyedropper swatch to open your browser's native colour picker. A checkmark shows the selected preset; a custom colour fills the eyedropper swatch and is highlighted by an accent outline. The active state uses a brighter tint for darker colours, or a darker shade for pale colours and white. Text adjusts for readability. While the section is open, the reset icon beside its arrow removes the custom colour so the card uses the panel's defaults again. Image and full QR cards use fixed backgrounds and do not offer this control. The shared active colour remains available in [Appearance](/features/appearance).
 
 ### Can I Send Blinds to 25, 50, or 75 Percent?
 
@@ -246,7 +246,7 @@ Power and measurement are separate hardware features. [Battery Status](/features
 
 ### Can I Use a 10-inch Display in Portrait Mode?
 
-Use **Settings > Display > Rotation**. Available orientations depend on panel and firmware. Check the preview and usable card space after rotating. See [Rotation](/features/rotation).
+Use **Screen > Display > Rotation**. Available orientations depend on panel and firmware. Check the preview and usable card space after rotating. See [Rotation](/features/rotation).
 
 ### Does It Have a Room Temperature Sensor?
 
