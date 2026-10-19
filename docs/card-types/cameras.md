@@ -128,7 +128,7 @@ Camera images use more memory than normal control cards, so EspControl limits ho
 
 ESP32-P4 screens provide **6 shared image slots**. Each Camera card or Media card set to **Cover Art** uses one slot, across the main page and all subpages combined. For example, 4 Camera cards and 2 Media Cover Art cards use all 6 slots.
 
-The 4-inch ESP32-S3 provides **2 shared image slots** across the main page and all subpages. Camera and Media Cover Art cards both use this pool, so one of each can be shown together. Its expanded camera view requests an optimised image up to 320 pixels wide or tall; it remains a still snapshot and does not stream live video.
+The 4-inch ESP32-S3 provides **2 shared image slots** across the main page and all subpages. Camera and Media Cover Art cards both use this pool, so one of each can be shown together. Its expanded camera view requests an optimised image up to 320 pixels wide or tall. Animated GIFs play in the card and expanded view within the [GIF limits above](#setting-up-a-camera-card); live video streaming is not supported.
 
 If you see a **Too many** message or a warning while saving, reduce the number of Camera cards across the main page and subpages.
 
@@ -151,6 +151,6 @@ Camera performance also depends on the connection between the panel and Home Ass
 
 A Home Assistant `image` entity can supply changing photos to a Camera card. The separate [EspControl Immich Companion](/immich/) integration manages photo selection and slideshow controls in Home Assistant; the panel only needs its image entity.
 
-Follow [Connect to EspControl](/immich/display-setup) for Camera card and photo screensaver setup, and check the [installation guide](/immich/installation#installation-status) for the companion's requirements, development status and update instructions.
+Follow [Connect to EspControl](/immich/#connect-to-espcontrol) for Camera card and photo screensaver setup, and check the [installation guide](/immich/#installation-status) for the companion's requirements, development status and update instructions.
 
 Configure the integration in Home Assistant, confirm its image entity updates, then select that entity in a Camera card. Do not enter an Immich API key into the panel. The usual snapshot refresh and shared image-slot limits still apply.

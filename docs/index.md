@@ -4,7 +4,7 @@ titleTemplate: :title
 description: "No-code Home Assistant touchscreen controller for supported ESP32 panels. Install from a browser, configure cards from the panel web page, and control your home locally."
 ---
 
-![EspControl on a 7-inch touchscreen: home screen with temperature, clock, and control tiles](/images/home_screen_hero.jpg)
+![EspControl touchscreens showing colourful Home Assistant controls, temperature, weather, and media cards](/images/home_screen_hero.jpg)
 
 # EspControl: No-Code Home Assistant Touchscreen
 
@@ -78,8 +78,7 @@ If you find this project useful, consider buying me a coffee to support ongoing 
 
 ## Next Steps
 
-- [Install](/getting-started/install) — what you need, how to flash, and first-time setup
-- [Setup](/features/setup) — how to configure cards, display, and screensaver from your browser
-- [Card Types](/card-types/) — choose the right card for each Home Assistant control, sensor, or panel action
-- [Firmware Updates](/features/firmware-updates) — how update checks and WiFi firmware updates work
-- [Backup](/features/backup) — how to save, restore, and move a panel setup
+- **Get started** — [choose a screen](/screens/), [install EspControl](/getting-started/install), and [enable actions](/getting-started/home-assistant-actions).
+- **Configure** — [open device setup](/features/setup), then adjust [Appearance](/features/appearance), [Display](/settings/display), [Sleep & Schedule](/settings/sleep), or [System settings](/settings/system).
+- **Card Types** — [choose controls and information to display](/card-types/).
+- **Reference** — find [common answers](/reference/faq) or [troubleshoot a problem](/getting-started/troubleshooting).
